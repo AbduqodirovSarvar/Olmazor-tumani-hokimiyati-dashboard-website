@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/layout/service/auth.service';
+import { HelperService } from 'src/app/layout/service/helper.service';
+import { SignInCommand, SignInResponse } from 'src/app/layout/api/auth';
 
 @Component({
     selector: 'app-login',
@@ -13,11 +16,46 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
         }
     `]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-    valCheck: string[] = ['remember'];
+    loginForm!: FormGroup;
 
-    password!: string;
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+        private helperService: HelperService
+    ) {}
 
-    constructor(public layoutService: LayoutService) { }
+    ngOnInit() {
+        this.loginForm = this.fb.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required]]
+        });
+    }
+
+    get email() {
+        return this.loginForm.get('email');
+    }
+
+    get password() {
+        return this.loginForm.get('password');
+    }
+
+    login() {
+        if (this.loginForm.valid) {
+            const command: SignInCommand = {
+                email: this.email?.value,
+                password: this.password?.value
+            };
+            this.authService.signIn(command).subscribe({
+                next: (data: SignInResponse) => {
+                    this.helperService.setAccessToken(data.accessToken);
+                    this.helperService.redirectToDashboard();
+                },
+                error: (error: Error) => {
+                    console.log(error);
+                }
+            });
+        }
+    }
 }

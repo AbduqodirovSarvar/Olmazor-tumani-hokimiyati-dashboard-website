@@ -1,7 +1,7 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-        <span>SAKAI</span>
+        <img src="../../assets/layout/images/logo_olmazor.ico" alt="logo">
+        <span>Olmazor tumani</span>
     </a>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
@@ -13,17 +13,32 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-calendar"></i>
-            <span>Calendar</span>
-        </button>
-        <button class="p-link layout-topbar-button">
+        <!-- Language Menu -->
+        <!-- <p-menu #languageMenu [popup]="true" [model]="languageOptions"></p-menu>
+        <button class="p-link layout-topbar-button" (click)="languageMenu.toggle($event)">
+            <i class="pi pi-language"></i>
+            <span>Language</span>
+        </button> -->
+
+        <p-dropdown
+            [options]="languageOptions"
+            [(ngModel)]="selectedLanguage"
+            placeholder="Language">
+        </p-dropdown>
+
+        
+
+        <!-- <p-dropdown
+            [options]="profileOptions"
+            [(ngModel)]="selectedLanguage"
+            placeholder="Profile">
+        </p-dropdown>         -->
+
+        <!-- Profile Menu -->
+        <p-menu #profileMenu [popup]="true" [model]="profileOptions"></p-menu>
+        <button class="p-link layout-topbar-button" (click)="profileMenu.toggle($event)">
             <i class="pi pi-user"></i>
             <span>Profile</span>
-        </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
-            <i class="pi pi-cog"></i>
-            <span>Settings</span>
         </button>
     </div>
 </div>

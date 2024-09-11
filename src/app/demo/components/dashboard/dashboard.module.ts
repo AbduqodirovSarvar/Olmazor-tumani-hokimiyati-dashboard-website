@@ -9,9 +9,41 @@ import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
+import { AboutComponent } from './about/about.component';
+import { AddressComponent } from './address/address.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { PostsComponent } from './posts/posts.component';
+import { SectorsComponent } from './sectors/sectors.component';
+import { SlidesComponent } from './slides/slides.component';
+import { UsefullLinkComponent } from './usefull-link/usefull-link.component';
+import { UsersComponent } from './users/users.component';
+import { ListDemoRoutingModule } from '../uikit/list/listdemo-routing.module';
+import { DataViewModule } from 'primeng/dataview';
+import { PickListModule } from 'primeng/picklist';
+import { OrderListModule } from 'primeng/orderlist';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { RatingModule } from 'primeng/rating';
+import { TableDemoRoutingModule } from '../uikit/table/tabledemo-routing.module';
+import { SliderModule } from 'primeng/slider';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { RippleModule } from 'primeng/ripple';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ToastModule } from 'primeng/toast';
+
 
 @NgModule({
     imports: [
+		ListDemoRoutingModule,
+		DataViewModule,
+		PickListModule,
+		OrderListModule,
+		InputTextModule,
+		DropdownModule,
+		RatingModule,
+		ButtonModule,
         CommonModule,
         FormsModule,
         ChartModule,
@@ -19,9 +51,26 @@ import { DashboardsRoutingModule } from './dashboard-routing.module';
         TableModule,
         StyleClassModule,
         PanelMenuModule,
-        ButtonModule,
-        DashboardsRoutingModule
+        DashboardsRoutingModule,
+		TableDemoRoutingModule,
+		SliderModule,
+		ToggleButtonModule,
+		RippleModule,
+		MultiSelectModule,
+		ProgressBarModule,
+		ToastModule
     ],
-    declarations: [DashboardComponent]
+    declarations: [
+        DashboardComponent,
+        AboutComponent,
+        AddressComponent,
+        ContactsComponent,
+        EmployeeComponent,
+        PostsComponent,
+        SectorsComponent,
+        SlidesComponent,
+        UsefullLinkComponent,
+        UsersComponent
+    ]
 })
 export class DashboardModule { }
