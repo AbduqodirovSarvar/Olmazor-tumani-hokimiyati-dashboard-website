@@ -14,16 +14,16 @@ import { AuthGuardService } from 'src/app/layout/service/auth.guard.service';
 
 @NgModule({
     imports: [RouterModule.forChild([
-        { path: '', component: DashboardComponent, canActivate: [AuthGuardService] },
-        { path: 'about', component: AboutComponent },
-        { path: 'slides', component: SlidesComponent },
-        { path: 'posts', component: PostsComponent },
-        { path: 'sectors', component: SectorsComponent },
-        { path: 'address', component: AddressComponent },
-        { path: 'employees', component: EmployeeComponent },
-        { path: 'contacts', component: ContactsComponent },
-        { path: 'usefull-links', component: UsefullLinkComponent },
-        { path: 'users', component: UsersComponent }
+        { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+        { path: 'about', component: AboutComponent, canActivate: [AuthGuardService] },
+        { path: 'slides', component: SlidesComponent, canActivate: [AuthGuardService] },
+        { path: 'posts', component: PostsComponent, canActivate: [AuthGuardService] },
+        { path: 'sectors', component: SectorsComponent, canActivate: [AuthGuardService] },
+        { path: 'address', component: AddressComponent, canActivate: [AuthGuardService] },
+        { path: 'employees', component: EmployeeComponent, canActivate: [AuthGuardService] },
+        { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService] },
+        { path: 'usefull-links', component: UsefullLinkComponent, canActivate: [AuthGuardService] },
+        { path: 'users', component: UsersComponent, canActivate: [AuthGuardService] }
     ])],
     exports: [RouterModule]
 })

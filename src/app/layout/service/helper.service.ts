@@ -55,7 +55,7 @@ export class HelperService {
   }
 
   redirectToDashboard(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 
   redirectToLoginPage(): void{

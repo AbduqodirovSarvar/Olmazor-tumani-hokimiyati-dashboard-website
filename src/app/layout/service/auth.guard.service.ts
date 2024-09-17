@@ -11,10 +11,9 @@ export class AuthGuardService implements CanActivate {
 
   constructor(private helperService: HelperService, private router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): boolean {
     const accessToken = this.helperService.getAccessToken();
+    debugger;
     if (accessToken && !this.isTokenExpired(accessToken)) {
       return true;
     } else {
@@ -28,6 +27,7 @@ export class AuthGuardService implements CanActivate {
 
     const payload = JSON.parse(atob(token.split('.')[1]));
     const expiry = payload.exp;
+    console.log(expiry);
     const now = Math.floor((new Date).getTime() / 1000);
 
     return now >= expiry;
