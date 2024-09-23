@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://45.130.148.137:8080'
+  baseUrl: 'http://45.130.148.137:8080/api',
+  baseFileUrl: 'http://45.130.148.137:8080/api/File'
 };

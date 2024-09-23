@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.baseUrl;
+  private apiUrl = environment.baseUrl + '/Auth';
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class AuthService {
   getEmailConfirmationCode(email: string): Observable<GetEmailConfirmationCodeResponse> {
     const params = new HttpParams().set('Email', email);
     return this.http.get<GetEmailConfirmationCodeResponse>(
-      `${this.apiUrl}/api/Auth/get-email-confirmation-code`, 
+      `${this.apiUrl}/get-email-confirmation-code`, 
       { params }
     );
   }
@@ -25,7 +25,7 @@ export class AuthService {
   signIn(command: SignInCommand): Observable<SignInResponse> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<SignInResponse>(
-      `${this.apiUrl}/api/Auth/sign-in`, 
+      `${this.apiUrl}/sign-in`, 
       command, 
       { headers }
     );
@@ -35,7 +35,7 @@ export class AuthService {
   resetPassword(command: ResetPasswordCommand): Observable<ResetPasswordResponse> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<ResetPasswordResponse>(
-      `${this.apiUrl}/api/Auth/reset-password`, 
+      `${this.apiUrl}/reset-password`, 
       command, 
       { headers }
     );

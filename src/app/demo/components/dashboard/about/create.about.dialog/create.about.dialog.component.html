@@ -1,0 +1,74 @@
+<div class="p-fluid" [formGroup]="aboutForm">
+    <div class="field">
+      <label for="descriptionUz">Description (Uzbek)</label>
+      <textarea pInputTextarea id="descriptionUz" formControlName="descriptionUz"></textarea>
+    </div>
+    
+    <div class="field">
+      <label for="descriptionEn">Description (English)</label>
+      <textarea pInputTextarea id="descriptionEn" type="text" pInputText formControlName="descriptionEn"></textarea>
+    </div>
+    
+    <div class="field">
+      <label for="descriptionRu">Description (Russian)</label>
+      <textarea pInputTextarea id="descriptionRu" type="text" pInputText formControlName="descriptionRu"></textarea>
+    </div>
+    
+    <div class="field">
+      <label for="descriptionUzRu">Description (Cyrillic Uzbek)</label>
+      <textarea pInputTextarea id="descriptionUzRu" type="text" pInputText formControlName="descriptionUzRu"></textarea>
+    </div>
+    
+    <div class="field">
+      <label for="descriptionKaa">Description (Karakalpak)</label>
+      <textarea pInputTextarea id="descriptionKaa" type="text" pInputText formControlName="descriptionKaa"></textarea>
+    </div>
+  
+    <div class="field">
+        <label for="locationId">Location</label>
+        <p-dropdown
+          id="locationId"
+          formControlName="locationId"
+          [options]="locations"
+          optionLabel="nameEn"
+          optionValue="id"
+          placeholder="Select a Location">
+        </p-dropdown>
+      </div>
+
+    <div class="field">
+      <label for="receptionTimeUz">Reception Time (Uzbek)</label>
+      <textarea pInputTextarea id="receptionTimeUz" type="text" pInputText formControlName="receptionTimeUz"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="receptionTimeEn">Reception Time (English)</label>
+      <textarea pInputTextarea id="receptionTimeEn" type="text" pInputText formControlName="receptionTimeEn"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="receptionTimeRu">Reception Time (Russian)</label>
+      <textarea pInputTextarea id="receptionTimeRu" type="text" pInputText formControlName="receptionTimeRu"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="receptionTimeUzRu">Reception Time (Cyrillic Uzbek)</label>
+      <textarea pInputTextarea id="receptionTimeUzRu" type="text" pInputText formControlName="receptionTimeUzRu"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="receptionTimeKaa">Reception Time (Karakalpak)</label>
+      <textarea pInputTextarea id="receptionTimeKaa" type="text" pInputText formControlName="receptionTimeKaa"></textarea>
+    </div>
+
+    <div class="field">
+        <label for="receptionTimeRu">Reception Time (Russian)</label>
+        <textarea pInputTextarea id="receptionTimeRu" type="text" pInputText formControlName="receptionTimeRu"></textarea>
+      </div>
+  
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
+      <button pButton pRipple label="Add" (click)="onAdd()" [disabled]="aboutForm.invalid"></button>
+    </div>
+  </div>
+  

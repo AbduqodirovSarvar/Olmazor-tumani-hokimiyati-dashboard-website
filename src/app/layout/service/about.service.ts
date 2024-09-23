@@ -1,37 +1,58 @@
 // services/about.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CreateAboutCommand, CreateAboutResponse, DeleteAboutCommand, GetAboutRequest, GetAboutResponse, GetAllAboutResponse, UpdateAboutCommand, UpdateAboutResponse } from '../api/about';
+import { catchError, Observable } from 'rxjs';
+import { CreateAboutCommand, CreateAboutResponse, GetAboutRequest, GetAboutResponse, GetAllAboutResponse, UpdateAboutCommand, UpdateAboutResponse } from '../api/about';
+import { ErrorService } from './error.service';
+import { environment } from 'src/environments/environment.prod';
+import { DeleteAboutCommand } from '../api/about';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutService {
-  private baseUrl = '/api/About';
+  private baseUrl = environment.baseUrl + '/About';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private errorService: ErrorService
+  ) { }
 
   // GET /api/About?Id={uuid}
   getAboutById(id: string): Observable<GetAboutResponse> {
     const params = new HttpParams().set('Id', id);
-    return this.http.get<GetAboutResponse>(`${this.baseUrl}`, { params });
+    return this.http.get<GetAboutResponse>(`${this.baseUrl}`, { params })
+      .pipe(
+        catchError(error => this.errorService.handleError(error))
+      );
   }
 
   // POST /api/About
   createAbout(data: CreateAboutCommand): Observable<CreateAboutResponse> {
-    return this.http.post<CreateAboutResponse>(`${this.baseUrl}`, data);
+    return this.http.post<CreateAboutResponse>(`${this.baseUrl}`, data)
+    .pipe(
+      catchError(error => this.errorService.handleError(error))
+    );
   }
 
   // PUT /api/About
   updateAbout(data: UpdateAboutCommand): Observable<UpdateAboutResponse> {
-    return this.http.put<UpdateAboutResponse>(`${this.baseUrl}`, data);
+    return this.http.put<UpdateAboutResponse>(`${this.baseUrl}`, data)
+    .pipe(
+      catchError(error => this.errorService.handleError(error))
+    );
   }
 
   // DELETE /api/About
-  deleteAbout(data: DeleteAboutCommand): Observable<any> {
-    return this.http.request('delete', `${this.baseUrl}`, { body: data });
+  deleteAbout(id: string): Observable<any> {
+    const data: DeleteAboutCommand = {
+      id: id
+    }
+    return this.http.delete(`${this.baseUrl}`, { body: data })
+    .pipe(
+      catchError(error => this.errorService.handleError(error))
+    );
   }
 
   // GET /api/About/all
@@ -40,6 +61,9 @@ export class AboutService {
     if (query) {
       params = params.set('query', query);
     }
-    return this.http.get<GetAboutResponse[]>(`${this.baseUrl}/all`, { params });
+    return this.http.get<GetAboutResponse[]>(`${this.baseUrl}/all`, { params })
+    .pipe(
+      catchError(error => this.errorService.handleError(error))
+    );
   }
 }

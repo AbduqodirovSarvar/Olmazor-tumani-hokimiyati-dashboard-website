@@ -32,7 +32,12 @@ import { RippleModule } from 'primeng/ripple';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
-
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CreateAboutDialogComponent } from './about/create.about.dialog/create.about.dialog.component';
+import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { UpdateAboutDialogComponent } from './about/update.about.dialog/update.about.dialog.component';
 
 @NgModule({
     imports: [
@@ -58,7 +63,12 @@ import { ToastModule } from 'primeng/toast';
 		RippleModule,
 		MultiSelectModule,
 		ProgressBarModule,
-		ToastModule
+		ToastModule,
+        DynamicDialogModule,
+        DialogModule,
+        ReactiveFormsModule,
+        FormsModule,
+        InputTextareaModule
     ],
     declarations: [
         DashboardComponent,
@@ -70,7 +80,10 @@ import { ToastModule } from 'primeng/toast';
         SectorsComponent,
         SlidesComponent,
         UsefullLinkComponent,
-        UsersComponent
-    ]
+        UsersComponent,
+        CreateAboutDialogComponent,
+        UpdateAboutDialogComponent
+    ],
+    providers: [DialogService]
 })
 export class DashboardModule { }
