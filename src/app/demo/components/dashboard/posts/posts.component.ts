@@ -5,11 +5,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { EnumResponse } from 'src/app/layout/api/enum';
-import { PostResponse } from 'src/app/layout/api/post';
+import { CreatePostRequest, PostResponse, UpdatePostRequest } from 'src/app/layout/api/post';
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
 import { HelperService } from 'src/app/layout/service/helper.service';
 import { PostService } from 'src/app/layout/service/post.service';
 import { filter } from 'rxjs';
+import { CreatePostDialogComponent } from './create.post.dialog/create.post.dialog.component';
+import { UpdatePostDialogComponent } from './update.post.dialog/update.post.dialog.component';
 
 @Component({
   selector: 'app-posts',
@@ -86,12 +88,62 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  openCreatePostDialog() {
-    alert("Please enter create");
+  deletePost(id: string) {
+    this.postService.deletePost(id).subscribe({
+      next: () => {
+        console.log('Post deleted successfully:', id);
+        this.loadPosts();
+      },
+      error: (error: Error) => {
+        console.error('Error deleting post:', error);
+      }
+    });
   }
 
-  openUpdatePostDialog() {
-    alert("Please enter update");
+  openCreatePostDialog() {
+    const ref = this.dialogService.open(CreatePostDialogComponent, {
+      header: 'Create New Post',
+      width: '70%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+    });
+  
+    ref.onClose.subscribe({
+      next: (data: CreatePostRequest) => {
+        data.Category = this.currentCategory.id;
+        this.postService.createPost(data).subscribe({
+          next: (response: PostResponse) => {
+            console.log('Post created successfully:', response);
+            this.loadPosts();
+          },
+          error: (error) => {
+            console.error('Error creating post:', error);
+          }
+        });
+      }
+    })
+  }
+
+  openUpdatePostDialog(post: PostResponse) {
+    const ref = this.dialogService.open(UpdatePostDialogComponent, {
+      header: 'Update The Post',
+      width: '70%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      data: { post: post }
+    });
+    
+    ref.onClose.subscribe({
+      next: (data: UpdatePostRequest) => {
+        this.postService.updatePost(data).subscribe({
+          next: (response: PostResponse) => {
+            console.log('Post updated successfully:', response);
+            this.loadPosts();
+          },
+          error: (error) => {
+            console.error('Error updating post:', error); 
+          }
+        });
+      }
+    })
   }
 
   onSortChange(event: any) {

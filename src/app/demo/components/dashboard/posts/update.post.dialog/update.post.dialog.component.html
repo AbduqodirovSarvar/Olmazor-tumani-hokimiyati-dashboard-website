@@ -1,1 +1,65 @@
-<p>update.post.dialog works!</p>
+<div class="p-fluid" [formGroup]="updatePostForm">
+    <!-- Name Fields -->
+    <div class="field">
+      <label for="nameUz">Name (Uzbek)</label>
+      <input id="nameUz" pInputText formControlName="nameUz" />
+    </div>
+  
+    <div class="field">
+      <label for="nameEn">Name (English)</label>
+      <input id="nameEn" pInputText formControlName="nameEn" />
+    </div>
+  
+    <div class="field">
+      <label for="nameRu">Name (Russian)</label>
+      <input id="nameRu" pInputText formControlName="nameRu" />
+    </div>
+  
+    <div class="field">
+      <label for="nameUzRu">Name (Cyrillic Uzbek)</label>
+      <input id="nameUzRu" pInputText formControlName="nameUzRu" />
+    </div>
+  
+    <div class="field">
+      <label for="nameKaa">Name (Karakalpak)</label>
+      <input id="nameKaa" pInputText formControlName="nameKaa" />
+    </div>
+  
+    <!-- Description Fields -->
+    <div class="field">
+      <label for="descriptionUz">Description (Uzbek)</label>
+      <textarea id="descriptionUz" pInputTextarea formControlName="descriptionUz"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="descriptionEn">Description (English)</label>
+      <textarea id="descriptionEn" pInputTextarea formControlName="descriptionEn"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="descriptionRu">Description (Russian)</label>
+      <textarea id="descriptionRu" pInputTextarea formControlName="descriptionRu"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="descriptionUzRu">Description (Cyrillic Uzbek)</label>
+      <textarea id="descriptionUzRu" pInputTextarea formControlName="descriptionUzRu"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="descriptionKaa">Description (Karakalpak)</label>
+      <textarea id="descriptionKaa" pInputTextarea formControlName="descriptionKaa"></textarea>
+    </div>
+  
+    <!-- Photo Upload -->
+    <div class="field">
+      <label for="photo">Upload Photo</label>
+      <input id="photo" type="file" (change)="onFileChange($event)" />
+    </div>
+  
+    <!-- Action Buttons -->
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
+      <button pButton pRipple label="Update" (click)="onUpdate()" [disabled]="updatePostForm.invalid"></button>
+    </div>
+</div>

@@ -38,6 +38,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { UpdateAboutDialogComponent } from './about/update.about.dialog/update.about.dialog.component';
+import { CreatePostDialogComponent } from './posts/create.post.dialog/create.post.dialog.component';
+import { UpdatePostDialogComponent } from './posts/update.post.dialog/update.post.dialog.component';
 
 @NgModule({
     imports: [
@@ -82,7 +84,9 @@ import { UpdateAboutDialogComponent } from './about/update.about.dialog/update.a
         UsefullLinkComponent,
         UsersComponent,
         CreateAboutDialogComponent,
-        UpdateAboutDialogComponent
+        UpdateAboutDialogComponent,
+        CreatePostDialogComponent,
+        UpdatePostDialogComponent
     ],
     providers: [DialogService]
 })

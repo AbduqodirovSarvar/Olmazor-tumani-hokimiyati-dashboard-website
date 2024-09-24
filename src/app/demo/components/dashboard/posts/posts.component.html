@@ -30,7 +30,7 @@
 			  <div class="col-12 md:col-4" *ngFor="let post of filteredPosts">
 				<div class="card m-3 border-1 surface-border">
 				  <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
-					<div class="flex align-items-center" (click)="openUpdatePostDialog(post.id)">
+					<div class="flex align-items-center" (click)="openUpdatePostDialog(post)">
 					  <i class="pi pi-pencil"></i>
 					</div>
 					<div class="flex align-items-center" (click)="deletePost(post.id)">

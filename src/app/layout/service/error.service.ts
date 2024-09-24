@@ -10,6 +10,7 @@ export class ErrorService {
   constructor(private router: Router) { }
 
   public handleError(error: any): Observable<never> {
+    console.error(error.message);
     if (error.status === 401) {
       // Token is expired or unauthorized
       this.router.navigate(['/auth/login']);
