@@ -28,7 +28,7 @@ export class PostsComponent implements OnInit {
   dropdownPlaceholder: string = 'Select Category';
   dropdownOptionLabel: string = 'nameEn';
   sortOptions: SelectItem[] = [];
-  rows: number = 3; // Number of rows per page.
+  rows: number = 6; // Number of rows per page.
   first: number = 0;
   searchValue: string = ''; // Search input value
 
@@ -78,6 +78,7 @@ export class PostsComponent implements OnInit {
   loadPosts() {
     this.postService.getAllPosts().subscribe({
       next: (data: PostResponse[]) => {
+        this.posts=[];
         this.posts = data.filter(post => post.category == this.currentCategory.id);
         this.filteredPosts = [...this.posts];
         this.updatePaginatedList();

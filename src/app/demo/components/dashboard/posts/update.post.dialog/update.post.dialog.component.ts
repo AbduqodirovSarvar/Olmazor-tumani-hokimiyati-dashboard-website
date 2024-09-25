@@ -50,7 +50,9 @@ export class UpdatePostDialogComponent implements OnInit {
   onUpdate() {
     if (this.updatePostForm.valid) {
       const postData: UpdatePostRequest = this.updatePostForm.value; // Get the form values
-      this.dialogRef.close(postData); // Close the dialog and send the form data
+      this.dialogRef.close(postData);
+      this.updatePostForm.reset();
+       // Close the dialog and send the form data
     }else{
       console.error('Form is invalid'); // Display an error message if the form is invalid
     }

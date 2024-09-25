@@ -40,6 +40,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { UpdateAboutDialogComponent } from './about/update.about.dialog/update.about.dialog.component';
 import { CreatePostDialogComponent } from './posts/create.post.dialog/create.post.dialog.component';
 import { UpdatePostDialogComponent } from './posts/update.post.dialog/update.post.dialog.component';
+import { CreateEmployeeDialogComponent } from './employee/create.employee.dialog/create.employee.dialog.component';
+import { UpdateEmployeeDialogComponent } from './employee/update.employee.dialog/update.employee.dialog.component';
 
 @NgModule({
     imports: [
@@ -86,7 +88,9 @@ import { UpdatePostDialogComponent } from './posts/update.post.dialog/update.pos
         CreateAboutDialogComponent,
         UpdateAboutDialogComponent,
         CreatePostDialogComponent,
-        UpdatePostDialogComponent
+        UpdatePostDialogComponent,
+        CreateEmployeeDialogComponent,
+        UpdateEmployeeDialogComponent
     ],
     providers: [DialogService]
 })

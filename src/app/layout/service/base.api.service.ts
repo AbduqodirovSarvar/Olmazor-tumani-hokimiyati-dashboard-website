@@ -28,7 +28,7 @@ export class BaseApiService {
   }
 
   public getEmployeeCategories(): Observable<EnumResponse[]> {
-    return this.http.get<EnumResponse[]>(`${this.baseApiUrl}/EmployeeCategories`);
+    return this.http.get<EnumResponse[]>(`${this.baseApiUrl}/Common/enum/employee-categories`);
   }
 
   public getContactTypes(): Observable<EnumResponse[]> {
