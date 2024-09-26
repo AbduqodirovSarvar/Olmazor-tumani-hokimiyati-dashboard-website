@@ -1,0 +1,44 @@
+<div class="p-fluid" [formGroup]="locationForm">
+    <input id="id" type="hidden" formControlName="id" />
+  
+    <div class="field">
+      <label for="nameUz">Name (Uzbek)</label>
+      <input id="nameUz" type="text" pInputText formControlName="nameUz" />
+    </div>
+  
+    <div class="field">
+      <label for="nameEn">Name (English)</label>
+      <input id="nameEn" type="text" pInputText formControlName="nameEn" />
+    </div>
+  
+    <div class="field">
+      <label for="nameRu">Name (Russian)</label>
+      <input id="nameRu" type="text" pInputText formControlName="nameRu" />
+    </div>
+  
+    <div class="field">
+      <label for="nameUzRu">Name (Cyrillic Uzbek)</label>
+      <input id="nameUzRu" type="text" pInputText formControlName="nameUzRu" />
+    </div>
+  
+    <div class="field">
+      <label for="nameKaa">Name (Karakalpak)</label>
+      <input id="nameKaa" type="text" pInputText formControlName="nameKaa" />
+    </div>
+  
+    <div class="field">
+      <label for="latitude">Latitude</label>
+      <input id="latitude" type="text" pInputText formControlName="latitude" />
+    </div>
+  
+    <div class="field">
+      <label for="longitude">Longitude</label>
+      <input id="longitude" type="text" pInputText formControlName="longitude" />
+    </div>
+  
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="Update Location" icon="pi pi-check" (click)="onSubmit()" [disabled]="locationForm.invalid"></button>
+    </div>
+</div>
+  

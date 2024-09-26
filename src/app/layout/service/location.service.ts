@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { CreateLocationRequest, LocationResponse, UpdateLocationRequest } from '../api/location';
+import { CreateLocationRequest, DeleteLocationRequest, LocationResponse, UpdateLocationRequest } from '../api/location';
 import { ErrorService } from './error.service';
 
 @Injectable({
@@ -43,8 +43,8 @@ export class LocationService {
     );
   }
 
-  deleteLocation(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`)
+  deleteLocation(data: DeleteLocationRequest): Observable<any> {
+    return this.http.delete(`${this.apiUrl}`, {body: data})
     .pipe(
       catchError(error => this.errorService.handleError(error))
     );

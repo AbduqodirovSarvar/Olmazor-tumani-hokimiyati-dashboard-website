@@ -1,0 +1,24 @@
+<div class="p-fluid" [formGroup]="contactForm">
+    <div class="field">
+        <label for="type">Location</label>
+        <p-dropdown
+          id="type"
+          formControlName="type"
+          [options]="types"
+          optionLabel="nameEn"
+          optionValue="id"
+          placeholder="Select">
+        </p-dropdown>
+      </div>
+
+    <div class="field">
+      <label for="value">Value</label>
+      <textarea pInputTextarea id="value" type="text" pInputText formControlName="value"></textarea>
+    </div>
+  
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
+      <button pButton pRipple label="Add" (click)="onAdd()" [disabled]="contactForm.invalid"></button>
+    </div>
+  </div>
+  

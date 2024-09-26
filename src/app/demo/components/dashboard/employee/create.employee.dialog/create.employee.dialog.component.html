@@ -1,1 +1,221 @@
-<p>create.employee.dialog works!</p>
+<div class="p-fluid" [formGroup]="employeeForm">
+    <!-- First Name -->
+    <div class="field">
+      <label for="FirstnameEn">First Name (English)</label>
+      <input id="FirstnameEn" type="text" pInputText formControlName="FirstnameEn" />
+    </div>
+  
+    <div class="field">
+      <label for="FirstnameRu">First Name (Russian)</label>
+      <input id="FirstnameRu" type="text" pInputText formControlName="FirstnameRu" />
+    </div>
+  
+    <!-- Last Name -->
+    <div class="field">
+      <label for="LastnameEn">Last Name (English)</label>
+      <input id="LastnameEn" type="text" pInputText formControlName="LastnameEn" />
+    </div>
+  
+    <div class="field">
+      <label for="LastnameRu">Last Name (Russian)</label>
+      <input id="LastnameRu" type="text" pInputText formControlName="LastnameRu" />
+    </div>
+  
+    <!-- Gender -->
+    <div class="field">
+      <label for="Gender">Gender</label>
+      <p-dropdown 
+        id="Gender" 
+        formControlName="Gender" 
+        [options]="genders" 
+        placeholder="Select Gender"
+        optionLabel="nameEn"
+        optionValue="id"
+        ></p-dropdown>
+    </div>
+  
+    <!-- Phone Numbers -->
+    <div class="field">
+      <label for="Phone1">Phone 1</label>
+      <input id="Phone1" type="tel" pInputText formControlName="Phone1" />
+    </div>
+  
+    <div class="field">
+      <label for="Phone2">Phone 2</label>
+      <input id="Phone2" type="tel" pInputText formControlName="Phone2" />
+    </div>
+  
+    <!-- Email -->
+    <div class="field">
+      <label for="Email">Email</label>
+      <input id="Email" type="email" pInputText formControlName="Email" />
+    </div>
+  
+    <!-- Category -->
+    <div class="field">
+      <label for="Category">Category</label>
+      <p-dropdown 
+        id="Category" 
+        formControlName="Category" 
+        [options]="categories" 
+        placeholder="Select Category"
+        optionLabel="nameEn"
+        optionValue="id"
+        ></p-dropdown>
+    </div>
+  
+    <!-- Nationality -->
+    <div class="field">
+      <label for="NationalityEn">Nationality (English)</label>
+      <input id="NationalityEn" type="text" pInputText formControlName="NationalityEn" />
+    </div>
+  
+    <div class="field">
+      <label for="NationalityUz">Nationality (Uzbek)</label>
+      <input id="NationalityUz" type="text" pInputText formControlName="NationalityUz" />
+    </div>
+  
+    <div class="field">
+      <label for="NationalityRu">Nationality (Russian)</label>
+      <input id="NationalityRu" type="text" pInputText formControlName="NationalityRu" />
+    </div>
+  
+    <div class="field">
+      <label for="NationalityUzRu">Nationality (Cyrillic Uzbek)</label>
+      <input id="NationalityUzRu" type="text" pInputText formControlName="NationalityUzRu" />
+    </div>
+  
+    <div class="field">
+      <label for="NationalityKaa">Nationality (Karakalpak)</label>
+      <input id="NationalityKaa" type="text" pInputText formControlName="NationalityKaa" />
+    </div>
+  
+    <!-- Birthday -->
+    <div class="field">
+      <label for="Birthday">Birthday</label>
+      <input id="Birthday" type="date" pInputText formControlName="Birthday" />
+    </div>
+  
+    <!-- Birth Place -->
+    <div class="field">
+      <label for="BirthPlaceUz">Birth Place (Uzbek)</label>
+      <input id="BirthPlaceUz" type="text" pInputText formControlName="BirthPlaceUz" />
+    </div>
+  
+    <div class="field">
+      <label for="BirthPlaceEn">Birth Place (English)</label>
+      <input id="BirthPlaceEn" type="text" pInputText formControlName="BirthPlaceEn" />
+    </div>
+  
+    <div class="field">
+      <label for="BirthPlaceRu">Birth Place (Russian)</label>
+      <input id="BirthPlaceRu" type="text" pInputText formControlName="BirthPlaceRu" />
+    </div>
+  
+    <div class="field">
+      <label for="BirthPlaceUzRu">Birth Place (Cyrillic Uzbek)</label>
+      <input id="BirthPlaceUzRu" type="text" pInputText formControlName="BirthPlaceUzRu" />
+    </div>
+  
+    <div class="field">
+      <label for="BirthPlaceKaa">Birth Place (Karakalpak)</label>
+      <input id="BirthPlaceKaa" type="text" pInputText formControlName="BirthPlaceKaa" />
+    </div>
+  
+    <!-- Position -->
+    <div class="field">
+      <label for="PositionEn">Position (English)</label>
+      <input id="PositionEn" type="text" pInputText formControlName="PositionEn" />
+    </div>
+  
+    <div class="field">
+      <label for="PositionUz">Position (Uzbek)</label>
+      <input id="PositionUz" type="text" pInputText formControlName="PositionUz" />
+    </div>
+  
+    <div class="field">
+      <label for="PositionRu">Position (Russian)</label>
+      <input id="PositionRu" type="text" pInputText formControlName="PositionRu" />
+    </div>
+  
+    <div class="field">
+      <label for="PositionUzRu">Position (Cyrillic Uzbek)</label>
+      <input id="PositionUzRu" type="text" pInputText formControlName="PositionUzRu" />
+    </div>
+  
+    <div class="field">
+      <label for="PositionKaa">Position (Karakalpak)</label>
+      <input id="PositionKaa" type="text" pInputText formControlName="PositionKaa" />
+    </div>
+  
+    <!-- Work From Date -->
+    <div class="field">
+      <label for="WorkFromDate">Work From Date</label>
+      <input id="WorkFromDate" type="date" pInputText formControlName="WorkFromDate" />
+    </div>
+  
+    <!-- Work Place -->
+    <div class="field">
+      <label for="WorkPlaceUz">Work Place (Uzbek)</label>
+      <input id="WorkPlaceUz" type="text" pInputText formControlName="WorkPlaceUz" />
+    </div>
+  
+    <div class="field">
+      <label for="WorkPlaceEn">Work Place (English)</label>
+      <input id="WorkPlaceEn" type="text" pInputText formControlName="WorkPlaceEn" />
+    </div>
+  
+    <div class="field">
+      <label for="WorkPlaceRu">Work Place (Russian)</label>
+      <input id="WorkPlaceRu" type="text" pInputText formControlName="WorkPlaceRu" />
+    </div>
+  
+    <div class="field">
+      <label for="WorkPlaceUzRu">Work Place (Cyrillic Uzbek)</label>
+      <input id="WorkPlaceUzRu" type="text" pInputText formControlName="WorkPlaceUzRu" />
+    </div>
+  
+    <div class="field">
+      <label for="WorkPlaceKaa">Work Place (Karakalpak)</label>
+      <input id="WorkPlaceKaa" type="text" pInputText formControlName="WorkPlaceKaa" />
+    </div>
+  
+    <!-- Reception Time -->
+    <div class="field">
+      <label for="ReceptionTimeUz">Reception Time (Uzbek)</label>
+      <textarea pInputTextarea id="ReceptionTimeUz" formControlName="ReceptionTimeUz"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="ReceptionTimeEn">Reception Time (English)</label>
+      <textarea pInputTextarea id="ReceptionTimeEn" formControlName="ReceptionTimeEn"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="ReceptionTimeRu">Reception Time (Russian)</label>
+      <textarea pInputTextarea id="ReceptionTimeRu" formControlName="ReceptionTimeRu"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="ReceptionTimeUzRu">Reception Time (Cyrillic Uzbek)</label>
+      <textarea pInputTextarea id="ReceptionTimeUzRu" formControlName="ReceptionTimeUzRu"></textarea>
+    </div>
+  
+    <div class="field">
+      <label for="ReceptionTimeKaa">Reception Time (Karakalpak)</label>
+      <textarea pInputTextarea id="ReceptionTimeKaa" formControlName="ReceptionTimeKaa"></textarea>
+    </div>
+
+    <!-- Photo -->
+    <div class="field">
+      <label for="photo">Photo</label>
+      <input id="photo" type="file" pInputText (change)="onFileSelect($event)" />
+    </div>
+  
+    <!-- Submit and Cancel Buttons -->
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
+      <button pButton pRipple label="Submit" (click)="onAdd()" [disabled]="employeeForm.invalid"></button>
+    </div>
+  </div>
+  

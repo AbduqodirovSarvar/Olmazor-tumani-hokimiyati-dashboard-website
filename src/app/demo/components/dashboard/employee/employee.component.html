@@ -1,7 +1,7 @@
 <div class="grid">
 	<div class="col-12">
 	  <div class="card">
-		<h5>Users</h5>
+		<h5>Employees</h5>
 		<p-table #dt1 [value]="employees" dataKey="Id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['FirstnameEn', 'LastnameEn', 'Phone1', 'PositionEn']" responsiveLayout="scroll">
 		  
 		  <!-- Caption for sorting and searching -->
@@ -9,8 +9,8 @@
 			<div class="flex justify-content-between flex-column sm:flex-row">
 			  <p-dropdown 
 			  [options]="employeeCategories" 
-			  [placeholder]="dropdownOptionPlaceholder"
 			  [optionLabel]="dropdownOptionLabel"
+        	  optionValue="id"
 			  (onChange)="onSortChange($event)"></p-dropdown>
 			  <span class="p-input-icon-left mb-2">
 				<i class="pi pi-search"></i>
@@ -53,8 +53,8 @@
 			  <!-- Action buttons (edit and delete) -->
 			  <td>
 				<div class="flex justify-content-around flex-column sm:flex-row">
-				  <p-button severity="success" icon="pi pi-pencil" (click)="deleteEmployee(employee.id)"></p-button>
-				  <p-button severity="danger" icon="pi pi-trash" (click)="updateEmployee(employee)"></p-button>
+				  <p-button severity="success" icon="pi pi-pencil" (click)="updateEmployee(employee)"></p-button>
+				  <p-button severity="danger" icon="pi pi-trash" (click)="deleteEmployee(employee.id)"></p-button>
 				</div>
 			  </td>
 			</tr>

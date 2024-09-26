@@ -42,6 +42,10 @@ import { CreatePostDialogComponent } from './posts/create.post.dialog/create.pos
 import { UpdatePostDialogComponent } from './posts/update.post.dialog/update.post.dialog.component';
 import { CreateEmployeeDialogComponent } from './employee/create.employee.dialog/create.employee.dialog.component';
 import { UpdateEmployeeDialogComponent } from './employee/update.employee.dialog/update.employee.dialog.component';
+import { UpdateAddressDialogComponent } from './address/update.address.dialog/update.address.dialog.component';
+import { CreateAddressDialogComponent } from './address/create.address.dialog/create.address.dialog.component';
+import { UpdateContactDialogComponent } from './contacts/update.contact.dialog/update.contact.dialog.component';
+import { CreateContactDialogComponent } from './contacts/create.contact.dialog/create.contact.dialog.component';
 
 @NgModule({
     imports: [
@@ -90,7 +94,11 @@ import { UpdateEmployeeDialogComponent } from './employee/update.employee.dialog
         CreatePostDialogComponent,
         UpdatePostDialogComponent,
         CreateEmployeeDialogComponent,
-        UpdateEmployeeDialogComponent
+        UpdateEmployeeDialogComponent,
+        UpdateAddressDialogComponent,
+        CreateAddressDialogComponent,
+        UpdateContactDialogComponent,
+        CreateContactDialogComponent
     ],
     providers: [DialogService]
 })

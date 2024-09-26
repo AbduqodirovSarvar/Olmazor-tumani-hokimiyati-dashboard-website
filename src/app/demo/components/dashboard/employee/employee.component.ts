@@ -59,6 +59,7 @@ export class EmployeeComponent implements OnInit {
   dropdownOptionPlaceholder: string = "Select category";
   dropdownOptionLabel: string = "nameEn";
   currentCategory: EnumResponse;
+  genders: EnumResponse[] = [];
 
   @ViewChild('filter') filter!: ElementRef;
 
@@ -74,6 +75,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.loadEmployees();
     this.loadCategories();
+    this.loadGenders();
       this.customerService.getCustomersLarge().then(customers => {
           this.customers1 = customers;
           this.loading = false;
@@ -134,11 +136,26 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  loadGenders(){
+    this.baseApiService.getGenders().subscribe({
+        next: (genders: EnumResponse[]) => {
+          this.genders = genders;
+        },
+        error: (error: any) => {
+          console.error('Error fetching genders', error);
+        }
+    });
+  }
+
   createEmployee(){
     const ref = this.dialogService.open(CreateEmployeeDialogComponent, {
         header: 'Create New Employee',
-        width: '70%',
+        width: '80%',
         contentStyle: { 'max-height': '500px', overflow: 'auto' },
+        data: {
+            genders: this.genders,
+            employeeCategories: this.employeeCategories
+        }
       });
 
     ref.onClose.subscribe({
@@ -161,7 +178,11 @@ export class EmployeeComponent implements OnInit {
         header: 'Update the Employee',
         width: '70%',
         contentStyle: { 'max-height': '500px', overflow: 'auto' },
-        data: {employee: employee }
+        data: {
+            employee: employee,
+            categories: this.employeeCategories,
+            genders: this.genders
+        }
       });
 
       ref.onClose.subscribe({

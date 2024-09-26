@@ -5,6 +5,14 @@ import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { ContactResponse, CreateContactCommand, DeleteContactCommand, UpdateContactCommand } from 'src/app/layout/api/contact';
+import { EnumResponse } from 'src/app/layout/api/enum';
+import { ContactService } from 'src/app/layout/service/contact.service';
+import { BaseApiService } from 'src/app/layout/service/base.api.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { HelperService } from 'src/app/layout/service/helper.service';
+import { CreateContactDialogComponent } from './create.contact.dialog/create.contact.dialog.component';
+import { UpdateContactDialogComponent } from './update.contact.dialog/update.contact.dialog.component';
 
 interface expandedRows {
   [key: string]: boolean;
@@ -48,9 +56,21 @@ export class ContactsComponent implements OnInit {
 
   @ViewChild('filter') filter!: ElementRef;
 
-  constructor(private customerService: CustomerService, private productService: ProductService) { }
+  contacts: ContactResponse[] = [];
+  types: EnumResponse[] = [];
+
+  constructor(
+    private customerService: CustomerService, 
+    private productService: ProductService,
+    private contactService: ContactService,
+    private baseApiService: BaseApiService,
+    public helperService: HelperService,
+    private dialogService: DialogService
+) { }
 
   ngOnInit() {
+    this.loadTypes();
+    this.loadContacts();
       this.customerService.getCustomersLarge().then(customers => {
           this.customers1 = customers;
           this.loading = false;
@@ -83,6 +103,86 @@ export class ContactsComponent implements OnInit {
           { label: 'Renewal', value: 'renewal' },
           { label: 'Proposal', value: 'proposal' }
       ];
+  }
+
+  loadContacts(){
+    this.contactService.getAll().subscribe({
+        next: (data: ContactResponse[]) => {
+            this.contacts = data;
+        },
+        error: (error: any) => console.error('Error retrieving contacts:', error)
+    });
+  }
+
+  loadTypes(){
+    this.baseApiService.getContactTypes().subscribe({
+        next: (data: EnumResponse[]) => {
+            this.types = data;
+        },
+        error: (error: any) => console.error('Error retrieving types:', error)
+    });
+  }
+
+  create(){
+    const ref = this.dialogService.open(CreateContactDialogComponent, {
+        header: 'Create New Contact',
+        width: '70%',
+        contentStyle: { 'overflow-y': 'auto' },
+        data: {
+            types: this.types
+        }
+    });
+
+    ref.onClose.subscribe({
+        next: (data: CreateContactCommand) => {
+            this.contactService.create(data).subscribe({
+                next: (data: ContactResponse) => {
+                    console.log('Contact created successfully');
+                    this.loadContacts();
+                },
+                error: (error: any) => console.error('Error creating contact:', error)
+            });
+        },
+        error: (error: any) => console.error('Error closing dialog:', error)
+    });
+  }
+
+  update(contact: ContactResponse){
+    const ref = this.dialogService.open(UpdateContactDialogComponent, {
+        header: 'Update Contact',
+        width: '70%',
+        contentStyle: { 'overflow-y': 'auto' },
+        data: { 
+            contact: contact,
+            types: this.types
+        }
+    });
+
+    ref.onClose.subscribe({
+        next: (data: UpdateContactCommand) => {
+            this.contactService.update(data).subscribe({
+                next: (data: ContactResponse) => {
+                    console.log('Contact updated successfully');
+                    this.loadContacts();
+                },
+                error: (error: any) => console.error('Error updating contact:', error)
+            });
+        },
+        error: (error: any) => console.error('Error closing dialog:', error)
+    });
+  }
+
+  delete(id: string) {
+    const deleteContactRequest: DeleteContactCommand = {
+        id: id
+    }
+    this.contactService.delete(deleteContactRequest).subscribe({
+        next: (data: boolean) => {
+            console.log('Contact deleted successfully');
+            this.loadContacts();
+        },
+        error: (error: any) => console.error('Error deleting contact:', error)
+    });
   }
 
   onSort() {
