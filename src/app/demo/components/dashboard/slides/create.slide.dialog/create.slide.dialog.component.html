@@ -1,4 +1,4 @@
-<div class="p-fluid" [formGroup]="sectorForm">
+<div class="p-fluid" [formGroup]="slideForm">
     <!-- Name (Uzbek) -->
     <div class="field">
       <label for="nameUz">Name (Uzbek)</label>
@@ -59,42 +59,16 @@
       <textarea id="descriptionKaa" pInputTextarea formControlName="descriptionKaa"></textarea>
     </div>
   
-    <!-- Employee (UUID) -->
+    <!-- Photo (Binary File Upload) -->
     <div class="field">
-      <label for="employeeId">Employee</label>
-      <p-dropdown 
-        id="employeeId" 
-        formControlName="employeeId" 
-        [options]="employees" 
-        optionLabel="firstnameEn" 
-        optionValue="id"
-        placeholder="Select an Employee">
-      </p-dropdown>
-    </div>
-  
-    <!-- Location (UUID) -->
-    <div class="field">
-      <label for="locationId">Location</label>
-      <p-dropdown 
-        id="locationId" 
-        formControlName="locationId" 
-        [options]="locations" 
-        optionLabel="nameEn" 
-        optionValue="id" 
-        placeholder="Select a Location">
-      </p-dropdown>
-    </div>
-  
-    <!-- Photo (Optional) -->
-    <div class="field">
-      <label for="photo">Photo (Optional)</label>
+      <label for="photo">Photo</label>
       <input id="photo" type="file" (change)="onFileSelect($event)" />
     </div>
   
     <!-- Buttons -->
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
       <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
-      <button pButton label="Create Sector" icon="pi pi-check" (click)="onSubmit()" [disabled]="sectorForm.invalid"></button>
+      <button pButton label="Create Slide" icon="pi pi-check" (click)="onSubmit()" [disabled]="slideForm.invalid"></button>
     </div>
   </div>
   

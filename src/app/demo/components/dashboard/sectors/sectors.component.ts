@@ -5,11 +5,15 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LocationResponse } from 'src/app/layout/api/location';
-import { DeleteSectorRequest, SectorResponse } from 'src/app/layout/api/sector';
+import { CreateSectorRequest, DeleteSectorRequest, SectorResponse, UpdateSectorRequest } from 'src/app/layout/api/sector';
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
 import { HelperService } from 'src/app/layout/service/helper.service';
 import { LocationService } from 'src/app/layout/service/location.service';
 import { SectorService } from 'src/app/layout/service/sector.service';
+import { CreateSectorDialogComponent } from './create.sector.dialog/create.sector.dialog.component';
+import { UpdateSectorDialogComponent } from './update.sector.dialog/update.sector.dialog.component';
+import { EmployeeResponse } from 'src/app/layout/api/employee';
+import { EmployeeService } from 'src/app/layout/service/employee.service';
 
 @Component({
   selector: 'app-sectors',
@@ -34,6 +38,7 @@ export class SectorsComponent implements OnInit {
 
   sectors: SectorResponse[] = [];
   locations: LocationResponse[] = [];
+  employees: EmployeeResponse[] = [];
 
   constructor(
     private productService: ProductService,
@@ -41,10 +46,14 @@ export class SectorsComponent implements OnInit {
     private baseApiService: BaseApiService,
     public helperService: HelperService,
     private dialogService: DialogService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private employeeService: EmployeeService
 ) { }
 
   ngOnInit() {
+    this.loadEmployees();
+    this.loadLocations();
+    this.loadSectors();
       this.productService.getProducts().then(data => this.products = data);
 
       this.sourceCities = [
@@ -91,12 +100,64 @@ export class SectorsComponent implements OnInit {
     });
   }
 
-  create(){
+  loadEmployees(){
+    this.employeeService.getAll().subscribe({
+        next: (data: EmployeeResponse[]) => {
+            this.employees = data;
+        },
+        error: (error) => console.error('Error:', error)
+    });
+  }
 
+  create(){
+    const ref = this.dialogService.open(CreateSectorDialogComponent, {
+        header: 'Create New Sector',
+        width: '70%',
+        contentStyle: { 'max-height': '70hv', 'overflow': 'auto' },
+        data: {
+            locations: this.locations,
+            employees: this.employees
+        }
+    });
+
+    ref.onClose.subscribe({
+        next: (data: CreateSectorRequest) => {
+            this.sectorService.create(data).subscribe({
+                next: (data: SectorResponse) => {
+                    console.log('Sector created successfully', data);
+                    this.loadSectors();
+                },
+                error: (error) => console.error('Error:', error)
+            });
+        },
+        error: (error) => console.error('Error:', error)
+    });
   }
 
   update(sector: SectorResponse){
-    
+    const ref = this.dialogService.open(UpdateSectorDialogComponent, {
+        header: 'Update The Sector',
+        width: '70%',
+        contentStyle: { 'max-height': '70hv', 'overflow': 'auto' },
+        data: {
+            sector: sector,
+            locations: this.locations,
+            employees: this.employees
+        }
+    });
+
+    ref.onClose.subscribe({
+        next: (data: UpdateSectorRequest) => {
+            this.sectorService.update(data).subscribe({
+                next: (data: SectorResponse) => {
+                    console.log('Sector updated successfully', data);
+                    this.loadSectors();
+                },
+                error: (error) => console.error('Error:', error)
+            });
+        },
+        error: (error) => console.error('Error:', error)
+    });
   }
 
   delete(id: string) {
@@ -112,6 +173,10 @@ export class SectorsComponent implements OnInit {
         },
         error: (error) => console.error('Error:', error)
     });
+  }
+
+  getPhoto(id: string) : string {
+    return this.baseApiService.getPhoto(id);
   }
 
 

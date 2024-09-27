@@ -46,6 +46,10 @@ import { UpdateAddressDialogComponent } from './address/update.address.dialog/up
 import { CreateAddressDialogComponent } from './address/create.address.dialog/create.address.dialog.component';
 import { UpdateContactDialogComponent } from './contacts/update.contact.dialog/update.contact.dialog.component';
 import { CreateContactDialogComponent } from './contacts/create.contact.dialog/create.contact.dialog.component';
+import { CreateSectorDialogComponent } from './sectors/create.sector.dialog/create.sector.dialog.component';
+import { UpdateSectorDialogComponent } from './sectors/update.sector.dialog/update.sector.dialog.component';
+import { CreateSlideDialogComponent } from './slides/create.slide.dialog/create.slide.dialog.component';
+import { UpdateSlideDialogComponent } from './slides/update.slide.dialog/update.slide.dialog.component';
 
 @NgModule({
     imports: [
@@ -98,7 +102,11 @@ import { CreateContactDialogComponent } from './contacts/create.contact.dialog/c
         UpdateAddressDialogComponent,
         CreateAddressDialogComponent,
         UpdateContactDialogComponent,
-        CreateContactDialogComponent
+        CreateContactDialogComponent,
+        CreateSectorDialogComponent,
+        UpdateSectorDialogComponent,
+        CreateSlideDialogComponent,
+        UpdateSlideDialogComponent
     ],
     providers: [DialogService]
 })
