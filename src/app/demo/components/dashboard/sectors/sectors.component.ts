@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { DataView } from 'primeng/dataview';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
+import { LocationResponse } from 'src/app/layout/api/location';
+import { DeleteSectorRequest, SectorResponse } from 'src/app/layout/api/sector';
+import { BaseApiService } from 'src/app/layout/service/base.api.service';
+import { HelperService } from 'src/app/layout/service/helper.service';
+import { LocationService } from 'src/app/layout/service/location.service';
+import { SectorService } from 'src/app/layout/service/sector.service';
 
 @Component({
   selector: 'app-sectors',
@@ -25,7 +32,17 @@ export class SectorsComponent implements OnInit {
 
   orderCities: any[] = [];
 
-  constructor(private productService: ProductService) { }
+  sectors: SectorResponse[] = [];
+  locations: LocationResponse[] = [];
+
+  constructor(
+    private productService: ProductService,
+    private sectorService: SectorService,
+    private baseApiService: BaseApiService,
+    public helperService: HelperService,
+    private dialogService: DialogService,
+    private locationService: LocationService
+) { }
 
   ngOnInit() {
       this.productService.getProducts().then(data => this.products = data);
@@ -55,6 +72,48 @@ export class SectorsComponent implements OnInit {
           { label: 'Price Low to High', value: 'price' }
       ];
   }
+
+  loadSectors(){
+    this.sectorService.getAll().subscribe({
+        next: (data: SectorResponse[]) => {
+            this.sectors = data;
+        },
+        error: (error) => console.error('Error:', error)
+    });
+  }
+
+  loadLocations(){
+    this.locationService.getAllLocations().subscribe({
+        next: (data: LocationResponse[]) => {
+            this.locations = data;
+        },
+        error: (error) => console.error('Error:', error)
+    });
+  }
+
+  create(){
+
+  }
+
+  update(sector: SectorResponse){
+    
+  }
+
+  delete(id: string) {
+    const deleteSectorRequest: DeleteSectorRequest = {
+        id: id
+    }
+    this.sectorService.delete(deleteSectorRequest).subscribe({
+        next: (data: boolean) => {
+            if(data){
+                console.log('Sector deleted successfully', data);
+                this.loadSectors();
+            }
+        },
+        error: (error) => console.error('Error:', error)
+    });
+  }
+
 
   onSortChange(event: any) {
       const value = event.value;
