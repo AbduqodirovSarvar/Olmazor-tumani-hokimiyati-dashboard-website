@@ -1,6 +1,5 @@
 import { EmployeeCategory } from "./baseApi";
 import { EnumResponse } from "./enum";
-import { Gender } from "./user";
 
 export interface EmployeeCreateRequest {
     FirstnameEn: string;
@@ -48,7 +47,7 @@ export interface EmployeeUpdateRequest {
     FirstnameRu?: string; // Optional
     LastnameEn?: string; // Optional
     LastnameRu?: string; // Optional
-    Gender?: Gender; // Optional
+    Gender?: number; // Optional
     Phone1?: string; // Optional
     Phone2?: string; // Optional
     Email?: string; // Optional
@@ -128,4 +127,8 @@ export interface EmployeeResponse {
     receptionTimeRu?: string; // Optional
     receptionTimeUzRu?: string; // Optional
     receptionTimeKaa?: string; // Optional
+    createdBy: string;
+    createdAt: string;
+    updatedBy: string;
+    updatedAt: string;
 }

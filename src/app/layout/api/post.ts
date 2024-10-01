@@ -14,6 +14,10 @@ export interface PostResponse {
     descriptionKaa: string;
     category: number;
     photo?: string;
+    createdBy: string;
+    createdAt: string;
+    updatedBy: string;
+    updatedAt: string;
 }
 
 export interface CreatePostRequest {

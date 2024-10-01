@@ -32,7 +32,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Auth',
                 items: [
-                    { label: 'LogOut', icon: 'pi pi-sign-out', routerLink: ['/'] }
+                    { label: 'LogOut', icon: 'pi pi-sign-out', routerLink: ['/auth/login'] }
                 ]
             },
             // {

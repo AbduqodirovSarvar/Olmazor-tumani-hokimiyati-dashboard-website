@@ -13,6 +13,10 @@ export interface SectorResponse {
     employeeId: string; // uuid
     locationId: string; // uuid
     photo?: string; // Optional binary format
+    createdBy: string;
+    createdAt: string;
+    updatedBy: string;
+    updatedAt: string;
   }
   
   // CreateSectorRequest Interface (for POST requests)

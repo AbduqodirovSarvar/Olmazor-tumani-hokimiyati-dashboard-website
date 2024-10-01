@@ -50,6 +50,8 @@ import { CreateSectorDialogComponent } from './sectors/create.sector.dialog/crea
 import { UpdateSectorDialogComponent } from './sectors/update.sector.dialog/update.sector.dialog.component';
 import { CreateSlideDialogComponent } from './slides/create.slide.dialog/create.slide.dialog.component';
 import { UpdateSlideDialogComponent } from './slides/update.slide.dialog/update.slide.dialog.component';
+import { UpdateUsefullLinkDialogComponent } from './usefull-link/update.usefull-link.dialog/update.usefull-link.dialog.component';
+import { CreateUsefullLinkDialogComponent } from './usefull-link/create.usefull-link.dialog/create.usefull-link.dialog.component';
 
 @NgModule({
     imports: [
@@ -106,7 +108,9 @@ import { UpdateSlideDialogComponent } from './slides/update.slide.dialog/update.
         CreateSectorDialogComponent,
         UpdateSectorDialogComponent,
         CreateSlideDialogComponent,
-        UpdateSlideDialogComponent
+        UpdateSlideDialogComponent,
+        UpdateUsefullLinkDialogComponent,
+        CreateUsefullLinkDialogComponent
     ],
     providers: [DialogService]
 })

@@ -12,6 +12,10 @@ export interface SlideResponse {
     descriptionUzRu: string;
     descriptionKaa?: string; // Optional
     photo: string; // binary format
+    createdBy: string;
+    createdAt: string;
+    updatedBy: string;
+    updatedAt: string;
   }
   
   // CreateSlideRequest Interface (for POST requests)

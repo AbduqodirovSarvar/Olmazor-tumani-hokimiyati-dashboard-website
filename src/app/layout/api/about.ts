@@ -49,11 +49,6 @@ export interface CreateAboutResponse {
   descriptionRu: string;        // Description in Russian
   descriptionUzRu: string;      // Description in Cyrillic Uzbek
   descriptionKaa: string;       // Description in Karakalpak
-  createdBy: string;            // UUID of the user who created the entry
-  createdAt: string;            // Timestamp of when the entry was created
-  updatedBy: string;            // UUID of the user who updated the entry
-  updatedAt: string;            // Timestamp of when the entry was last updated
-  id: string;                   // UUID of the entry
 }
 
 export interface UpdateAboutCommand {

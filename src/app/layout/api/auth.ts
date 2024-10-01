@@ -1,8 +1,8 @@
-import { User } from "./user";
+import { UserResponse } from "./user";
 
 export interface SignInResponse {
   accessToken: string;
-  user: User;
+  user: UserResponse;
 }
 
 export interface SignInCommand {

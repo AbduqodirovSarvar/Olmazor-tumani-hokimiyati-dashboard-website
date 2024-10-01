@@ -5,6 +5,10 @@ import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { DeleteUserRequest, UserResponse } from 'src/app/layout/api/user';
+import { UserService } from 'src/app/layout/service/user.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { BaseApiService } from 'src/app/layout/service/base.api.service';
 
 interface expandedRows {
   [key: string]: boolean;
@@ -47,11 +51,20 @@ export class UsersComponent implements OnInit {
 
   loading: boolean = true;
 
+  users: UserResponse[] = [];
+
   @ViewChild('filter') filter!: ElementRef;
 
-  constructor(private customerService: CustomerService, private productService: ProductService) { }
+  constructor(
+    private customerService: CustomerService, 
+    private productService: ProductService,
+    private userService: UserService,
+    private dialogService: DialogService,
+    private baseApiService: BaseApiService
+) { }
 
   ngOnInit() {
+    this.loadUsers();
       this.customerService.getCustomersLarge().then(customers => {
           this.customers1 = customers;
           this.loading = false;
@@ -84,6 +97,38 @@ export class UsersComponent implements OnInit {
           { label: 'Renewal', value: 'renewal' },
           { label: 'Proposal', value: 'proposal' }
       ];
+  }
+
+  loadUsers(){
+    this.userService.getAll().subscribe({
+        next: (users: UserResponse[]) => {
+          this.users = users;
+        },
+        error: (error: any) => console.error('Error retrieving users', error)
+      });
+  }
+
+  create(){
+
+  }
+
+  update(data: UserResponse){
+
+  }
+
+  delete(id: string){
+    const deleteUserRequest: DeleteUserRequest = {
+        id: id
+    }
+
+    this.userService.delete(deleteUserRequest).subscribe({
+        next: (data: boolean) => {
+          if(data){
+            this.loadUsers();
+          }
+        },
+        error: (error: any) => console.error('Error deleting user', error)
+      });
   }
 
   onSort() {

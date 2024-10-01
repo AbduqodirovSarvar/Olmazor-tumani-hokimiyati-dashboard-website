@@ -1,0 +1,50 @@
+<div class="p-fluid" [formGroup]="usefulLinkForm">
+    <!-- Name (Uzbek) -->
+    <div class="field">
+      <label for="nameUz">Name (Uzbek)</label>
+      <input id="nameUz" type="text" pInputText formControlName="nameUz" />
+    </div>
+  
+    <!-- Name (English) -->
+    <div class="field">
+      <label for="nameEn">Name (English)</label>
+      <input id="nameEn" type="text" pInputText formControlName="nameEn" />
+    </div>
+  
+    <!-- Name (Russian) -->
+    <div class="field">
+      <label for="nameRu">Name (Russian)</label>
+      <input id="nameRu" type="text" pInputText formControlName="nameRu" />
+    </div>
+  
+    <!-- Name (Cyrillic Uzbek) -->
+    <div class="field">
+      <label for="nameUzRu">Name (Cyrillic Uzbek)</label>
+      <input id="nameUzRu" type="text" pInputText formControlName="nameUzRu" />
+    </div>
+  
+    <!-- Name (Karakalpak) -->
+    <div class="field">
+      <label for="nameKaa">Name (Karakalpak) (Optional)</label>
+      <input id="nameKaa" type="text" pInputText formControlName="nameKaa" />
+    </div>
+  
+    <!-- Link -->
+    <div class="field">
+      <label for="link">Link</label>
+      <input id="link" type="text" pInputText formControlName="link" />
+    </div>
+  
+    <!-- Photo -->
+    <div class="field">
+      <label for="photo">Photo</label>
+      <input id="photo" type="file" (change)="onFileSelect($event)" />
+    </div>
+  
+    <!-- Buttons -->
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="Create Link" icon="pi pi-check" (click)="onSubmit()" [disabled]="usefulLinkForm.invalid"></button>
+    </div>
+  </div>
+  

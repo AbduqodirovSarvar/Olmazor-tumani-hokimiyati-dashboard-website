@@ -12,6 +12,7 @@ import { PostService } from 'src/app/layout/service/post.service';
 import { filter } from 'rxjs';
 import { CreatePostDialogComponent } from './create.post.dialog/create.post.dialog.component';
 import { UpdatePostDialogComponent } from './update.post.dialog/update.post.dialog.component';
+import { dA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-posts',
@@ -78,8 +79,10 @@ export class PostsComponent implements OnInit {
   loadPosts() {
     this.postService.getAllPosts().subscribe({
       next: (data: PostResponse[]) => {
+        console.log(data);
         this.posts=[];
         this.posts = data.filter(post => post.category == this.currentCategory.id);
+        console.log(this.posts);
         this.filteredPosts = [...this.posts];
         this.updatePaginatedList();
       },
