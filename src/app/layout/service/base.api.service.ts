@@ -24,7 +24,7 @@ export class BaseApiService {
   }
 
   public getUserRoles(): Observable<EnumResponse[]> {
-    return this.http.get<EnumResponse[]>(`${this.baseApiUrl}/Users`);
+    return this.http.get<EnumResponse[]>(`${this.baseApiUrl}/Common/enum/user-roles`);
   }
 
   public getEmployeeCategories(): Observable<EnumResponse[]> {

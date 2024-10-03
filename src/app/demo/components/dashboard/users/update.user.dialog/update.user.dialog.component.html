@@ -1,0 +1,100 @@
+<div class="p-fluid" [formGroup]="userForm">
+    <!-- First Name (English) -->
+    <div class="field">
+      <label for="firstnameEn">First Name (English)</label>
+      <input id="firstnameEn" type="text" pInputText formControlName="firstnameEn" />
+    </div>
+  
+    <!-- First Name (Russian) -->
+    <div class="field">
+      <label for="firstnameRu">First Name (Russian)</label>
+      <input id="firstnameRu" type="text" pInputText formControlName="firstnameRu" />
+    </div>
+  
+    <!-- Last Name (English) -->
+    <div class="field">
+      <label for="lastnameEn">Last Name (English)</label>
+      <input id="lastnameEn" type="text" pInputText formControlName="lastnameEn" />
+    </div>
+  
+    <!-- Last Name (Russian) -->
+    <div class="field">
+      <label for="lastnameRu">Last Name (Russian)</label>
+      <input id="lastnameRu" type="text" pInputText formControlName="lastnameRu" />
+    </div>
+  
+    <!-- Gender -->
+    <div class="field">
+      <label for="gender">Gender</label>
+      <p-dropdown
+        id="gender"
+        [options]="genders"
+        optionLabel="nameEn"
+        optionValue="id"
+        formControlName="gender"
+        placeholder="Select Gender">
+      </p-dropdown>
+    </div>
+  
+    <!-- User Role -->
+    <div class="field">
+      <label for="userrole">User Role</label>
+      <p-dropdown
+        id="userrole"
+        [options]="userRoles"
+        optionLabel="nameEn"
+        optionValue="id"
+        formControlName="userrole"
+        placeholder="Select User Role">
+      </p-dropdown>
+    </div>
+  
+    <!-- Phone 1 (Optional) -->
+    <div class="field">
+      <label for="phone1">Phone 1</label>
+      <input id="phone1" type="text" pInputText formControlName="phone1" />
+    </div>
+  
+    <!-- Phone 2 (Optional) -->
+    <div class="field">
+      <label for="phone2">Phone 2 (Optional)</label>
+      <input id="phone2" type="text" pInputText formControlName="phone2" />
+    </div>
+  
+    <!-- Email -->
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" pInputText formControlName="email" />
+    </div>
+  
+    <!-- Old Password -->
+    <div class="field">
+      <label for="oldPassword">Old Password</label>
+      <input id="oldPassword" type="password" pInputText formControlName="oldPassword" />
+    </div>
+  
+    <!-- New Password -->
+    <div class="field">
+      <label for="password">New Password</label>
+      <input id="password" type="password" pInputText formControlName="password" />
+    </div>
+  
+    <!-- Confirm Password -->
+    <div class="field">
+      <label for="confirmPassword">Confirm New Password</label>
+      <input id="confirmPassword" type="password" pInputText formControlName="confirmPassword" />
+    </div>
+  
+    <!-- Profile Photo (Optional) -->
+    <div class="field">
+      <label for="photo">Profile Photo (Optional)</label>
+      <input id="photo" type="file" (change)="onFileSelect($event)" />
+    </div>
+  
+    <!-- Buttons -->
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="Update User" icon="pi pi-check" (click)="onSubmit()" [disabled]="userForm.invalid"></button>
+    </div>
+  </div>
+  

@@ -18,11 +18,12 @@
 		  <!-- Header for table columns -->
 		  <ng-template pTemplate="header">
 			<tr>
-			  <th style="min-width: 12rem">Firstname</th>
-			  <th style="min-width: 12rem">Lastname</th>
-			  <th style="min-width: 14rem">Phone</th>
-			  <th style="min-width: 10rem">Birthdate</th>
-			  <th style="min-width: 10rem">Position</th>
+			  <th style="min-width: 12rem">Img</th>
+			  <th style="min-width: 12rem">FullName</th>
+			  <!-- <th style="min-width: 12rem">Lastname</th> -->
+			  <th style="min-width: 14rem">Email</th>
+			  <th style="min-width: 10rem">Phone</th>
+			  <th style="min-width: 10rem">UserRole</th>
 			  <th style="min-width: 12rem">Actions</th>
 			</tr>
 		  </ng-template>
@@ -30,20 +31,21 @@
 		  <!-- Table body that maps employees data -->
 		  <ng-template pTemplate="body" let-employee>
 			<tr>
-			  <!-- Firstname -->
-			  <td>{{ employee.firstnameEn }}</td>
-			  
-			  <!-- Lastname -->
-			  <td>{{ employee.lastnameEn }}</td>
+
+			  <td>
+				<img src="assets/demo/images/avatar/annafali.png" alt="">
+			  </td>
+
+			  <td>{{ employee.firstnameEn }} <br> {{ employee.lastnameEn }} </td>
   
 			  <!-- Phone (using Phone1 field) -->
-			  <td>{{ employee.phone1 || 'N/A' }}</td>
+			  <td>{{ employee.email }}</td>
   
 			  <!-- Birthdate (formatted as MM/dd/yyyy) -->
-			  <td>{{ employee.birthday | date: 'MM/dd/yyyy' }}</td>
+			  <td>{{ employee.phone1 }}<br> {{employee.phone2}}</td>
   
 			  <!-- Position (using PositionEn) -->
-			  <td>{{ employee.positionEn || 'N/A' }}</td>
+			  <td>{{ employee.userrole.nameEn }}</td>
   
 			  <!-- Action buttons (edit and delete) -->
 			  <td>

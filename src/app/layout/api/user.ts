@@ -23,8 +23,8 @@ export interface UserResponse {
    firstnameRu: string;      // First name in Russian
    lastnameEn: string;       // Last name in English
    lastnameRu: string;       // Last name in Russian
-   gender: EnumResponse;           // Gender enum (male/female/other)
-   userrole: EnumResponse;       // User role enum (admin/user/...)
+   gender: number;           // Gender enum (male/female/other)
+   userrole: number;       // User role enum (admin/user/...)
    phone1?: string;          // Primary phone number
    phone2?: string;          // Secondary phone number
    email: string;            // Email address
@@ -38,8 +38,8 @@ export interface UserResponse {
    firstnameRu?: string;      // First name in Russian
    lastnameEn?: string;       // Last name in English
    lastnameRu?: string;       // Last name in Russian
-   gender?: EnumResponse;           // Gender enum (male/female/other)
-   userrole?: EnumResponse;       // User role enum (admin/user/...)
+   gender?: number;           // Gender enum (male/female/other)
+   userrole?: number;       // User role enum (admin/user/...)
    phone1?: string;           // Primary phone number
    phone2?: string;           // Secondary phone number
    email?: string;            // Email address

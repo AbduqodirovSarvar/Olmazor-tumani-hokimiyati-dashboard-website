@@ -44,8 +44,8 @@ export class UserService {
     formData.append('FirstnameRu', request.firstnameRu);
     formData.append('LastnameEn', request.lastnameEn);
     formData.append('LastnameRu', request.lastnameRu);
-    formData.append('Gender', request?.gender.id?.toString());
-    formData.append('Userrole', request?.userrole?.id.toString());
+    formData.append('Gender', request?.gender?.toString());
+    formData.append('Userrole', request?.userrole?.toString());
     if (request.phone1) formData.append('Phone1', request.phone1);
     if (request.phone2) formData.append('Phone2', request.phone2);
     formData.append('Email', request.email);
@@ -65,8 +65,8 @@ export class UserService {
     if (request.firstnameRu) formData.append('FirstnameRu', request.firstnameRu);
     if (request.lastnameEn) formData.append('LastnameEn', request.lastnameEn);
     if (request.lastnameRu) formData.append('LastnameRu', request.lastnameRu);
-    if (request.gender.id) formData.append('Gender', request.gender.id.toString());
-    if (request.userrole.id) formData.append('Userrole', request.userrole.id.toString());
+    if (request.gender) formData.append('Gender', request.gender.toString());
+    if (request.userrole) formData.append('Userrole', request.userrole.toString());
     if (request.phone1) formData.append('Phone1', request.phone1);
     if (request.phone2) formData.append('Phone2', request.phone2);
     if (request.email) formData.append('Email', request.email);
@@ -81,12 +81,10 @@ export class UserService {
       );
   }
 
-  delete(request: DeleteUserRequest): Observable<any> {
-    return this.http.request('delete', this.baseUrl, {
-      body: request
-    })
-    .pipe(
-      catchError(error => this.errorService.handleError(error))
-    );
+  delete(request: DeleteUserRequest): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl, { body: request })
+      .pipe(
+        catchError(error => this.errorService.handleError(error))
+      );
   }
 }

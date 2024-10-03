@@ -5,10 +5,13 @@ import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { DeleteUserRequest, UserResponse } from 'src/app/layout/api/user';
+import { CreateUserRequest, DeleteUserRequest, UpdateUserRequest, UserResponse } from 'src/app/layout/api/user';
 import { UserService } from 'src/app/layout/service/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
+import { EnumResponse } from 'src/app/layout/api/enum';
+import { CreateUserDialogComponent } from './create.user.dialog/create.user.dialog.component';
+import { UpdateUserDialogComponent } from './update.user.dialog/update.user.dialog.component';
 
 interface expandedRows {
   [key: string]: boolean;
@@ -52,6 +55,8 @@ export class UsersComponent implements OnInit {
   loading: boolean = true;
 
   users: UserResponse[] = [];
+  userRoles: EnumResponse[] = [];
+  genders: EnumResponse[] = [];
 
   @ViewChild('filter') filter!: ElementRef;
 
@@ -61,10 +66,12 @@ export class UsersComponent implements OnInit {
     private userService: UserService,
     private dialogService: DialogService,
     private baseApiService: BaseApiService
-) { }
+  ) { }
 
   ngOnInit() {
     this.loadUsers();
+    this.loadRoles();
+    this.loadGenders();
       this.customerService.getCustomersLarge().then(customers => {
           this.customers1 = customers;
           this.loading = false;
@@ -108,12 +115,72 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  create(){
-
+  loadRoles(){
+    this.baseApiService.getUserRoles().subscribe({
+      next: (data: EnumResponse[]) => {
+        this.userRoles = data;
+      },
+      error: (error: any) => console.error('Error retrieving user roles', error)
+    });
   }
 
-  update(data: UserResponse){
+  loadGenders(){
+    this.baseApiService.getGenders().subscribe({
+      next: (data: EnumResponse[]) => {
+        this.genders = data;
+      },
+      error: (error: any) => console.error('Error retrieving genders', error)
+    });
+  }
 
+  create(){
+    const ref = this.dialogService.open(CreateUserDialogComponent, {
+      header: 'Create New User',
+      width: '80%',
+      contentStyle: { 'overflow-y': 'auto' },
+      data: {
+        userRoles: this.userRoles,
+        genders: this.genders
+      }
+    });
+
+    ref.onClose.subscribe({
+      next: (data: CreateUserRequest) => {
+        this.userService.create(data).subscribe({
+          next: (user: UserResponse) => {
+            this.loadUsers();
+          },
+          error: (error: any) => console.error('Error creating user', error)
+        });
+      },
+      error: (error: any) => console.error('Error closing dialog', error)
+    });
+  }
+
+  update(user: UserResponse){
+    const ref = this.dialogService.open(UpdateUserDialogComponent, {
+      header: 'Update User',
+      width: '80%',
+      contentStyle: { 'overflow-y': 'auto' },
+      data: {
+        user: user,
+        userRoles: this.userRoles,
+        genders: this.genders
+      }
+    });
+
+    ref.onClose.subscribe({
+      next: (data: UpdateUserRequest) => {
+        console.log(data);
+        this.userService.update(data).subscribe({
+          next: (user: UserResponse) => {
+            this.loadUsers();
+          },
+          error: (error: any) => console.error('Error updating user', error)
+        });
+      },
+      error: (error: any) => console.error('Error closing dialog', error)
+    });
   }
 
   delete(id: string){
@@ -129,6 +196,10 @@ export class UsersComponent implements OnInit {
         },
         error: (error: any) => console.error('Error deleting user', error)
       });
+  }
+
+  getPhoto(id: string): string{
+    return this.baseApiService.getPhoto(id);
   }
 
   onSort() {

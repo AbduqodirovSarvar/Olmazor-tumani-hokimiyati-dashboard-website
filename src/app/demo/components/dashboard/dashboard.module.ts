@@ -52,6 +52,8 @@ import { CreateSlideDialogComponent } from './slides/create.slide.dialog/create.
 import { UpdateSlideDialogComponent } from './slides/update.slide.dialog/update.slide.dialog.component';
 import { UpdateUsefullLinkDialogComponent } from './usefull-link/update.usefull-link.dialog/update.usefull-link.dialog.component';
 import { CreateUsefullLinkDialogComponent } from './usefull-link/create.usefull-link.dialog/create.usefull-link.dialog.component';
+import { CreateUserDialogComponent } from './users/create.user.dialog/create.user.dialog.component';
+import { UpdateUserDialogComponent } from './users/update.user.dialog/update.user.dialog.component';
 
 @NgModule({
     imports: [
@@ -110,7 +112,9 @@ import { CreateUsefullLinkDialogComponent } from './usefull-link/create.usefull-
         CreateSlideDialogComponent,
         UpdateSlideDialogComponent,
         UpdateUsefullLinkDialogComponent,
-        CreateUsefullLinkDialogComponent
+        CreateUsefullLinkDialogComponent,
+        CreateUserDialogComponent,
+        UpdateUserDialogComponent
     ],
     providers: [DialogService]
 })
