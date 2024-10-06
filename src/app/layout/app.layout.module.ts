@@ -20,6 +20,7 @@ import { AppLayoutComponent } from "./app.layout.component";
 import { MenuModule } from 'primeng/menu';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { MenubarModule } from 'primeng/menubar';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
         AppConfigModule,
         MenuModule,
         DropdownModule,
-        SelectButtonModule
+        SelectButtonModule,
+        MenubarModule
     ],
     exports: [AppLayoutComponent]
 })

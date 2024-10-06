@@ -13,29 +13,16 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+
         <!-- Language Menu -->
-        <!-- <p-menu #languageMenu [popup]="true" [model]="languageOptions"></p-menu>
+        <p-menu #languageMenu [popup]="true" [model]="languageOptions" appendTo="body"></p-menu>
         <button class="p-link layout-topbar-button" (click)="languageMenu.toggle($event)">
             <i class="pi pi-language"></i>
             <span>Language</span>
-        </button> -->
-
-        <p-dropdown
-            [options]="languageOptions"
-            [(ngModel)]="selectedLanguage"
-            placeholder="Language">
-        </p-dropdown>
-
-        
-
-        <!-- <p-dropdown
-            [options]="profileOptions"
-            [(ngModel)]="selectedLanguage"
-            placeholder="Profile">
-        </p-dropdown>         -->
+        </button>
 
         <!-- Profile Menu -->
-        <p-menu #profileMenu [popup]="true" [model]="profileOptions"></p-menu>
+        <p-menu #profileMenu [popup]="true" [model]="profileOptions" appendTo="body"></p-menu>
         <button class="p-link layout-topbar-button" (click)="profileMenu.toggle($event)">
             <i class="pi pi-user"></i>
             <span>Profile</span>

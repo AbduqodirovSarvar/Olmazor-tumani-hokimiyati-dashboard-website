@@ -8,7 +8,6 @@ import { CreateLocationRequest, DeleteLocationRequest, LocationResponse, UpdateL
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
 import { HelperService } from 'src/app/layout/service/helper.service';
 import { LocationService } from 'src/app/layout/service/location.service';
-import { CreateAboutDialogComponent } from '../about/create.about.dialog/create.about.dialog.component';
 import { UpdateAddressDialogComponent } from './update.address.dialog/update.address.dialog.component';
 import { CreateAddressDialogComponent } from './create.address.dialog/create.address.dialog.component';
 

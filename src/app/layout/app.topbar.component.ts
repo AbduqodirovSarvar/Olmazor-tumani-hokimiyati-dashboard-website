@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
+import { MenubarModule } from 'primeng/menubar';
+import { HelperService } from './service/helper.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-topbar',
@@ -34,7 +37,10 @@ export class AppTopBarComponent {
     
       selectedLanguage: string = '';
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(
+        public layoutService: LayoutService,
+        private helperService: HelperService
+    ) { }
 
     // Methods for handling language selection
     changeLanguage(languageCode: string) {
@@ -56,7 +62,7 @@ export class AppTopBarComponent {
     }
 
     clickLogOut() {
-        console.log('Logging out');
-        // Add your logout logic here
+        this.helperService.removeAccessToken();
+        this.helperService.redirectToLoginPage();
     }
 }
