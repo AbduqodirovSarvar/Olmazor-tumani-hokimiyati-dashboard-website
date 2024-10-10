@@ -48,6 +48,9 @@ export class SectorService {
     formData.append('LocationId', request.locationId);
     if (request.photo) formData.append('Photo', request.photo);
 
+    console.log("REQ:", request);
+    console.log(formData);
+
     return this.http.post<SectorResponse>(this.baseUrl, formData)
     .pipe(
       catchError(error => this.errorService.handleError(error))

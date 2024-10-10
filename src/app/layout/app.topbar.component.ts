@@ -1,64 +1,97 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
 import { MenubarModule } from 'primeng/menubar';
 import { HelperService } from './service/helper.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { BaseApiService } from './service/base.api.service';
+import { EnumResponse } from './api/enum';
+import { UserService } from './service/user.service';
+import { UpdateUserRequest, UserResponse } from './api/user';
+import { dA } from '@fullcalendar/core/internal-common';
+import { UpdateUserDialogComponent } from '../demo/components/dashboard/users/update.user.dialog/update.user.dialog.component';
 
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html',
     styleUrls: ['./app.topbar.component.scss']
 })
-export class AppTopBarComponent {
+export class AppTopBarComponent implements OnInit {
 
     @ViewChild('menubutton') menuButton!: ElementRef;
     @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    // Language options for the language menu
     languageOptions: MenuItem[] = [
-        { label: 'Uzbek', icon: 'pi pi-check', command: () => this.changeLanguage('uz') },
-        { label: 'English', icon: 'pi pi-check', command: () => this.changeLanguage('en') },
-        { label: 'Russian', icon: 'pi pi-check', command: () => this.changeLanguage('ru') }
+        { label: "O'zbekcha", icon: 'pi pi-check', command: () => this.changeLanguage('Uz') },
+        { label: "English", icon: 'pi pi-check', command: () => this.changeLanguage('En') },
+        { label: "Русский", icon: 'pi pi-check', command: () => this.changeLanguage('Ru') },
+        { label: "Узбекча", icon: 'pi pi-check', command: () => this.changeLanguage('UzRu') },
     ];
 
-    // Profile options for the profile menu
     profileOptions: MenuItem[] = [
         { label: 'Profile', icon: 'pi pi-fw pi-user', command: () => this.clickProfile() },
         { label: 'Logout', icon: 'pi pi-fw pi-power-off', command: () => this.clickLogOut() }
     ];
 
-    languages: any[] = [
-        { label: 'Uzbek', value: 'uz' },
-        { label: 'English', value: 'en' },
-        { label: 'Russian', value: 'ru' }
-      ];
-    
-      selectedLanguage: string = '';
+    genders: EnumResponse[] = [];
+    userRoles: EnumResponse[] = [];
+    currentUser!: UserResponse;
 
     constructor(
         public layoutService: LayoutService,
-        private helperService: HelperService
+        private helperService: HelperService,
+        private dialogService: DialogService,
+        private baseApiService: BaseApiService,
+        private userService: UserService
     ) { }
 
-    // Methods for handling language selection
+    ngOnInit(): void {
+        this.baseApiService.getGenders().subscribe({
+            next: (data) => this.genders = data,
+            error: (error) => console.error('Error retrieving genders:', error)
+        });
+        this.baseApiService.getUserRoles().subscribe({
+            next: (data) => this.userRoles = data,
+            error: (error) => console.error('Error retrieving user roles:', error)
+        });
+        this.userService.getMe().subscribe({
+            next: (data: UserResponse) => {
+                this.currentUser = data;
+            },
+            error: (error) => console.error('Error retrieving current user:', error)
+        });
+    }
+
     changeLanguage(languageCode: string) {
-        console.log('Selected Language: ', languageCode);
+        this.helperService.changeLanguage(languageCode);
+        // localStorage.setItem('olmazor_language', languageCode);
+        location.reload();
     }
 
-    selectOption(languageCode: string) {
-        console.log('Selected Option: ', languageCode);
-    }
-
-    onLanguageChange(event: any) {
-        console.log('Selected Language: ', event.value);
-      }
-
-    // Methods for handling profile menu actions
     clickProfile() {
-        console.log('Navigating to Profile page');
-        // Add your logic to navigate to the profile page
+        const ref = this.dialogService.open(UpdateUserDialogComponent, {
+            header: 'Create New User',
+            width: '80%',
+            contentStyle: { 'overflow-y': 'auto' },
+            data: {
+                user: this.currentUser,
+                userRoles: this.userRoles,
+                genders: this.genders
+            }
+        });
+
+        ref.onClose.subscribe({
+            next: (data: UpdateUserRequest) => {
+                this.userService.update(data).subscribe({
+                    next: (data: UserResponse) => {
+                        location.reload();
+                    },
+                    error: (error) => console.error('Error updating user:', error)
+                });
+            },
+            error: (error) => console.error('Error:', error)
+        });
     }
 
     clickLogOut() {

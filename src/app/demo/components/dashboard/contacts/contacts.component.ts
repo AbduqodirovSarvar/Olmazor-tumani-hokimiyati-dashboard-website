@@ -152,7 +152,7 @@ export class ContactsComponent implements OnInit {
         header: 'Update Contact',
         width: '70%',
         contentStyle: { 'overflow-y': 'auto' },
-        data: { 
+        data: {
             contact: contact,
             types: this.types
         }

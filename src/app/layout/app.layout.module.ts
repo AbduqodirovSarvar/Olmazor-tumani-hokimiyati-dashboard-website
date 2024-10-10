@@ -21,6 +21,7 @@ import { MenuModule } from 'primeng/menu';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MenubarModule } from 'primeng/menubar';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -48,8 +49,10 @@ import { MenubarModule } from 'primeng/menubar';
         MenuModule,
         DropdownModule,
         SelectButtonModule,
-        MenubarModule
+        MenubarModule,
+        DynamicDialogModule
     ],
-    exports: [AppLayoutComponent]
+    exports: [AppLayoutComponent],
+    providers: [DialogService]
 })
 export class AppLayoutModule { }

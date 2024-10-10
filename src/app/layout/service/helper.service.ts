@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 function urlValidator(control: AbstractControl): { [key: string]: boolean } | null {
@@ -25,7 +26,8 @@ export class HelperService {
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private translate: TranslateService
   ) { }
 
   getJsonData(languageCode: string): Observable<any> {
@@ -36,6 +38,11 @@ export class HelperService {
     localStorage.setItem(this.languageKey, language ?? 'Ru');
     window.location.reload();
     return language ?? 'Ru';
+  }
+
+  changeLanguage(language?: string | null) {
+    this.translate.use(language ?? 'Ru');
+    localStorage.setItem(this.languageKey, language ?? 'Ru');
   }
 
   getLanguageCode(): string {

@@ -1,83 +1,92 @@
 <div class="grid">
-	<div class="col-12">
-	  <div class="card">
-		<h5>Employees</h5>
-		<p-table #dt1 [value]="employees" dataKey="Id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['FirstnameEn', 'LastnameEn', 'Phone1', 'PositionEn']" responsiveLayout="scroll">
-		  
-		  <!-- Caption for sorting and searching -->
-		  <ng-template pTemplate="caption">
-			<div class="flex justify-content-between flex-column sm:flex-row">
-			  <p-dropdown
-			  [options]="employeeCategories" 
-			  [placeholder]="dropdownOptionPlaceholder" 
-			  [optionLabel]="dropdownOptionLabel"
-        	  optionValue="id"
-			  (onChange)="onSortChange($event)"></p-dropdown>
-			  <span class="p-input-icon-left mb-2">
-				<i class="pi pi-search"></i>
-				<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full" />
-			  </span>
-			  <button pButton pRipple label="+ Append" (click)="createEmployee()"></button>
-			</div>
-		  </ng-template>
-  
-		  <!-- Header for table columns -->
-		  <ng-template pTemplate="header">
-			<tr>
-			  <th style="min-width: 12rem">Img</th>
-			  <th style="min-width: 12rem">FullName</th>
-			  <th style="min-width: 14rem">Phone</th>
-			  <th style="min-width: 10rem">Birthdate</th>
-			  <th style="min-width: 10rem">Position</th>
-			  <th style="min-width: 12rem">Actions</th>
-			</tr>
-		  </ng-template>
-  
-		  <!-- Table body that maps employees data -->
-		  <ng-template pTemplate="body" let-employee>
-			<tr>
-			  <!-- Firstname -->
-			  <td>
-				<img src="assets/demo/images/avatar/annafali.png" alt="">
-			  </td>
-			  
-			  <!-- Lastname -->
-			  <td> {{ employee.firstnameEn }} <br> {{ employee.lastnameEn }}</td>
-  
-			  <!-- Phone (using Phone1 field) -->
-			  <td>{{ employee.phone1 || 'N/A' }}</td>
-  
-			  <!-- Birthdate (formatted as MM/dd/yyyy) -->
-			  <td>{{ employee.birthday | date: 'MM/dd/yyyy' }}</td>
-  
-			  <!-- Position (using PositionEn) -->
-			  <td>{{ employee.positionEn || 'N/A' }}</td>
-  
-			  <!-- Action buttons (edit and delete) -->
-			  <td>
-				<div class="flex justify-content-around flex-column sm:flex-row">
-				  <p-button severity="success" icon="pi pi-pencil" (click)="updateEmployee(employee)"></p-button>
-				  <p-button severity="danger" icon="pi pi-trash" (click)="deleteEmployee(employee.id)"></p-button>
-				</div>
-			  </td>
-			</tr>
-		  </ng-template>
-  
-		  <!-- Empty message when no employees found -->
-		  <ng-template pTemplate="emptymessage">
-			<tr>
-			  <td colspan="6">No employees found.</td>
-			</tr>
-		  </ng-template>
-  
-		  <!-- Loading state message -->
-		  <ng-template pTemplate="loadingbody">
-			<tr>
-			  <td colspan="6">Loading employee data. Please wait.</td>
-			</tr>
-		  </ng-template>
-		</p-table>
-	  </div>
-	</div>
-  </div>
-  
+    <div class="col-12">
+        <div class="card">
+            <h5>Employees</h5>
+            <p-table #dt1 
+                [value]="employees" 
+                dataKey="id" 
+                [rows]="6" 
+                [loading]="loading" 
+                [rowHover]="true" 
+                styleClass="p-datatable-gridlines" 
+                [paginator]="true" 
+                [globalFilterFields]="['firstnameEn', 'lastnameEn', 'phone1', 'positionEn']" 
+                responsiveLayout="scroll">
+                
+                <!-- Caption for sorting and searching -->
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <p-dropdown
+                            [options]="employeeCategories"
+                            [placeholder]="dropdownOptionPlaceholder"
+                            [optionLabel]="dropdownOptionLabel"
+                            optionValue="id"
+                            (onChange)="onSortChange($event)">
+                        </p-dropdown>
+                        <span class="p-input-icon-left mb-2">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="{{ 'SEARCH_KEYWORD' | translate }}" class="w-full" />
+                        </span>
+                        <button pButton pRipple label="+ Append" (click)="createEmployee()"></button>
+                    </div>
+                </ng-template>
+    
+                <!-- Header for table columns -->
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 12rem">Img</th>   
+                        <th style="min-width: 12rem">{{ 'FULL_NAME'|translate }}</th>
+                        <th style="min-width: 14rem">Phone</th>
+                        <th style="min-width: 10rem">Birthdate</th>
+                        <th style="min-width: 10rem">Position</th>
+                        <th style="min-width: 12rem">Actions</th>
+                    </tr>
+                </ng-template>
+    
+                <!-- Table body that maps employees data -->
+                <ng-template pTemplate="body" let-employee>
+                    <tr>
+                        <!-- Firstname -->
+                        <td>
+                            <img src="assets/demo/images/avatar/annafali.png" alt="employee photo">
+                        </td>
+                        
+                        <!-- Full Name -->
+                        <td>{{ employee.firstnameEn }} <br> {{ employee.lastnameEn }}</td>
+    
+                        <!-- Phone -->
+                        <td>{{ employee.phone1 || 'N/A' }}</td>
+    
+                        <!-- Birthdate -->
+                        <td>{{ employee.birthday | date: 'MM/dd/yyyy' }}</td>
+    
+                        <!-- Position -->
+                        <td>{{ employee.positionEn || 'N/A' }}</td>
+    
+                        <!-- Action buttons -->
+                        <td>
+                            <div class="flex justify-content-around flex-column sm:flex-row">
+                                <p-button severity="success" icon="pi pi-pencil" (click)="updateEmployee(employee)"></p-button>
+                                <p-button severity="danger" icon="pi pi-trash" (click)="deleteEmployee(employee.id)"></p-button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+    
+                <!-- Empty message -->
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="6">No employees found.</td>
+                    </tr>
+                </ng-template>
+    
+                <!-- Loading state -->
+                <ng-template pTemplate="loadingbody">
+                    <tr>
+                        <td colspan="6">Loading employee data. Please wait.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

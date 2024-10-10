@@ -24,8 +24,9 @@ export class EmployeeService {
       );
   }
 
-  getAll(): Observable<EmployeeResponse[]> {
-    return this.http.get<EmployeeResponse[]>(`${this.baseUrl}/all`)
+  getAll(type?: string | null): Observable<EmployeeResponse[]> {
+    const url = type ? `${this.baseUrl}/all?Type=${type ?? null}` : `${this.baseUrl}/all`;
+    return this.http.get<EmployeeResponse[]>(url)
      .pipe(
         catchError(error => this.errorService.handleError(error))
       );

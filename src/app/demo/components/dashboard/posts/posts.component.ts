@@ -1,40 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { DataView } from 'primeng/dataview';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Product } from 'src/app/demo/api/product';
-import { ProductService } from 'src/app/demo/service/product.service';
-import { EnumResponse } from 'src/app/layout/api/enum';
-import { CreatePostRequest, PostResponse, UpdatePostRequest } from 'src/app/layout/api/post';
+import { PostResponse, CreatePostRequest, UpdatePostRequest } from 'src/app/layout/api/post';
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
 import { HelperService } from 'src/app/layout/service/helper.service';
 import { PostService } from 'src/app/layout/service/post.service';
-import { filter } from 'rxjs';
+import { EnumResponse } from 'src/app/layout/api/enum';
 import { CreatePostDialogComponent } from './create.post.dialog/create.post.dialog.component';
 import { UpdatePostDialogComponent } from './update.post.dialog/update.post.dialog.component';
-import { dA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'] // Fixed typo from styleUrl to styleUrls
+  styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  products: Product[] = [];
-  posts: PostResponse[] = [];
-  filteredPosts: PostResponse[] = [];
-  paginatedPosts: PostResponse[] = [];
-  postcategories: EnumResponse[] = [];
-  currentCategory: EnumResponse;
+
+  posts: PostResponse[] = []; // All posts fetched from the server
+  filteredPosts: PostResponse[] = []; // Posts after filtering
+  paginatedPosts: PostResponse[] = []; // Posts displayed on current page
+  postCategories: EnumResponse[] = []; // Available categories
+  currentCategory: EnumResponse; // Current selected category
   dropdownPlaceholder: string = 'Select Category';
   dropdownOptionLabel: string = 'nameEn';
-  sortOptions: SelectItem[] = [];
-  rows: number = 6; // Number of rows per page.
-  first: number = 0;
+  rows: number = 3; // Number of rows per page
+  first: number = 0; // First record in current page
   searchValue: string = ''; // Search input value
 
   constructor(
-    private productService: ProductService,
     private postService: PostService,
     private baseApiService: BaseApiService,
     public helperService: HelperService,
@@ -44,125 +37,113 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.loadCategories();
     this.loadPosts();
-
-    this.productService.getProducts().then(data => this.products = data);
-
-    this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' }
-    ];
   }
 
+  // Pagination method
   paginate(event: any) {
     this.first = event.first;
     this.rows = event.rows;
     this.updatePaginatedList();
   }
 
+  // Update the paginatedPosts array based on current page and filtering
   updatePaginatedList() {
-    this.filteredPosts = this.posts.slice(this.first, this.first + this.rows);
+    const start = this.first;
+    const end = this.first + this.rows;
+    this.paginatedPosts = this.filteredPosts.slice(start, end);
   }
 
+  // Load post categories
   loadCategories() {
     this.baseApiService.getPostCategories().subscribe({
-      next: (data: any) => {
-        this.postcategories = data;
-        this.currentCategory = this.postcategories[0];
+      next: (data: EnumResponse[]) => {
+        this.postCategories = data;
+        this.currentCategory = this.postCategories[0]; // Default to first category
         this.dropdownPlaceholder = this.currentCategory.nameEn;
+        this.loadPosts(); // Load posts once categories are available
       },
-      error: (error: Error) => {
-        console.log(error);
-      }
+      error: (error) => console.error('Error loading categories:', error)
     });
   }
 
+  // Load posts based on the current category
   loadPosts() {
-    this.postService.getAllPosts().subscribe({
+    this.postService.getAllPosts(this.currentCategory.id.toString()).subscribe({
       next: (data: PostResponse[]) => {
-        console.log(data);
-        this.posts=[];
-        this.posts = data.filter(post => post.category == this.currentCategory.id);
-        console.log(this.posts);
+        this.posts = data;
         this.filteredPosts = [...this.posts];
-        this.updatePaginatedList();
+        this.updatePaginatedList(); // Update list with the new data
       },
-      error: (error: Error) => {
-        console.log(error);
-      }
+      error: (error) => console.error('Error loading posts:', error)
     });
   }
 
-  deletePost(id: string) {
-    this.postService.deletePost(id).subscribe({
-      next: () => {
-        console.log('Post deleted successfully:', id);
-        this.loadPosts();
-      },
-      error: (error: Error) => {
-        console.error('Error deleting post:', error);
-      }
-    });
+  // Handle category change from dropdown
+  onCategoryChange(event: any) {
+    const selectedCategoryId = event.value;
+    this.currentCategory = this.postCategories.find(c => c.id === selectedCategoryId);
+    this.loadPosts(); // Reload posts when category changes
   }
 
-  openCreatePostDialog() {
-    const ref = this.dialogService.open(CreatePostDialogComponent, {
-      header: 'Create New Post',
-      width: '70%',
-      contentStyle: { 'max-height': '500px', overflow: 'auto' },
-    });
-  
-    ref.onClose.subscribe({
-      next: (data: CreatePostRequest) => {
-        data.Category = this.currentCategory.id;
-        this.postService.createPost(data).subscribe({
-          next: (response: PostResponse) => {
-            console.log('Post created successfully:', response);
-            this.loadPosts();
-          },
-          error: (error) => {
-            console.error('Error creating post:', error);
-          }
-        });
-      }
-    })
-  }
-
-  openUpdatePostDialog(post: PostResponse) {
-    const ref = this.dialogService.open(UpdatePostDialogComponent, {
-      header: 'Update The Post',
-      width: '70%',
-      contentStyle: { 'max-height': '500px', overflow: 'auto' },
-      data: { post: post }
-    });
-    
-    ref.onClose.subscribe({
-      next: (data: UpdatePostRequest) => {
-        this.postService.updatePost(data).subscribe({
-          next: (response: PostResponse) => {
-            console.log('Post updated successfully:', response);
-            this.loadPosts();
-          },
-          error: (error) => {
-            console.error('Error updating post:', error); 
-          }
-        });
-      }
-    })
-  }
-
-  onSortChange(event: any) {
-    const value = event.value;
-    this.currentCategory = value;
-    this.loadPosts();
-  }
-
+  // Handle search input and filter posts
   onFilter(event: Event) {
     const value = (event.target as HTMLInputElement).value.toLowerCase();
     this.filteredPosts = this.posts.filter(post =>
       post.nameEn.toLowerCase().includes(value) || 
       post.descriptionEn.toLowerCase().includes(value)
     );
-    this.first = 0; // Reset pagination
+    this.first = 0; // Reset pagination when search changes
     this.updatePaginatedList();
+  }
+
+  // Create new post
+  openCreatePostDialog() {
+    const ref = this.dialogService.open(CreatePostDialogComponent, {
+      header: 'Create New Post',
+      width: '70%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' }
+    });
+
+    ref.onClose.subscribe((data: CreatePostRequest) => {
+      if (data) {
+        data.Category = this.currentCategory.id; // Assign the selected category to the new post
+        this.postService.createPost(data).subscribe({
+          next: () => this.loadPosts(),
+          error: (error) => console.error('Error creating post:', error)
+        });
+      }
+    });
+  }
+
+  // Update post
+  openUpdatePostDialog(post: PostResponse) {
+    const ref = this.dialogService.open(UpdatePostDialogComponent, {
+      header: 'Update Post',
+      width: '70%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      data: { post: post }
+    });
+
+    ref.onClose.subscribe((data: UpdatePostRequest) => {
+      if (data) {
+        this.postService.updatePost(data).subscribe({
+          next: () => this.loadPosts(),
+          error: (error) => console.error('Error updating post:', error)
+        });
+      }
+    });
+  }
+
+  // Delete post
+  deletePost(id: string) {
+    this.postService.deletePost(id).subscribe({
+      next: () => this.loadPosts(),
+      error: (error) => console.error('Error deleting post:', error)
+    });
+  }
+
+  // Get post photo URL
+  getPhoto(id: string): string {
+    return this.baseApiService.getPhoto(id);
   }
 }

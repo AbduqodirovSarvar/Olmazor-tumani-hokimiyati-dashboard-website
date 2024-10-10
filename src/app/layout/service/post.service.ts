@@ -88,8 +88,9 @@ export class PostService {
       );
   }
 
-  getAllPosts(): Observable<PostResponse[]> {
-    return this.http.get<PostResponse[]>(`${this.baseUrl}/all`)
+  getAllPosts(type?: string | null): Observable<PostResponse[]> {
+    const url = type ? `${this.baseUrl}/all?Type=${type ?? null}` : `${this.baseUrl}/all`;
+    return this.http.get<PostResponse[]>(url)
      .pipe(
         catchError(error => this.errorService.handleError(error))
       );

@@ -54,6 +54,7 @@ import { UpdateUsefullLinkDialogComponent } from './usefull-link/update.usefull-
 import { CreateUsefullLinkDialogComponent } from './usefull-link/create.usefull-link.dialog/create.usefull-link.dialog.component';
 import { CreateUserDialogComponent } from './users/create.user.dialog/create.user.dialog.component';
 import { UpdateUserDialogComponent } from './users/update.user.dialog/update.user.dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -84,7 +85,8 @@ import { UpdateUserDialogComponent } from './users/update.user.dialog/update.use
         DialogModule,
         ReactiveFormsModule,
         FormsModule,
-        InputTextareaModule
+        InputTextareaModule,
+        TranslateModule
     ],
     declarations: [
         DashboardComponent,
@@ -114,7 +116,7 @@ import { UpdateUserDialogComponent } from './users/update.user.dialog/update.use
         UpdateUsefullLinkDialogComponent,
         CreateUsefullLinkDialogComponent,
         CreateUserDialogComponent,
-        UpdateUserDialogComponent
+        UpdateUserDialogComponent,
     ],
     providers: [DialogService]
 })

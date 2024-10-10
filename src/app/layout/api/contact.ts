@@ -1,5 +1,7 @@
+import { EnumResponse } from "./enum";
+
 export interface ContactResponse {
-  type: number;
+  type: EnumResponse;
   value: string; 
   createdBy: string;
   createdAt: string;

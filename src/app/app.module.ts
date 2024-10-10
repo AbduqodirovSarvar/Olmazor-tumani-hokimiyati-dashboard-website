@@ -11,14 +11,24 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpConfigInterceptorService } from './layout/service/http-config-interceptor.service';
 import { AppTopBarComponent } from './layout/app.topbar.component';
 import { MenuModule } from 'primeng/menu';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslationLoader } from './layout/translate-loader';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule, MenuModule, HttpClientModule],
+    imports: [AppRoutingModule, AppLayoutModule, MenuModule, HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: (http: HttpClient) => new TranslationLoader(http),
+              deps: [HttpClient]
+            }
+          }),
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

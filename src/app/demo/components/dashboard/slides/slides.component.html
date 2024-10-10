@@ -2,34 +2,49 @@
 	<div class="col-12">
 		<div class="card">
 			<h5>Slides</h5>
-			<p-dataView #dv [value]="slides" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+			<p-dataView
+				#dv
+				[value]="filteredSlides"
+				[paginator]="true"
+				[rows]="rows"
+				[totalRecords]="filteredSlides.length"
+				(onPage)="paginate($event)"
+				layout="grid">
 				<ng-template pTemplate="header">
 					<div class="flex flex-column md:flex-row md:justify-content-between gap-2">
 						<span class="p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input type="search" pInputText placeholder="Search by Name" (input)="onFilter(dv, $event)">
-                        </span>	
+							<i class="pi pi-search"></i>
+							<input 
+								type="search"
+								pInputText 
+								placeholder="Search by Name" 
+								(input)="onFilter($event)">
+						</span>
 						<button pButton pRipple label="+ Append" (click)="create()"></button>
 					</div>
 				</ng-template>
-				<ng-template let-products pTemplate="gridItem">
+				<ng-template let-slide pTemplate="gridItem">
 					<div class="grid grid-nogutter">
-					<div class="col-12 md:col-4" *ngFor="let product of slides">
-						<div class="card m-3 border-1 surface-border">
-							<div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
-								<div class="flex align-items-center" (click)="update(product)">
-									<i class="pi pi-pencil"></i>
-								  </div>
-								  <div class="flex align-items-center" (click)="delete(product.id)">
-									<i class="pi pi-trash"></i></div>
-							</div>
-							<div class="flex flex-column align-items-center text-center mb-3">
-								<img [src]="getPhoto(product.photo)" [alt]="product.name" class="w-9 shadow-2 my-3 mx-0"/>
-								<div class="text-2xl font-bold">{{product.nameEn}}</div>
-								<div class="mb-3">{{product.descriptionEn}}</div>
+						<div class="col-12 md:col-4" *ngFor="let slide of paginatedSlides">
+							<div class="card m-3 border-1 surface-border">
+								<div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+									<div class="flex align-items-center" (click)="update(slide)">
+										<i class="pi pi-pencil"></i>
+									</div>
+									<div class="flex align-items-center" (click)="delete(slide.id)">
+										<i class="pi pi-trash"></i>
+									</div>
+								</div>
+								<div class="flex flex-column align-items-center text-center mb-3">
+									<img 
+										[src]="getPhoto(slide.photo)" 
+										[alt]="slide.nameEn" 
+										class="w-9 shadow-2 my-3 mx-0" />
+									<div class="text-2xl font-bold">{{ slide.nameEn }}</div>
+									<div class="mb-3">{{ slide.descriptionEn }}</div>
+								</div>
 							</div>
 						</div>
-					</div>
 					</div>
 				</ng-template>
 			</p-dataView>
