@@ -1,7 +1,7 @@
 <div class="grid">
 	<div class="col-12">
 	  <div class="card">
-		<h5>Posts</h5>
+		<h5>{{"POSTS" | translate}} {{"AND" | translate}} {{"NEWS" | translate}}</h5>
 		<p-dataView #dv 
 					[value]="filteredPosts" 
 					[paginator]="true" 
@@ -23,10 +23,10 @@
   
 			  <span class="p-input-icon-left">
 				<i class="pi pi-search"></i>
-				<input type="search" pInputText placeholder="Search by Name" (input)="onFilter($event)">
+				<input type="search" pInputText placeholder="{{'SEARCH_KEYWORD' | translate}}" (input)="onFilter($event)">
 			  </span>
   
-			  <button pButton pRipple label="+ Append" (click)="openCreatePostDialog()"></button>
+			  <button pButton pRipple label="+ {{'APPEND' | translate}}" (click)="openCreatePostDialog()"></button>
 			</div>
 		  </ng-template>
   

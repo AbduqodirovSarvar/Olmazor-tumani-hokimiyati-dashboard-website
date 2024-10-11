@@ -6,6 +6,7 @@ import { SlideService } from 'src/app/layout/service/slide.service';
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
 import { CreateSlideDialogComponent } from './create.slide.dialog/create.slide.dialog.component';
 import { UpdateSlideDialogComponent } from './update.slide.dialog/update.slide.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-slides',
@@ -27,7 +28,8 @@ export class SlidesComponent implements OnInit {
 	constructor(
 		private slideService: SlideService,
 		private dialogService: DialogService,
-		private baseApiService: BaseApiService
+		private baseApiService: BaseApiService,
+		private translate: TranslateService
 	) { }
 
 	ngOnInit() {
@@ -47,7 +49,7 @@ export class SlidesComponent implements OnInit {
 
 	create() {
 		const ref = this.dialogService.open(CreateSlideDialogComponent, {
-			header: 'Create New Slide',
+			header: this.translate.instant('CREATE_NEW'),
 			width: '70%',
 			contentStyle: { 'overflow-y': 'auto' }
 		});
@@ -70,7 +72,7 @@ export class SlidesComponent implements OnInit {
 
 	update(slide: SlideResponse) {
 		const ref = this.dialogService.open(UpdateSlideDialogComponent, {
-			header: 'Update Slide',
+			header: this.translate.instant('UPDATE'),
 			width: '70%',
 			contentStyle: { 'overflow-y': 'auto' },
 			data: { slide }

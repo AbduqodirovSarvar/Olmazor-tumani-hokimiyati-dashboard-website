@@ -7,6 +7,7 @@ import { HelperService } from 'src/app/layout/service/helper.service';
 import { UsefullLinkService } from 'src/app/layout/service/usefull-link.service';
 import { CreateUsefullLinkDialogComponent } from './create.usefull-link.dialog/create.usefull-link.dialog.component';
 import { UpdateUsefullLinkDialogComponent } from './update.usefull-link.dialog/update.usefull-link.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-usefull-link',
@@ -29,7 +30,8 @@ export class UsefullLinkComponent implements OnInit {
     private baseApiService: BaseApiService,
     public helperService: HelperService,
     private dialogService: DialogService,
-    private linkService: UsefullLinkService
+    private linkService: UsefullLinkService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class UsefullLinkComponent implements OnInit {
 
   create() {
     const ref = this.dialogService.open(CreateUsefullLinkDialogComponent, {
-      header: 'Create New Useful Link',
+      header: this.translate.instant('CREATE_NEW'),
       width: '80%',
       contentStyle: { 'overflow-y': 'auto' }
     });
@@ -67,7 +69,7 @@ export class UsefullLinkComponent implements OnInit {
 
   update(link: UsefullLinkResponse) {
     const ref = this.dialogService.open(UpdateUsefullLinkDialogComponent, {
-      header: 'Update Useful Link',
+      header: this.translate.instant('UPDATE'),
       width: '80%',
       contentStyle: { 'overflow-y': 'auto' },
       data: { usefullLink: link }

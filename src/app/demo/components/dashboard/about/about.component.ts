@@ -8,6 +8,7 @@ import { HelperService } from 'src/app/layout/service/helper.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CreateAboutDialogComponent } from './create.about.dialog/create.about.dialog.component';
 import { UpdateAboutDialogComponent } from './update.about.dialog/update.about.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about',
@@ -32,7 +33,8 @@ export class AboutComponent implements OnInit {
     private aboutService: AboutService,
     private baseApiService: BaseApiService,
     public helperService: HelperService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -46,7 +48,7 @@ export class AboutComponent implements OnInit {
 
   openCreateAboutDialog() {
     const ref = this.dialogService.open(CreateAboutDialogComponent, {
-      header: 'Create About',
+      header: this.translate.instant('CREATE_NEW'),
       width: '70%',
       contentStyle: { 'max-height': '70vh', 'overflow': 'auto' }
     });
@@ -63,7 +65,7 @@ export class AboutComponent implements OnInit {
 
   openUpdateAboutDialog(id: string) {
     const ref = this.dialogService.open(UpdateAboutDialogComponent, {
-      header: 'Update About',
+      header: this.translate.instant('UPDATE'),
       width: '70%',
       contentStyle: { 'max-height': '70vh', 'overflow': 'auto' },
       data: { id: id }

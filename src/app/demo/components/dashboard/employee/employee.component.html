@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <h5>Employees</h5>
+            <h5>{{"EMPLOYEES" | translate}}</h5>
             <p-table #dt1 
                 [value]="employees" 
                 dataKey="id" 
@@ -27,32 +27,31 @@
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="{{ 'SEARCH_KEYWORD' | translate }}" class="w-full" />
                         </span>
-                        <button pButton pRipple label="+ Append" (click)="createEmployee()"></button>
+                        <button pButton pRipple label="+ {{'APPEND' | translate}}" (click)="createEmployee()"></button>
                     </div>
                 </ng-template>
     
                 <!-- Header for table columns -->
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width: 12rem">Img</th>   
-                        <th style="min-width: 12rem">{{ 'FULL_NAME'|translate }}</th>
-                        <th style="min-width: 14rem">Phone</th>
-                        <th style="min-width: 10rem">Birthdate</th>
-                        <th style="min-width: 10rem">Position</th>
-                        <th style="min-width: 12rem">Actions</th>
+                        <th style="min-width: 12rem">{{"FULL_NAME" | translate }}</th>
+                        <th style="min-width: 14rem">{{"PHONE_NUMBER" | translate}}</th>
+                        <th style="min-width: 10rem">{{"BIRTHDATE" | translate}}</th>
+                        <th style="min-width: 10rem">{{"POSITION" | translate}}</th>
+                        <th style="min-width: 12rem">{{"ACTIONS" | translate}}</th>
                     </tr>
                 </ng-template>
     
                 <!-- Table body that maps employees data -->
                 <ng-template pTemplate="body" let-employee>
                     <tr>
-                        <!-- Firstname -->
-                        <td>
-                            <img src="assets/demo/images/avatar/annafali.png" alt="employee photo">
-                        </td>
-                        
                         <!-- Full Name -->
-                        <td>{{ employee.firstnameEn }} <br> {{ employee.lastnameEn }}</td>
+                        <td style="display: flex; align-items: center;">
+                            <img src="assets/demo/images/avatar/annafali.png" alt="employee photo" style="margin-right: 10px;">
+                            <div>
+                                {{ employee.firstnameEn }} <br> {{ employee.lastnameEn }}
+                            </div>
+                        </td>                        
     
                         <!-- Phone -->
                         <td>{{ employee.phone1 || 'N/A' }}</td>
@@ -76,14 +75,14 @@
                 <!-- Empty message -->
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td colspan="6">No employees found.</td>
+                        <td colspan="6">{{"NOTFOUND" | translate}}</td>
                     </tr>
                 </ng-template>
     
                 <!-- Loading state -->
                 <ng-template pTemplate="loadingbody">
                     <tr>
-                        <td colspan="6">Loading employee data. Please wait.</td>
+                        <td colspan="6">{{"WAIT" | translate}}</td>
                     </tr>
                 </ng-template>
             </p-table>

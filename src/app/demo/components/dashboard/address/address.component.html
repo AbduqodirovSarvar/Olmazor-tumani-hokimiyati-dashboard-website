@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <h5>Addresses</h5>
+            <h5>{{"ADDRESS" | translate}}</h5>
             <p-dataView #dv 
                 [value]="filteredAddresses" 
                 [paginator]="true" 
@@ -14,9 +14,9 @@
                     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input type="search" pInputText placeholder="Search by Name" (input)="onFilter($event)">
+                            <input type="search" pInputText placeholder="{{'SEARCH_KEYWORD' | translate}}" (input)="onFilter($event)">
                         </span>
-                        <button pButton pRipple label="+ Append" (click)="openCreateAddressDialog()"></button>
+                        <button pButton pRipple label="+ {{'APPEND' | translate}}" (click)="openCreateAddressDialog()"></button>
                     </div>
                 </ng-template>
   

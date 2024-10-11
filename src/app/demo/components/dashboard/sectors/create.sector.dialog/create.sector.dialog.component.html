@@ -1,67 +1,56 @@
 <div class="p-fluid" [formGroup]="sectorForm">
-    <!-- Name (Uzbek) -->
     <div class="field">
-      <label for="nameUz">Name (Uzbek)</label>
+      <label for="nameUz">{{"NAME" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="nameUz" type="text" pInputText formControlName="nameUz" />
     </div>
   
-    <!-- Name (English) -->
     <div class="field">
-      <label for="nameEn">Name (English)</label>
+      <label for="nameEn">{{"NAME" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="nameEn" type="text" pInputText formControlName="nameEn" />
     </div>
   
-    <!-- Name (Russian) -->
     <div class="field">
-      <label for="nameRu">Name (Russian)</label>
+      <label for="nameRu">{{"NAME" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="nameRu" type="text" pInputText formControlName="nameRu" />
     </div>
   
-    <!-- Name (Cyrillic Uzbek) -->
     <div class="field">
-      <label for="nameUzRu">Name (Cyrillic Uzbek)</label>
+      <label for="nameUzRu">{{"NAME" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="nameUzRu" type="text" pInputText formControlName="nameUzRu" />
     </div>
   
-    <!-- Name (Karakalpak, Optional) -->
     <div class="field">
-      <label for="nameKaa">Name (Karakalpak) (Optional)</label>
+      <label for="nameKaa">{{"NAME" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="nameKaa" type="text" pInputText formControlName="nameKaa" />
     </div>
   
-    <!-- Description (Uzbek) -->
     <div class="field">
-      <label for="descriptionUz">Description (Uzbek)</label>
+      <label for="descriptionUz">{{"DESCRIPTION" | translate}} ({{"UZBEK" | translate}})</label>
       <textarea id="descriptionUz" pInputTextarea formControlName="descriptionUz"></textarea>
     </div>
   
-    <!-- Description (English) -->
     <div class="field">
-      <label for="descriptionEn">Description (English)</label>
+      <label for="descriptionEn">{{"DESCRIPTION" | translate}} ({{"ENGLISH" | translate}})</label>
       <textarea id="descriptionEn" pInputTextarea formControlName="descriptionEn"></textarea>
     </div>
   
-    <!-- Description (Russian) -->
     <div class="field">
-      <label for="descriptionRu">Description (Russian)</label>
+      <label for="descriptionRu">{{"DESCRIPTION" | translate}} ({{"RUSSIAN" | translate}})</label>
       <textarea id="descriptionRu" pInputTextarea formControlName="descriptionRu"></textarea>
     </div>
   
-    <!-- Description (Cyrillic Uzbek) -->
     <div class="field">
-      <label for="descriptionUzRu">Description (Cyrillic Uzbek)</label>
+      <label for="descriptionUzRu">{{"DESCRIPTION" | translate}} ({{"CYRILLIC" | translate}})</label>
       <textarea id="descriptionUzRu" pInputTextarea formControlName="descriptionUzRu"></textarea>
     </div>
   
-    <!-- Description (Karakalpak, Optional) -->
     <div class="field">
-      <label for="descriptionKaa">Description (Karakalpak) (Optional)</label>
+      <label for="descriptionKaa">{{"DESCRIPTION" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <textarea id="descriptionKaa" pInputTextarea formControlName="descriptionKaa"></textarea>
     </div>
   
-    <!-- Employee (UUID) -->
     <div class="field">
-      <label for="employeeId">Employee</label>
+      <label for="employeeId">{{"EMPLOYEE" | translate}}</label>
       <p-dropdown 
         id="employeeId" 
         formControlName="employeeId" 
@@ -72,29 +61,26 @@
       </p-dropdown>
     </div>
   
-    <!-- Location (UUID) -->
     <div class="field">
-      <label for="locationId">Location</label>
+      <label for="locationId">{{"ADDRESS" | translate}}</label>
       <p-dropdown 
         id="locationId" 
         formControlName="locationId" 
         [options]="locations" 
         optionLabel="nameEn" 
         optionValue="id" 
-        placeholder="Select a Location">
+        placeholder="{{'SELECT' | translate}}">
       </p-dropdown>
     </div>
   
-    <!-- Photo (Optional) -->
     <div class="field">
-      <label for="photo">Photo (Optional)</label>
+      <label for="photo">{{"PHOTO" | translate}}</label>
       <input id="photo" type="file" (change)="onFileSelect($event)" />
     </div>
   
-    <!-- Buttons -->
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
-      <button pButton label="Create Sector" icon="pi pi-check" (click)="onSubmit()" [disabled]="sectorForm.invalid"></button>
+      <button pButton label="{{'CANCEL' | translate}}" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="{{'ADD' | translate}}" icon="pi pi-check" (click)="onSubmit()" [disabled]="sectorForm.invalid"></button>
     </div>
   </div>
   

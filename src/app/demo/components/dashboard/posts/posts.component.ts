@@ -8,6 +8,7 @@ import { PostService } from 'src/app/layout/service/post.service';
 import { EnumResponse } from 'src/app/layout/api/enum';
 import { CreatePostDialogComponent } from './create.post.dialog/create.post.dialog.component';
 import { UpdatePostDialogComponent } from './update.post.dialog/update.post.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-posts',
@@ -31,7 +32,8 @@ export class PostsComponent implements OnInit {
     private postService: PostService,
     private baseApiService: BaseApiService,
     public helperService: HelperService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -99,7 +101,7 @@ export class PostsComponent implements OnInit {
   // Create new post
   openCreatePostDialog() {
     const ref = this.dialogService.open(CreatePostDialogComponent, {
-      header: 'Create New Post',
+      header: this.translate.instant('CREATE_NEW'),
       width: '70%',
       contentStyle: { 'max-height': '500px', overflow: 'auto' }
     });
@@ -118,7 +120,7 @@ export class PostsComponent implements OnInit {
   // Update post
   openUpdatePostDialog(post: PostResponse) {
     const ref = this.dialogService.open(UpdatePostDialogComponent, {
-      header: 'Update Post',
+      header: this.translate.instant('UPDATE'),
       width: '70%',
       contentStyle: { 'max-height': '500px', overflow: 'auto' },
       data: { post: post }

@@ -8,6 +8,7 @@ import { HelperService } from 'src/app/layout/service/helper.service';
 import { LocationService } from 'src/app/layout/service/location.service';
 import { CreateAddressDialogComponent } from './create.address.dialog/create.address.dialog.component';
 import { UpdateAddressDialogComponent } from './update.address.dialog/update.address.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-address',
@@ -31,7 +32,8 @@ export class AddressComponent implements OnInit {
     private locationService: LocationService,
     private baseApiService: BaseApiService,
     public helperService: HelperService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -45,9 +47,9 @@ export class AddressComponent implements OnInit {
 
   openCreateAddressDialog() {
     const ref = this.dialogService.open(CreateAddressDialogComponent, {
-      header: 'Create New Address',
-      width: '70%',
-      contentStyle: { 'max-height': '70vh', 'overflow': 'auto' }
+      header: this.translate.instant('CREATE_NEW'),
+      width: '80%',
+      contentStyle: { 'max-height': '80vh', 'overflow': 'auto' }
     });
 
     ref.onClose.subscribe((data: CreateLocationRequest | null) => {
@@ -62,9 +64,9 @@ export class AddressComponent implements OnInit {
 
   openUpdateAddressDialog(address: LocationResponse) {
     const ref = this.dialogService.open(UpdateAddressDialogComponent, {
-      header: 'Update Address',
-      width: '70%',
-      contentStyle: { 'max-height': '70vh', 'overflow': 'auto' },
+      header: this.translate.instant('UPDATE'),
+      width: '80%',
+      contentStyle: { 'max-height': '80vh', 'overflow': 'auto' },
       data: { address: address }
     });
 

@@ -11,6 +11,7 @@ import { LocationService } from 'src/app/layout/service/location.service';
 import { EmployeeService } from 'src/app/layout/service/employee.service';
 import { EmployeeResponse } from 'src/app/layout/api/employee';
 import { LocationResponse } from 'src/app/layout/api/location';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sectors',
@@ -34,7 +35,8 @@ export class SectorsComponent implements OnInit {
     public helperService: HelperService,
     private dialogService: DialogService,
     private locationService: LocationService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class SectorsComponent implements OnInit {
 
   openCreateSectorDialog() {
     const ref = this.dialogService.open(CreateSectorDialogComponent, {
-      header: 'Create New Sector',
+      header: this.translate.instant('CREATE_NEW'),
       width: '70%',
       contentStyle: { 'max-height': '70vh', 'overflow': 'auto' },
       data: {
@@ -66,7 +68,7 @@ export class SectorsComponent implements OnInit {
 
   openUpdateSectorDialog(sector: SectorResponse) {
     const ref = this.dialogService.open(UpdateSectorDialogComponent, {
-      header: 'Update Sector',
+      header: this.translate.instant('UPDATE'),
       width: '70%',
       contentStyle: { 'max-height': '70vh', 'overflow': 'auto' },
       data: {

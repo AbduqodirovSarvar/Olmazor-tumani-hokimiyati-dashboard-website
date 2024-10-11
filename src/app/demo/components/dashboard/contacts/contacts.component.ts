@@ -13,6 +13,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { HelperService } from 'src/app/layout/service/helper.service';
 import { CreateContactDialogComponent } from './create.contact.dialog/create.contact.dialog.component';
 import { UpdateContactDialogComponent } from './update.contact.dialog/update.contact.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 interface expandedRows {
   [key: string]: boolean;
@@ -65,7 +66,8 @@ export class ContactsComponent implements OnInit {
     private contactService: ContactService,
     private baseApiService: BaseApiService,
     public helperService: HelperService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private translate: TranslateService
 ) { }
 
   ngOnInit() {
@@ -125,7 +127,7 @@ export class ContactsComponent implements OnInit {
 
   create(){
     const ref = this.dialogService.open(CreateContactDialogComponent, {
-        header: 'Create New Contact',
+        header: this.translate.instant('CREATE_NEW'),
         width: '70%',
         contentStyle: { 'overflow-y': 'auto' },
         data: {
@@ -149,7 +151,7 @@ export class ContactsComponent implements OnInit {
 
   update(contact: ContactResponse){
     const ref = this.dialogService.open(UpdateContactDialogComponent, {
-        header: 'Update Contact',
+        header: this.translate.instant('UPDATE'),
         width: '70%',
         contentStyle: { 'overflow-y': 'auto' },
         data: {

@@ -33,6 +33,7 @@ export class EmployeeComponent implements OnInit {
     private baseApiService: BaseApiService,
     public helperService: HelperService,
     private dialogService: DialogService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -86,7 +87,7 @@ export class EmployeeComponent implements OnInit {
 
   createEmployee(){
     const ref = this.dialogService.open(CreateEmployeeDialogComponent, {
-        header: 'Create New Employee',
+        header: this.translate.instant('CREATE_NEW'),
         width: '80%',
         contentStyle: { 'max-height': '500px', overflow: 'auto' },
         data: {
@@ -114,7 +115,7 @@ export class EmployeeComponent implements OnInit {
 
   updateEmployee(employee: EmployeeResponse){
     const ref = this.dialogService.open(UpdateEmployeeDialogComponent, {
-        header: 'Update the Employee',
+        header: this.translate.instant('UPDATE'),
         width: '70%',
         contentStyle: { 'max-height': '500px', overflow: 'auto' },
         data: {

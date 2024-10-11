@@ -12,6 +12,7 @@ import { BaseApiService } from 'src/app/layout/service/base.api.service';
 import { EnumResponse } from 'src/app/layout/api/enum';
 import { CreateUserDialogComponent } from './create.user.dialog/create.user.dialog.component';
 import { UpdateUserDialogComponent } from './update.user.dialog/update.user.dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 interface expandedRows {
   [key: string]: boolean;
@@ -65,7 +66,8 @@ export class UsersComponent implements OnInit {
     private productService: ProductService,
     private userService: UserService,
     private dialogService: DialogService,
-    private baseApiService: BaseApiService
+    private baseApiService: BaseApiService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -135,7 +137,7 @@ export class UsersComponent implements OnInit {
 
   create(){
     const ref = this.dialogService.open(CreateUserDialogComponent, {
-      header: 'Create New User',
+      header: this.translate.instant('CREATE_NEW'),
       width: '80%',
       contentStyle: { 'overflow-y': 'auto' },
       data: {
@@ -159,7 +161,7 @@ export class UsersComponent implements OnInit {
 
   update(user: UserResponse){
     const ref = this.dialogService.open(UpdateUserDialogComponent, {
-      header: 'Update User',
+      header: this.translate.instant('UPDATE'),
       width: '80%',
       contentStyle: { 'overflow-y': 'auto' },
       data: {

@@ -1,50 +1,43 @@
 <div class="p-fluid" [formGroup]="locationForm">
-    <!-- Name (Uzbek) -->
     <div class="field">
-      <label for="nameUz">Name (Uzbek)</label>
+      <label for="nameUz">{{"TITLE" | translate}} ({{"UZBEK" | translate}})(Uzbek)</label>
       <input id="nameUz" type="text" pInputText formControlName="nameUz" />
     </div>
   
-    <!-- Name (English) -->
     <div class="field">
-      <label for="nameEn">Name (English)</label>
+      <label for="nameEn">{{"TITLE" | translate}} ({{"ENGLISH" | translate}})(English)</label>
       <input id="nameEn" type="text" pInputText formControlName="nameEn" />
     </div>
   
-    <!-- Name (Russian) -->
     <div class="field">
-      <label for="nameRu">Name (Russian)</label>
+      <label for="nameRu">{{"TITLE" | translate}} ({{"RUSSIAN" | translate}})(Russian)</label>
       <input id="nameRu" type="text" pInputText formControlName="nameRu" />
     </div>
   
-    <!-- Name (Cyrillic Uzbek) -->
     <div class="field">
-      <label for="nameUzRu">Name (Cyrillic Uzbek)</label>
+      <label for="nameUzRu">{{"TITLE" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="nameUzRu" type="text" pInputText formControlName="nameUzRu" />
     </div>
   
-    <!-- Name (Karakalpak) -->
     <div class="field">
-      <label for="nameKaa">Name (Karakalpak)</label>
+      <label for="nameKaa">{{"TITLE" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="nameKaa" type="text" pInputText formControlName="nameKaa" />
     </div>
   
-    <!-- Latitude -->
     <div class="field">
-      <label for="latitude">Latitude</label>
+      <label for="latitude">{{"LATTITUDE" | translate}}</label>
       <input id="latitude" type="number" pInputText formControlName="latitude" />
     </div>
   
-    <!-- Longitude -->
     <div class="field">
-      <label for="longitude">Longitude</label>
+      <label for="longitude">{{"LONGITUDE" | translate}}</label>
       <input id="longitude" type="number" pInputText formControlName="longitude" />
     </div>
   
     <!-- Buttons -->
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
-      <button pButton label="Create Location" icon="pi pi-check" (click)="onSubmit()" [disabled]="locationForm.invalid"></button>
+      <button pButton label="{{'CANCEL' | translate}}" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="{{'ADD' | translate}}" icon="pi pi-check" (click)="onSubmit()" [disabled]="locationForm.invalid"></button>
     </div>
 </div>
   

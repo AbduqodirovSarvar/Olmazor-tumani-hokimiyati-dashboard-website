@@ -1,100 +1,88 @@
 <div class="p-fluid" [formGroup]="userForm">
-    <!-- First Name (English) -->
     <div class="field">
-      <label for="firstnameEn">First Name (English)</label>
+      <label for="firstnameEn">{{"FIRST_NAME" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="firstnameEn" type="text" pInputText formControlName="firstnameEn" />
     </div>
   
-    <!-- First Name (Russian) -->
     <div class="field">
-      <label for="firstnameRu">First Name (Russian)</label>
+      <label for="firstnameRu">{{"FIRST_NAME" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="firstnameRu" type="text" pInputText formControlName="firstnameRu" />
     </div>
   
-    <!-- Last Name (English) -->
     <div class="field">
-      <label for="lastnameEn">Last Name (English)</label>
+      <label for="lastnameEn">{{"LAST_NAME" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="lastnameEn" type="text" pInputText formControlName="lastnameEn" />
     </div>
   
-    <!-- Last Name (Russian) -->
     <div class="field">
-      <label for="lastnameRu">Last Name (Russian)</label>
+      <label for="lastnameRu">{{"LAST_NAME" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="lastnameRu" type="text" pInputText formControlName="lastnameRu" />
     </div>
   
-    <!-- Gender -->
     <div class="field">
-      <label for="gender">Gender</label>
+      <label for="gender">{{"GENDER" | translate}}</label>
       <p-dropdown
         id="gender"
         [options]="genders"
-        optionLabel="nameEn"
+        optionLabel="{{'NAME_PROPERTY' | translate}}"
         optionValue="id"
         formControlName="gender"
-        placeholder="Select Gender">
+        placeholder="{{'SELECT' | translate}}">
       </p-dropdown>
     </div>
   
-    <!-- User Role -->
     <div class="field">
-      <label for="userrole">User Role</label>
+      <label for="userrole">{{"USER_ROLE" | translate}}</label>
       <p-dropdown
         id="userrole"
         [options]="userRoles"
-        optionLabel="nameEn"
+        optionLabel="{{'NAME_PROPERTY' | translate}}"
         optionValue="id"
         formControlName="userrole"
-        placeholder="Select User Role">
+        placeholder="{{'SELECT' | translate}}">
       </p-dropdown>
     </div>
   
-    <!-- Phone 1 (Optional) -->
     <div class="field">
-      <label for="phone1">Phone 1</label>
+      <label for="phone1">{{"PHONE_NUMBER" | translate}} 1</label>
       <input id="phone1" type="text" pInputText formControlName="phone1" />
     </div>
   
-    <!-- Phone 2 (Optional) -->
     <div class="field">
-      <label for="phone2">Phone 2 (Optional)</label>
+      <label for="phone2">{{"PHONE_NUMBER" | translate}} 2</label>
       <input id="phone2" type="text" pInputText formControlName="phone2" />
     </div>
   
-    <!-- Email -->
     <div class="field">
-      <label for="email">Email</label>
+      <label for="email">{{"EMAIL" | translate}}</label>
       <input id="email" type="email" pInputText formControlName="email" />
     </div>
   
-    <!-- Old Password -->
     <div class="field">
-      <label for="oldPassword">Old Password</label>
+      <label for="oldPassword">{{"OLD_PASSWORD" | translate}}</label>
       <input id="oldPassword" type="password" pInputText formControlName="oldPassword" />
     </div>
   
-    <!-- New Password -->
     <div class="field">
-      <label for="password">New Password</label>
+      <label for="password">{{"NEW_PASSWORD" | translate}}</label>
       <input id="password" type="password" pInputText formControlName="password" />
     </div>
   
-    <!-- Confirm Password -->
     <div class="field">
-      <label for="confirmPassword">Confirm New Password</label>
+      <label for="confirmPassword">{{"CONFIRM_NEW_PASSWORD" | translate}}</label>
       <input id="confirmPassword" type="password" pInputText formControlName="confirmPassword" />
     </div>
   
     <!-- Profile Photo (Optional) -->
     <div class="field">
-      <label for="photo">Profile Photo (Optional)</label>
+      <label for="photo">{{"PHOTO" | translate}}</label>
       <input id="photo" type="file" (change)="onFileSelect($event)" />
     </div>
   
     <!-- Buttons -->
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
-      <button pButton label="Update User" icon="pi pi-check" (click)="onSubmit()" [disabled]="userForm.invalid"></button>
+      <button pButton label="{{'CANCEL' | translate}}" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="{{'UPDATE' | translate}}" icon="pi pi-check" (click)="onSubmit()" [disabled]="userForm.invalid"></button>
     </div>
   </div>
   

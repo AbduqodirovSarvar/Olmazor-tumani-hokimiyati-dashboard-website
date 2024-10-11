@@ -15,7 +15,7 @@ export class CreateAddressDialogComponent {
 
   constructor(
     public ref: DynamicDialogRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
     this.locationForm = this.fb.group({
       nameUz: ['', Validators.required],

@@ -1,7 +1,7 @@
 <div class="grid">
 	<div class="col-12">
 	  <div class="card">
-		<h5>Users</h5>
+		<h5>{{"USERS" | translate}}</h5>
 		<p-table #dt1 [value]="users" dataKey="Id" [rows]="6" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['FirstnameEn', 'LastnameEn', 'Phone1', 'PositionEn']" responsiveLayout="scroll">
 		  
 		  <!-- Caption for sorting and searching -->
@@ -9,22 +9,20 @@
 			<div class="flex justify-content-between flex-column sm:flex-row">
 			  <span class="p-input-icon-left mb-2">
 				<i class="pi pi-search"></i>
-				<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full" />
+				<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="{{'SEARCH_KEYWORD' | translate}}" class="w-full" />
 			  </span>
-			  <button pButton pRipple label="+ Append" (click)="create()"></button>
+			  <button pButton pRipple label="+ {{'APPEND' | translate}}" (click)="create()"></button>
 			</div>
 		  </ng-template>
   
 		  <!-- Header for table columns -->
 		  <ng-template pTemplate="header">
 			<tr>
-			  <th style="min-width: 12rem">Img</th>
-			  <th style="min-width: 12rem">FullName</th>
-			  <!-- <th style="min-width: 12rem">Lastname</th> -->
-			  <th style="min-width: 14rem">Email</th>
-			  <th style="min-width: 10rem">Phone</th>
-			  <th style="min-width: 10rem">UserRole</th>
-			  <th style="min-width: 12rem">Actions</th>
+			  <th style="min-width: 12rem">{{"FULL_NAME" | translate}}</th>
+			  <th style="min-width: 14rem">{{"EMAIL" | translate}}</th>
+			  <th style="min-width: 10rem">{{"PHONE_NUMBER" | translate}}</th>
+			  <th style="min-width: 10rem">{{"USER_ROLE" | translate}}</th>
+			  <th style="min-width: 12rem">{{"ACTIONS" | translate}}</th>
 			</tr>
 		  </ng-template>
   
@@ -32,11 +30,12 @@
 		  <ng-template pTemplate="body" let-employee>
 			<tr>
 
-			  <td>
-				<img src="assets/demo/images/avatar/annafali.png" alt="">
-			  </td>
-
-			  <td>{{ employee.firstnameEn }} <br> {{ employee.lastnameEn }} </td>
+				<td style="display: flex; align-items: center;">
+					<img src="assets/demo/images/avatar/annafali.png" alt="employee photo" style="margin-right: 10px;">
+					<div>
+						{{ employee.firstnameEn }} <br> {{ employee.lastnameEn }}
+					</div>
+				</td>    
   
 			  <!-- Phone (using Phone1 field) -->
 			  <td>{{ employee.email }}</td>

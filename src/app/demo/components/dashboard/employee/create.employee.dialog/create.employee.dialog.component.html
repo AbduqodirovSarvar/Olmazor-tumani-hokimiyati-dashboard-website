@@ -1,221 +1,210 @@
 <div class="p-fluid" [formGroup]="employeeForm">
-    <!-- First Name -->
     <div class="field">
-      <label for="FirstnameEn">First Name (English)</label>
+      <label for="FirstnameEn">{{"FIRST_NAME" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="FirstnameEn" type="text" pInputText formControlName="FirstnameEn" />
     </div>
   
     <div class="field">
-      <label for="FirstnameRu">First Name (Russian)</label>
+      <label for="FirstnameRu">{{"FIRST_NAME" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="FirstnameRu" type="text" pInputText formControlName="FirstnameRu" />
     </div>
   
-    <!-- Last Name -->
     <div class="field">
-      <label for="LastnameEn">Last Name (English)</label>
+      <label for="LastnameEn">{{"LAST_NAME" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="LastnameEn" type="text" pInputText formControlName="LastnameEn" />
     </div>
   
     <div class="field">
-      <label for="LastnameRu">Last Name (Russian)</label>
+      <label for="LastnameRu">{{"LAST_NAME" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="LastnameRu" type="text" pInputText formControlName="LastnameRu" />
     </div>
   
-    <!-- Gender -->
     <div class="field">
-      <label for="Gender">Gender</label>
+      <label for="Gender">{{"GENDER" | translate}}</label>
       <p-dropdown 
         id="Gender" 
         formControlName="Gender" 
         [options]="genders" 
-        placeholder="Select Gender"
+        placeholder="{{'SELECT' | translate}}"
         optionLabel="nameEn"
         optionValue="id"
         ></p-dropdown>
     </div>
   
-    <!-- Phone Numbers -->
     <div class="field">
-      <label for="Phone1">Phone 1</label>
+      <label for="Phone1">{{"PHONE_NUMBER" | translate}} 1</label>
       <input id="Phone1" type="tel" pInputText formControlName="Phone1" />
     </div>
   
     <div class="field">
-      <label for="Phone2">Phone 2</label>
+      <label for="Phone2">{{"PHONE_NUMBER" | translate}} 2</label>
       <input id="Phone2" type="tel" pInputText formControlName="Phone2" />
     </div>
   
-    <!-- Email -->
     <div class="field">
-      <label for="Email">Email</label>
+      <label for="Email">{{"EMAIL" | translate}}</label>
       <input id="Email" type="email" pInputText formControlName="Email" />
     </div>
   
-    <!-- Category -->
     <div class="field">
-      <label for="Category">Category</label>
+      <label for="Category">{{"CATEGORY" | translate}}</label>
       <p-dropdown 
         id="Category" 
         formControlName="Category" 
         [options]="categories" 
-        placeholder="Select Category"
+        placeholder="{{'SELECT' | translate}}"
         optionLabel="nameEn"
         optionValue="id"
         ></p-dropdown>
     </div>
   
-    <!-- Nationality -->
     <div class="field">
-      <label for="NationalityEn">Nationality (English)</label>
+      <label for="NationalityEn">{{"NATIONALITY" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="NationalityEn" type="text" pInputText formControlName="NationalityEn" />
     </div>
   
     <div class="field">
-      <label for="NationalityUz">Nationality (Uzbek)</label>
+      <label for="NationalityUz">{{"NATIONALITY" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="NationalityUz" type="text" pInputText formControlName="NationalityUz" />
     </div>
   
     <div class="field">
-      <label for="NationalityRu">Nationality (Russian)</label>
+      <label for="NationalityRu">{{"NATIONALITY" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="NationalityRu" type="text" pInputText formControlName="NationalityRu" />
     </div>
   
     <div class="field">
-      <label for="NationalityUzRu">Nationality (Cyrillic Uzbek)</label>
+      <label for="NationalityUzRu">{{"NATIONALITY" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="NationalityUzRu" type="text" pInputText formControlName="NationalityUzRu" />
     </div>
   
     <div class="field">
-      <label for="NationalityKaa">Nationality (Karakalpak)</label>
+      <label for="NationalityKaa">{{"NATIONALITY" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="NationalityKaa" type="text" pInputText formControlName="NationalityKaa" />
     </div>
   
     <!-- Birthday -->
     <div class="field">
-      <label for="Birthday">Birthday</label>
+      <label for="Birthday">{{"BIRTHDATE" | translate}}</label>
       <input id="Birthday" type="date" pInputText formControlName="Birthday" />
     </div>
   
-    <!-- Birth Place -->
     <div class="field">
-      <label for="BirthPlaceUz">Birth Place (Uzbek)</label>
+      <label for="BirthPlaceUz">{{"BIRTH_PLACE" | translate}} ({{"UZBEK" | translate}})(Uzbek)</label>
       <input id="BirthPlaceUz" type="text" pInputText formControlName="BirthPlaceUz" />
     </div>
   
     <div class="field">
-      <label for="BirthPlaceEn">Birth Place (English)</label>
+      <label for="BirthPlaceEn">{{"BIRTH_PLACE" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="BirthPlaceEn" type="text" pInputText formControlName="BirthPlaceEn" />
     </div>
   
     <div class="field">
-      <label for="BirthPlaceRu">Birth Place (Russian)</label>
+      <label for="BirthPlaceRu">{{"BIRTH_PLACE" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="BirthPlaceRu" type="text" pInputText formControlName="BirthPlaceRu" />
     </div>
   
     <div class="field">
-      <label for="BirthPlaceUzRu">Birth Place (Cyrillic Uzbek)</label>
+      <label for="BirthPlaceUzRu">{{"BIRTH_PLACE" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="BirthPlaceUzRu" type="text" pInputText formControlName="BirthPlaceUzRu" />
     </div>
   
     <div class="field">
-      <label for="BirthPlaceKaa">Birth Place (Karakalpak)</label>
+      <label for="BirthPlaceKaa">{{"BIRTH_PLACE" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="BirthPlaceKaa" type="text" pInputText formControlName="BirthPlaceKaa" />
     </div>
   
-    <!-- Position -->
     <div class="field">
-      <label for="PositionEn">Position (English)</label>
+      <label for="PositionEn">{{"POSITION" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="PositionEn" type="text" pInputText formControlName="PositionEn" />
     </div>
   
     <div class="field">
-      <label for="PositionUz">Position (Uzbek)</label>
+      <label for="PositionUz">{{"POSITION" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="PositionUz" type="text" pInputText formControlName="PositionUz" />
     </div>
   
     <div class="field">
-      <label for="PositionRu">Position (Russian)</label>
+      <label for="PositionRu">{{"POSITION" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="PositionRu" type="text" pInputText formControlName="PositionRu" />
     </div>
   
     <div class="field">
-      <label for="PositionUzRu">Position (Cyrillic Uzbek)</label>
+      <label for="PositionUzRu">{{"POSITION" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="PositionUzRu" type="text" pInputText formControlName="PositionUzRu" />
     </div>
   
     <div class="field">
-      <label for="PositionKaa">Position (Karakalpak)</label>
+      <label for="PositionKaa">{{"POSITION" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="PositionKaa" type="text" pInputText formControlName="PositionKaa" />
     </div>
   
     <!-- Work From Date -->
     <div class="field">
-      <label for="WorkFromDate">Work From Date</label>
+      <label for="WorkFromDate">{{"WORK_FROM_DATE" | translate}}</label>
       <input id="WorkFromDate" type="date" pInputText formControlName="WorkFromDate" />
     </div>
   
-    <!-- Work Place -->
     <div class="field">
-      <label for="WorkPlaceUz">Work Place (Uzbek)</label>
+      <label for="WorkPlaceUz">{{"WORK_PLACE" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="WorkPlaceUz" type="text" pInputText formControlName="WorkPlaceUz" />
     </div>
   
     <div class="field">
-      <label for="WorkPlaceEn">Work Place (English)</label>
+      <label for="WorkPlaceEn">{{"WORK_PLACE" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="WorkPlaceEn" type="text" pInputText formControlName="WorkPlaceEn" />
     </div>
   
     <div class="field">
-      <label for="WorkPlaceRu">Work Place (Russian)</label>
+      <label for="WorkPlaceRu">{{"WORK_PLACE" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="WorkPlaceRu" type="text" pInputText formControlName="WorkPlaceRu" />
     </div>
   
     <div class="field">
-      <label for="WorkPlaceUzRu">Work Place (Cyrillic Uzbek)</label>
+      <label for="WorkPlaceUzRu">{{"WORK_PLACE" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="WorkPlaceUzRu" type="text" pInputText formControlName="WorkPlaceUzRu" />
     </div>
   
     <div class="field">
-      <label for="WorkPlaceKaa">Work Place (Karakalpak)</label>
+      <label for="WorkPlaceKaa">{{"WORK_PLACE" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="WorkPlaceKaa" type="text" pInputText formControlName="WorkPlaceKaa" />
     </div>
   
-    <!-- Reception Time -->
     <div class="field">
-      <label for="ReceptionTimeUz">Reception Time (Uzbek)</label>
+      <label for="ReceptionTimeUz">{{"RECEPTION_TIME" | translate}} ({{"UZBEK" | translate}})</label>
       <textarea pInputTextarea id="ReceptionTimeUz" formControlName="ReceptionTimeUz"></textarea>
     </div>
   
     <div class="field">
-      <label for="ReceptionTimeEn">Reception Time (English)</label>
+      <label for="ReceptionTimeEn">{{"RECEPTION_TIME" | translate}} ({{"ENGLISH" | translate}})</label>
       <textarea pInputTextarea id="ReceptionTimeEn" formControlName="ReceptionTimeEn"></textarea>
     </div>
   
     <div class="field">
-      <label for="ReceptionTimeRu">Reception Time (Russian)</label>
+      <label for="ReceptionTimeRu">{{"RECEPTION_TIME" | translate}} ({{"RUSSIAN" | translate}})</label>
       <textarea pInputTextarea id="ReceptionTimeRu" formControlName="ReceptionTimeRu"></textarea>
     </div>
   
     <div class="field">
-      <label for="ReceptionTimeUzRu">Reception Time (Cyrillic Uzbek)</label>
+      <label for="ReceptionTimeUzRu">{{"RECEPTION_TIME" | translate}} ({{"CYRILLIC" | translate}})</label>
       <textarea pInputTextarea id="ReceptionTimeUzRu" formControlName="ReceptionTimeUzRu"></textarea>
     </div>
   
     <div class="field">
-      <label for="ReceptionTimeKaa">Reception Time (Karakalpak)</label>
+      <label for="ReceptionTimeKaa">{{"RECEPTION_TIME" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <textarea pInputTextarea id="ReceptionTimeKaa" formControlName="ReceptionTimeKaa"></textarea>
     </div>
 
     <!-- Photo -->
     <div class="field">
-      <label for="photo">Photo</label>
+      <label for="photo">{{"PHOTO" | translate}}</label>
       <input id="photo" type="file" pInputText (change)="onFileSelect($event)" />
     </div>
   
     <!-- Submit and Cancel Buttons -->
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
-      <button pButton pRipple label="Submit" (click)="onAdd()" [disabled]="employeeForm.invalid"></button>
+      <button pButton pRipple label="{{'CANCEL' | translate}}" (click)="onCancel()"></button>
+      <button pButton pRipple label="{{'ADD' | translate}}" (click)="onAdd()" [disabled]="employeeForm.invalid"></button>
     </div>
   </div>
   

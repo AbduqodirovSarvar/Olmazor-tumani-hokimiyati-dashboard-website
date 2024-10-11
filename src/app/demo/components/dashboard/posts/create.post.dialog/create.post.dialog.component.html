@@ -1,62 +1,62 @@
 <div class="p-fluid" [formGroup]="postForm">
     <div class="field">
-      <label for="NameUz">Name (Uzbek)</label>
+      <label for="NameUz">{{"TITLE" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="NameUz" pInputText formControlName="NameUz" />
     </div>
   
     <div class="field">
-      <label for="NameEn">Name (English)</label>
+      <label for="NameEn">{{"TITLE" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="NameEn" pInputText formControlName="NameEn" />
     </div>
   
     <div class="field">
-      <label for="NameRu">Name (Russian)</label>
+      <label for="NameRu">{{"TITLE" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="NameRu" pInputText formControlName="NameRu" />
     </div>
   
     <div class="field">
-      <label for="NameUzRu">Name (Cyrillic Uzbek)</label>
+      <label for="NameUzRu">{{"TITLE" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="NameUzRu" pInputText formControlName="NameUzRu" />
     </div>
   
     <div class="field">
-      <label for="NameKaa">Name (Karakalpak)</label>
+      <label for="NameKaa">{{"TITLE" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="NameKaa" pInputText formControlName="NameKaa" />
     </div>
   
     <div class="field">
-      <label for="DescriptionUz">Description (Uzbek)</label>
+      <label for="DescriptionUz">{{"DESCRIPTION" | translate}} ({{"UZBEK" | translate}})</label>
       <textarea id="DescriptionUz" pInputTextarea formControlName="DescriptionUz"></textarea>
     </div>
   
     <div class="field">
-      <label for="DescriptionEn">Description (English)</label>
+      <label for="DescriptionEn">{{"DESCRIPTION" | translate}} ({{"English" | translate}})</label>
       <textarea id="DescriptionEn" pInputTextarea formControlName="DescriptionEn"></textarea>
     </div>
   
     <div class="field">
-      <label for="DescriptionRu">Description (Russian)</label>
+      <label for="DescriptionRu">{{"DESCRIPTION" | translate}} ({{"RUSSIAN" | translate}})</label>
       <textarea id="DescriptionRu" pInputTextarea formControlName="DescriptionRu"></textarea>
     </div>
   
     <div class="field">
-      <label for="DescriptionUzRu">Description (Cyrillic Uzbek)</label>
+      <label for="DescriptionUzRu">{{"DESCRIPTION" | translate}} ({{"CYRILLIC" | translate}})</label>
       <textarea id="DescriptionUzRu" pInputTextarea formControlName="DescriptionUzRu"></textarea>
     </div>
   
     <div class="field">
-      <label for="DescriptionKaa">Description (Karakalpak)</label>
+      <label for="DescriptionKaa">{{"DESCRIPTION" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <textarea id="DescriptionKaa" pInputTextarea formControlName="DescriptionKaa"></textarea>
     </div>
 
     <div class="field">
-      <label for="Photo">Upload Photo</label>
+      <label for="Photo">{{"PHOTO" | translate}}</label>
       <input type="file" (change)="onFileChange($event)" />
     </div>
   
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
-      <button pButton pRipple label="Add" (click)="onAdd()" [disabled]="postForm.invalid"></button>
+      <button pButton pRipple label="{{'CANCEL' | translate}}" (click)="onCancel()"></button>
+      <button pButton pRipple label="{{'ADD' | translate}}" (click)="onAdd()" [disabled]="postForm.invalid"></button>
     </div>
   </div>
   

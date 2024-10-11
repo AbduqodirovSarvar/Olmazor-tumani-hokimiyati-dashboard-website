@@ -1,50 +1,44 @@
 <div class="p-fluid" [formGroup]="usefulLinkForm">
-    <!-- Name (Uzbek) -->
     <div class="field">
-      <label for="nameUz">Name (Uzbek)</label>
+      <label for="nameUz">{{"TITLE" | translate}} ({{"UZBEK" | translate}})</label>
       <input id="nameUz" type="text" pInputText formControlName="nameUz" />
     </div>
   
-    <!-- Name (English) -->
     <div class="field">
-      <label for="nameEn">Name (English)</label>
+      <label for="nameEn">{{"TITLE" | translate}} ({{"ENGLISH" | translate}})</label>
       <input id="nameEn" type="text" pInputText formControlName="nameEn" />
     </div>
   
-    <!-- Name (Russian) -->
     <div class="field">
-      <label for="nameRu">Name (Russian)</label>
+      <label for="nameRu">{{"TITLE" | translate}} ({{"RUSSIAN" | translate}})</label>
       <input id="nameRu" type="text" pInputText formControlName="nameRu" />
     </div>
   
-    <!-- Name (Cyrillic Uzbek) -->
     <div class="field">
-      <label for="nameUzRu">Name (Cyrillic Uzbek)</label>
+      <label for="nameUzRu">{{"TITLE" | translate}} ({{"CYRILLIC" | translate}})</label>
       <input id="nameUzRu" type="text" pInputText formControlName="nameUzRu" />
     </div>
   
-    <!-- Name (Karakalpak, Optional) -->
     <div class="field">
-      <label for="nameKaa">Name (Karakalpak) (Optional)</label>
+      <label for="nameKaa">{{"TITLE" | translate}} ({{"KARAKALPAK" | translate}})</label>
       <input id="nameKaa" type="text" pInputText formControlName="nameKaa" />
     </div>
   
-    <!-- Link -->
     <div class="field">
-      <label for="link">Link</label>
+      <label for="link">{{"LINK" | translate}}</label>
       <input id="link" type="text" pInputText formControlName="link" />
     </div>
   
     <!-- Photo (Optional) -->
     <div class="field">
-      <label for="photo">Photo (Optional)</label>
+      <label for="photo">{{"PHOTO" | translate}}</label>
       <input id="photo" type="file" (change)="onFileSelect($event)" />
     </div>
   
     <!-- Buttons -->
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
-      <button pButton label="Update Link" icon="pi pi-check" (click)="onSubmit()" [disabled]="usefulLinkForm.invalid"></button>
+      <button pButton label="{{'CANCEL' | translate}}" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="{{'UPDATE' | translate}}" icon="pi pi-check" (click)="onSubmit()" [disabled]="usefulLinkForm.invalid"></button>
     </div>
   </div>
   

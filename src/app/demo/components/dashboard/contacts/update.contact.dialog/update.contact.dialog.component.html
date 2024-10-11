@@ -1,23 +1,23 @@
 <div class="p-fluid" [formGroup]="contactForm">
     <div class="field">
-      <label for="type">Contact Type</label>
+      <label for="type">{{"CATEGORY" | translate}}</label>
       <p-dropdown id="type" 
         formControlName="type" 
         [options]="types" 
-        placeholder="Select type"
+        placeholder="{{'SELECT' | translate}}"
         optionLabel="nameEn"
         optionValue="id"
        ></p-dropdown>
     </div>
 
     <div class="field">
-      <label for="value">Value</label>
+      <label for="value">{{"VALUE" | translate}}</label>
       <textarea pInputTextarea id="value" type="text" pInputText formControlName="value"></textarea>
     </div>
   
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <button pButton pRipple label="Cancel" (click)="onCancel()"></button>
-      <button pButton pRipple label="Add" (click)="onUpdate()" [disabled]="contactForm.invalid"></button>
+      <button pButton pRipple label="{{'CANCEL' | translate}}" (click)="onCancel()"></button>
+      <button pButton pRipple label="{{'UPDATE' | translate}}" (click)="onUpdate()" [disabled]="contactForm.invalid"></button>
     </div>
   </div>
   

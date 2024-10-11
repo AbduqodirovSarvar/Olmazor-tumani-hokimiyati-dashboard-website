@@ -1,7 +1,7 @@
 <div class="grid">
 	<div class="col-12">
 		<div class="card">
-			<h5>Slides</h5>
+			<h5>{{"SLIDES" | translate}}</h5>
 			<p-dataView
 				#dv
 				[value]="filteredSlides"
@@ -17,10 +17,10 @@
 							<input 
 								type="search"
 								pInputText 
-								placeholder="Search by Name" 
+								placeholder="{{'SEARCH_KEYWORD' | translate}}" 
 								(input)="onFilter($event)">
 						</span>
-						<button pButton pRipple label="+ Append" (click)="create()"></button>
+						<button pButton pRipple label="+ {{'APPEND' | translate}}" (click)="create()"></button>
 					</div>
 				</ng-template>
 				<ng-template let-slide pTemplate="gridItem">
