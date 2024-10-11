@@ -40,8 +40,8 @@
 										[src]="getPhoto(slide.photo)" 
 										[alt]="slide.nameEn" 
 										class="w-9 shadow-2 my-3 mx-0" />
-									<div class="text-2xl font-bold">{{ slide.nameEn }}</div>
-									<div class="mb-3">{{ slide.descriptionEn }}</div>
+									<div class="text-2xl font-bold">{{ slide[('NAME_PROPERTY' | translate)] }}</div>
+									<div class="mb-3">{{ slide[('DESCRIPTION_PROPERTY' | translate)] }}</div>
 								</div>
 							</div>
 						</div>

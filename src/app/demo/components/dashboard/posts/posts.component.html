@@ -15,9 +15,8 @@
 			  <p-dropdown 
 				[options]="postCategories" 
 				[placeholder]="dropdownPlaceholder" 
-				[optionLabel]="dropdownOptionLabel" 
-				optionLabel="nameEn"
-				optionValue="id" 
+				optionLabel="{{'NAME_PROPERTY' | translate}}"
+				optionValue="id"
 				(onChange)="onCategoryChange($event)">
 			  </p-dropdown>
   
@@ -44,8 +43,8 @@
 				  </div>
 				  <div class="flex flex-column align-items-center text-center mb-3">
 					<img [src]="getPhoto(post.photo)" [alt]="post.nameEn" class="w-9 shadow-2 my-3 mx-0"/>
-					<div class="text-2xl font-bold">{{post.nameEn}}</div>
-					<div class="mb-3">{{post.descriptionEn}}</div>
+					<div class="text-2xl font-bold">{{ post[('NAME_PROPERTY' | translate)]}}</div>
+					<div class="mb-3">{{post['DESCRIPTION_PROPERTY' | translate]}}</div>
 				  </div>
 				</div>
 			  </div>

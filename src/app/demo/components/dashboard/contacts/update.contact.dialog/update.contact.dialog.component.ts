@@ -27,6 +27,7 @@ export class UpdateContactDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.types = this.config.data.types;
+    
     this.contactForm.patchValue(this.config.data.contact);
   }
 

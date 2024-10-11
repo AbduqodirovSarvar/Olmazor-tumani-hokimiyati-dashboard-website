@@ -19,7 +19,7 @@
                         <p-dropdown
                             [options]="employeeCategories"
                             [placeholder]="dropdownOptionPlaceholder"
-                            [optionLabel]="dropdownOptionLabel"
+                            optionLabel="{{'NAME_PROPERTY' | translate}}"
                             optionValue="id"
                             (onChange)="onSortChange($event)">
                         </p-dropdown>
@@ -47,20 +47,22 @@
                     <tr>
                         <!-- Full Name -->
                         <td style="display: flex; align-items: center;">
-                            <img src="assets/demo/images/avatar/annafali.png" alt="employee photo" style="margin-right: 10px;">
+                            <div *ngIf="employee?.photo">
+                                <img [src]="getPhoto(employee.photo)" alt="employee photo" style="margin-right: 10px; height: 50px; width: auto;">
+                            </div>
                             <div>
-                                {{ employee.firstnameEn }} <br> {{ employee.lastnameEn }}
+                                {{ employee[('FIRST_NAME_PROPERTY' | translate)] }} <br> {{ employee[('LAST_NAME_PROPERTY' | translate)] }}
                             </div>
                         </td>                        
     
                         <!-- Phone -->
-                        <td>{{ employee.phone1 || 'N/A' }}</td>
+                        <td>{{ employee.phone1 || 'N/A' }} <br> {{ employee.phone2 || 'N/A' }} </td>
     
                         <!-- Birthdate -->
                         <td>{{ employee.birthday | date: 'MM/dd/yyyy' }}</td>
     
                         <!-- Position -->
-                        <td>{{ employee.positionEn || 'N/A' }}</td>
+                        <td>{{ employee[('POSITION_PROPERTY' | translate)] || 'N/A' }}</td>
     
                         <!-- Action buttons -->
                         <td>

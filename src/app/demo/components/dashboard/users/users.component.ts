@@ -248,6 +248,8 @@ export class UsersComponent implements OnInit {
   }
 
   onGlobalFilter(table: Table, event: Event) {
+     console.log(table);
+     console.log(event);
       table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 

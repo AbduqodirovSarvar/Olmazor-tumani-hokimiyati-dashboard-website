@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="flex flex-column align-items-center text-center mb-3">
 									<img [src]="getPhoto(sector.photo)" [alt]="Photo" class="w-9 shadow-2 my-3 mx-0"/>
-                                    <div class="text-2xl font-bold">{{ sector.nameEn }}</div>
+                                    <div class="text-2xl font-bold">{{ sector[('NAME_PROPERTY' | translate)] }}</div>
                                     <div class="mb-3">{{ sector.longitude }}, {{ sector.latitude }}</div>
                                 </div>
                             </div>

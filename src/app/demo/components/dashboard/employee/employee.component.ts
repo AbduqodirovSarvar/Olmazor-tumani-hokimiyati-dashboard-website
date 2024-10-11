@@ -61,7 +61,7 @@ export class EmployeeComponent implements OnInit {
         next: (categories: EnumResponse[]) => {
           this.employeeCategories = categories;
           this.currentCategory = this.employeeCategories[0];
-          this.dropdownOptionPlaceholder = this.currentCategory.nameEn;
+          this.dropdownOptionPlaceholder = this.currentCategory[this.translate.instant('NAME_PROPERTY')];
         },
         error: (error: any) => {
           console.error('Error fetching employee categories', error);
@@ -83,6 +83,10 @@ export class EmployeeComponent implements OnInit {
           console.error('Error fetching genders', error);
         }
     });
+  }
+
+  getPhoto(id: string) : string{
+    return this.baseApiService.getPhoto(id);
   }
 
   createEmployee(){

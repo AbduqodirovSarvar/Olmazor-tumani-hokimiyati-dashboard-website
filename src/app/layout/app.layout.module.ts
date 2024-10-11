@@ -22,7 +22,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MenubarModule } from 'primeng/menubar';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -50,7 +50,8 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
         DropdownModule,
         SelectButtonModule,
         MenubarModule,
-        DynamicDialogModule
+        DynamicDialogModule,
+        TranslateModule
     ],
     exports: [AppLayoutComponent],
     providers: [DialogService]

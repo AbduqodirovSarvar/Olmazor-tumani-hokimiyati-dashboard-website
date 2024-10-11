@@ -55,9 +55,9 @@
         id="employeeId" 
         formControlName="employeeId" 
         [options]="employees" 
-        optionLabel="firstnameEn" 
+        optionLabel="{{('FIRST_NAME_PROPERTY' | translate)}}" 
         optionValue="id"
-        placeholder="Select an Employee">
+        placeholder="{{'SELECT' | translate}}">
       </p-dropdown>
     </div>
   
@@ -67,7 +67,7 @@
         id="locationId" 
         formControlName="locationId" 
         [options]="locations" 
-        optionLabel="nameEn" 
+        optionLabel="{{'NAME_PROPERTY' | translate}}" 
         optionValue="id" 
         placeholder="{{'SELECT' | translate}}">
       </p-dropdown>

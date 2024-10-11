@@ -9,6 +9,7 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
         InputTextModule,
         FormsModule,
         PasswordModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule
     ],
     declarations: [LoginComponent, ResetPasswordComponent, ForgotPasswordComponent]
 })

@@ -38,7 +38,6 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     this.loadCategories();
-    this.loadPosts();
   }
 
   // Pagination method
@@ -60,9 +59,9 @@ export class PostsComponent implements OnInit {
     this.baseApiService.getPostCategories().subscribe({
       next: (data: EnumResponse[]) => {
         this.postCategories = data;
-        this.currentCategory = this.postCategories[0]; // Default to first category
-        this.dropdownPlaceholder = this.currentCategory.nameEn;
-        this.loadPosts(); // Load posts once categories are available
+        this.currentCategory = this.postCategories[0];
+        this.dropdownPlaceholder = this.currentCategory[this.translate.instant('NAME_PROPERTY')]
+        this.loadPosts();
       },
       error: (error) => console.error('Error loading categories:', error)
     });
@@ -74,7 +73,7 @@ export class PostsComponent implements OnInit {
       next: (data: PostResponse[]) => {
         this.posts = data;
         this.filteredPosts = [...this.posts];
-        this.updatePaginatedList(); // Update list with the new data
+        this.updatePaginatedList(); 
       },
       error: (error) => console.error('Error loading posts:', error)
     });
@@ -84,7 +83,7 @@ export class PostsComponent implements OnInit {
   onCategoryChange(event: any) {
     const selectedCategoryId = event.value;
     this.currentCategory = this.postCategories.find(c => c.id === selectedCategoryId);
-    this.loadPosts(); // Reload posts when category changes
+    this.loadPosts();
   }
 
   // Handle search input and filter posts
