@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EmployeeResponse, EmployeeUpdateRequest } from 'src/app/layout/api/employee';
 import { EnumResponse } from 'src/app/layout/api/enum';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-update.employee.dialog',
@@ -68,7 +69,14 @@ export class UpdateEmployeeDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeeForm.patchValue(this.currentEmployee);
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+  
+    this.employeeForm.patchValue({
+      ...this.currentEmployee,
+      birthday: formatDate(new Date(this.currentEmployee.birthday)),
+      workFromDate: formatDate(new Date(this.currentEmployee.workFromDate))
+    });
+  
     this.categories = this.config.data.categories;
     this.genders = this.config.data.genders;
     this.employeeForm.get('gender').setValue(this.currentEmployee.gender.id);
@@ -78,15 +86,21 @@ export class UpdateEmployeeDialogComponent implements OnInit {
   // Submit the updated form and close the dialog
   onUpdate() {
     if (this.employeeForm.valid) {
+      const formatDate = (date: string) => new Date(date).toISOString().split('T')[0];
+  
       const updatedEmployeeData: EmployeeUpdateRequest = {
         id: this.employeeId,
-        gender: this.currentEmployee.gender.id,
-        category: this.currentEmployee.category.id,
+        gender: this.employeeForm.get('gender').value,
+        category: this.employeeForm.get('category').value,
+        Birthday: formatDate(this.employeeForm.get('birthday').value),
+        WorkFromDate: formatDate(this.employeeForm.get('workFromDate').value),
         ...this.employeeForm.value,
       };
       this.ref.close(updatedEmployeeData);
+    } else {
+      alert("ERROR!");
     }
-  }
+  }  
 
   // Close the dialog without saving
   onCancel() {

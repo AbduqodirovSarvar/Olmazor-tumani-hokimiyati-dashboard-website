@@ -521,3 +521,8 @@ p {
 p:last-child {
   margin-bottom: 0;
 }
+
+.large-textarea {
+   width: 100%; /* Adjust the width as needed */ 
+   height: 300px; /* Adjust the height as needed */ 
+}

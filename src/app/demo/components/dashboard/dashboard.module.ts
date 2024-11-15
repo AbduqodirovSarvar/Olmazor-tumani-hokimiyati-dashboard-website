@@ -55,6 +55,7 @@ import { CreateUsefullLinkDialogComponent } from './usefull-link/create.usefull-
 import { CreateUserDialogComponent } from './users/create.user.dialog/create.user.dialog.component';
 import { UpdateUserDialogComponent } from './users/update.user.dialog/update.user.dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     imports: [
@@ -86,7 +87,8 @@ import { TranslateModule } from '@ngx-translate/core';
         ReactiveFormsModule,
         FormsModule,
         InputTextareaModule,
-        TranslateModule
+        TranslateModule,
+        CalendarModule
     ],
     declarations: [
         DashboardComponent,
