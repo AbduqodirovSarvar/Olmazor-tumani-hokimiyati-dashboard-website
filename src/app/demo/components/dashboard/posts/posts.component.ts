@@ -147,4 +147,15 @@ export class PostsComponent implements OnInit {
   getPhoto(id: string): string {
     return this.baseApiService.getPhoto(id);
   }
+
+  // Helper method to check if a file is a video based on its extension
+  isVideoFile(fileName: string): boolean {
+    const videoExtensions = ['.mp4', '.webm', '.ogg'];
+    return videoExtensions.some(ext => fileName.toLowerCase().endsWith(ext));
+  }
+
+  getMedia(id: string): string {
+    return this.baseApiService.getPhoto(id);
+  }
+
 }

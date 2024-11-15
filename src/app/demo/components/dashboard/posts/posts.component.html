@@ -42,7 +42,12 @@
 					</div>
 				  </div>
 				  <div class="flex flex-column align-items-center text-center mb-3">
-					<img [src]="getPhoto(post.photo)" [alt]="post.nameEn" class="w-9 shadow-2 my-3 mx-0"/>
+					 <ng-container *ngIf="isVideoFile(post.photo); else imageTemplate">
+                        <video [src]="getMedia(post.photo)" controls class="w-9 shadow-2 my-3 mx-0"></video>
+                    </ng-container>
+                    <ng-template #imageTemplate>
+                        <img [src]="getMedia(post.photo)" [alt]="post.nameEn" class="w-9 shadow-2 my-3 mx-0" />
+                    </ng-template>
 					<div class="text-2xl font-bold">{{ post[('NAME_PROPERTY' | translate)]}}</div>
 					<div class="mb-3">{{post['DESCRIPTION_PROPERTY' | translate]}}</div>
 				  </div>
