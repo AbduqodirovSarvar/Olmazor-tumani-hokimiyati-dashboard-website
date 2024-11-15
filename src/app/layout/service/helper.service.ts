@@ -62,7 +62,7 @@ export class HelperService {
   }
 
   redirectToDashboard(): void {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/about']);
   }
 
   redirectToLoginPage(): void{
