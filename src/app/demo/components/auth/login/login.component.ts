@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
                 email: this.email?.value,
                 password: this.password?.value
             };
-            console.log(command);
             this.authService.signIn(command).subscribe({
                 next: (data: SignInResponse) => {
                     this.helperService.setAccessToken(data.accessToken);

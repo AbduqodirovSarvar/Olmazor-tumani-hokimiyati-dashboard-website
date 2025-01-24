@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
 import { HttpClient } from '@angular/common/http';
 import { ContactResponse, CreateContactCommand, DeleteContactCommand, UpdateContactCommand } from '../api/contact';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import { NotificationService } from './notification.service';
+import { er } from '@fullcalendar/core/internal-common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +15,14 @@ export class ContactService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService
   ) { }
 
   create(data: CreateContactCommand) : Observable<ContactResponse>{
     return this.http.post<ContactResponse>(`${this.baseUrl}`, data)
       .pipe(
+        tap(() => this.notificationService.showSuccess("Successfully created contact!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -26,6 +30,7 @@ export class ContactService {
   update(data: UpdateContactCommand) : Observable<ContactResponse>{
     return this.http.put<ContactResponse>(`${this.baseUrl}`, data)
       .pipe(
+        tap(() => this.notificationService.showSuccess("Successfully updated contact!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -33,6 +38,7 @@ export class ContactService {
   delete(data: DeleteContactCommand) : Observable<boolean> {
     return this.http.delete<boolean>(`${this.baseUrl}`, { body: data})
       .pipe(
+        tap(() => this.notificationService.showWarn("Successfully deleted contact!")),
         catchError(error => this.errorService.handleError(error))
       );
   }

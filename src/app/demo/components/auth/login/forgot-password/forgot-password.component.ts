@@ -30,18 +30,18 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     sendConfirmationCode() {
-      this.router.navigate(['auth/login/reset-password']);
-        // if (this.forgotPasswordForm.valid) {
-        //     const email = this.email?.value;
-        //     console.log(email);
-        //     this.authService.getEmailConfirmationCode(email).subscribe({
-        //         next: (data: any) => {
-        //             this.router.navigate(['auth/login/reset-password']);
-        //         },
-        //         error: (error: Error) => {
-        //             console.log(error);
-        //         }
-        //     });
-        // }
+      // this.router.navigate(['auth/login/reset-password']);
+        if (this.forgotPasswordForm.valid) {
+            const email = this.email?.value;
+            console.log(email);
+            this.authService.getEmailConfirmationCode(email).subscribe({
+                next: (data: any) => {
+                    this.router.navigate(['auth/login/reset-password']);
+                },
+                error: (error: Error) => {
+                    console.log(error);
+                }
+            });
+        }
     }
 }

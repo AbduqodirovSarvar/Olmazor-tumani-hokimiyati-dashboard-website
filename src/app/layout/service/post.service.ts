@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
 import { CreatePostRequest, DeletePostRequest, PostResponse, UpdatePostRequest } from '../api/post';
 import { environment } from 'src/environments/environment.prod';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,12 @@ export class PostService {
   
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService
   ) { }
 
 
   createPost(data: CreatePostRequest): Observable<PostResponse> {
-    console.log(data);
     const formData = new FormData();
     formData.append('NameUz', data.NameUz);
     formData.append('NameEn', data.NameEn);
@@ -34,16 +35,21 @@ export class PostService {
     if (data.Photo) {
       formData.append('Photo', data.Photo);
     }
+    if (data.Images) {
+      data.Images.forEach(image => {
+        formData.append(`Images`, image);
+      });
+    }
 
     return this.http.post<PostResponse>(`${this.baseUrl}`, formData)
       .pipe(
+        tap(() => this.notificationService.showSuccess("Successfully created a new post!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
 
   updatePost(data: UpdatePostRequest): Observable<PostResponse> {
     const formData = new FormData();
-    console.log(data.category);
     formData.append('Id', data.id);
     formData.append('NameUz', data.nameUz ?? '');  // Provide empty string if null
     formData.append('NameEn', data.nameEn ?? '');
@@ -60,11 +66,20 @@ export class PostService {
     if (data.photo) {
       formData.append('Photo', data.photo);
     }
-
-    console.log(formData);
+    if (data.images) {
+      data.images.forEach(image => {
+        formData.append(`Images`, image);
+      });
+    }
+    if (data.deletingImages) {
+      data.deletingImages.forEach(image => {
+        formData.append(`DeletingImages`, image);
+      });
+    }
 
     return this.http.put<PostResponse>(`${this.baseUrl}`, formData)
      .pipe(
+        tap(() => this.notificationService.showInfo("Successfully updated post")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -76,6 +91,7 @@ export class PostService {
 
     return this.http.delete<boolean>(`${this.baseUrl}`, { body: data})
      .pipe(
+        tap(() => this.notificationService.showWarn("Successfully deleted post")),
         catchError(error => this.errorService.handleError(error))
       );
   }

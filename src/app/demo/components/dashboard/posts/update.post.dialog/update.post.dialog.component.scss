@@ -1,0 +1,38 @@
+.update-images{
+    display: flex;
+    justify-content: space-around;
+}
+
+.image-preview{
+    max-width: 100px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.update-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  
+    .image-preview-wrapper {
+      position: relative;
+      display: inline-block;
+  
+      .media {
+        width: 120px; /* Adjust the width as needed */
+        object-fit: cover; /* Ensures proper fit for images and videos */
+        border-radius: 8px; /* Optional: rounded corners */
+      }
+  
+      .checkbox-overlay {
+        position: absolute;
+        top: 0; /* Position the checkbox inside the top-left corner */
+        left: 0;
+        z-index: 2; /* Ensure it appears above the image or video */
+        padding: 0; /* Adds some spacing around the checkbox */
+      }
+    }
+  }
+  

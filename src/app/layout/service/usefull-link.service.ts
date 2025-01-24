@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { CreateUsefullLinkRequest, DeleteUsefullLinkRequest, UpdateUsefullLinkRequest, UsefullLinkResponse } from '../api/usefullLink';
 import { environment } from 'src/environments/environment.prod';
 import { ErrorService } from './error.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class UsefullLinkService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService,
   ) {}
 
   getById(id: string): Observable<UsefullLinkResponse> {
@@ -43,6 +45,7 @@ export class UsefullLinkService {
 
     return this.http.post(`${this.baseUrl}`, formData)
      .pipe(
+        tap(() => this.notificationService.showSuccess("Successfully created new link!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -60,6 +63,7 @@ export class UsefullLinkService {
 
     return this.http.put(`${this.baseUrl}`, formData)
      .pipe(
+        tap(() => this.notificationService.showInfo("Successfully updated link!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -69,6 +73,7 @@ export class UsefullLinkService {
       body: request
     })
     .pipe(
+      tap(() => this.notificationService.showWarn("Successfully deleted link!")),
       catchError(error => this.errorService.handleError(error))
     );
   }

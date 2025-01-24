@@ -41,8 +41,11 @@
 										[alt]="slide.nameEn" 
 										class="w-9 shadow-2 my-3 mx-0" />
 									<div class="text-2xl font-bold">{{ slide[('NAME_PROPERTY' | translate)] }}</div>
-									<div class="mb-3">{{ slide[('DESCRIPTION_PROPERTY' | translate)] }}</div>
+									<div class="mb-3">{{ slide[('DESCRIPTION_PROPERTY' | translate)] | slice:0:300 }} ...</div>
 								</div>
+								<div class="flex justify-content-between gap-2">
+                                    <div class="text-sm text-gray-500">{{ slide.createdAt | date: 'dd.MM.yyyy HH:MM' }}</div>
+                                </div>
 							</div>
 						</div>
 					</div>

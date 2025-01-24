@@ -49,9 +49,14 @@
       <textarea id="DescriptionKaa" pInputTextarea formControlName="DescriptionKaa"></textarea>
     </div>
 
-    <div class="field">
+    <!-- <div class="field">
       <label for="Photo">{{"PHOTO" | translate}}</label>
       <input type="file" (change)="onFileChange($event)" />
+    </div> -->
+
+    <div class="field">
+      <label for="Images">{{"PHOTO" | translate}}</label>
+      <input type="file" (change)="onFileChange2($event)" multiple />
     </div>
   
     <div class="flex flex-column md:flex-row md:justify-content-between gap-2">

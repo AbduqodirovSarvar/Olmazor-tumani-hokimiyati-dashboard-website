@@ -28,10 +28,10 @@ import { RatingModule } from 'primeng/rating';
 import { TableDemoRoutingModule } from '../uikit/table/tabledemo-routing.module';
 import { SliderModule } from 'primeng/slider';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { RippleModule } from 'primeng/ripple';
+import { Ripple, RippleModule } from 'primeng/ripple';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { ToastModule } from 'primeng/toast';
+import { Toast, ToastModule } from 'primeng/toast';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CreateAboutDialogComponent } from './about/create.about.dialog/create.about.dialog.component';
 import { DialogModule } from 'primeng/dialog';
@@ -56,6 +56,8 @@ import { CreateUserDialogComponent } from './users/create.user.dialog/create.use
 import { UpdateUserDialogComponent } from './users/update.user.dialog/update.user.dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
+import { MessageService } from 'primeng/api';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
     imports: [
@@ -88,7 +90,9 @@ import { CalendarModule } from 'primeng/calendar';
         FormsModule,
         InputTextareaModule,
         TranslateModule,
-        CalendarModule
+        CalendarModule,
+        ButtonModule,
+        CheckboxModule
     ],
     declarations: [
         DashboardComponent,
@@ -120,6 +124,6 @@ import { CalendarModule } from 'primeng/calendar';
         CreateUserDialogComponent,
         UpdateUserDialogComponent,
     ],
-    providers: [DialogService]
+    providers: [DialogService, MessageService]
 })
 export class DashboardModule { }

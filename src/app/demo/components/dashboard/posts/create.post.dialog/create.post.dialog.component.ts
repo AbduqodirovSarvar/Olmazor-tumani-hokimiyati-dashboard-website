@@ -28,7 +28,8 @@ export class CreatePostDialogComponent implements OnInit {
       DescriptionRu: ['', Validators.required],
       DescriptionUzRu: ['', Validators.required],
       DescriptionKaa: [''],
-      Photo: [null, Validators.required],
+      Photo: [null],
+      Images: [null], // Optional for multiple images
     });
   }
 
@@ -38,6 +39,13 @@ export class CreatePostDialogComponent implements OnInit {
   onFileChange(event: any){
     if(event.target.files.length > 0){
       this.postForm.patchValue({ Photo: event.target.files[0] });
+    }
+  }
+
+  onFileChange2(event: any) {
+    if (event.target.files.length > 0) {
+      const files: File[] = Array.from(event.target.files); // Convert FileList to an array
+      this.postForm.patchValue({ Images: files }); // Store files in the form control
     }
   }
 

@@ -36,6 +36,9 @@
                                     <div class="text-2xl font-bold">{{ address[('NAME_PROPERTY' | translate)] }}</div>
                                     <div class="mb-3">{{ address.longitude }}, {{ address.latitude }}</div>
                                 </div>
+                                <div class="flex justify-content-between gap-2">
+                                    <div class="text-sm text-gray-500">{{ address.createdAt | date: 'dd.MM.yyyy HH:MM' }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>

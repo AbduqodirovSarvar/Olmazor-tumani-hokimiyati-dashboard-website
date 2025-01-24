@@ -17,6 +17,7 @@ import { AppTopBarComponent } from './layout/app.topbar.component';
 import { MenuModule } from 'primeng/menu';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslationLoader } from './layout/translate-loader';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -37,7 +38,7 @@ import { TranslationLoader } from './layout/translate-loader';
           },
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        PhotoService, ProductService, MessageService 
     ],
     bootstrap: [AppComponent],
 })

@@ -50,9 +50,37 @@
     </div>
   
     <!-- Photo Upload -->
-    <div class="field">
+    <!-- <div class="field">
       <label for="photo">{{"PHOTO" | translate}}</label>
       <input id="photo" type="file" (change)="onFileChange($event)" />
+    </div> -->
+
+    <div class="field" *ngIf="updatePostForm.get('images')?.value?.length">
+      <label>{{ "Deleting images" | translate }}</label>
+      <div class="update-images">
+        <div *ngFor="let image of updatePostForm.get('images')?.value; let i = index" class="image-preview-wrapper">
+          <ng-container *ngIf="isVideoFile(image.name); else imageTemplate">
+            <video [src]="getMedia(image.name)" class="media"></video>
+          </ng-container>
+          <ng-template #imageTemplate>
+            <img [src]="getMedia(image.name)" class="media" [alt]="Image" />
+          </ng-template>
+          <div class="checkbox-overlay">
+            <p-checkbox
+              binary="true"
+              [label]="' '"
+              (onChange)="onSelectImage(image)"
+            ></p-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <div class="field">
+      <label for="Images">{{"PHOTO" | translate}}</label>
+      <input type="file" (change)="onFileChange2($event)" multiple />
     </div>
   
     <!-- Action Buttons -->

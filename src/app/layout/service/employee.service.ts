@@ -2,8 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { ErrorService } from './error.service';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { EmployeeCreateRequest, EmployeeDeleteRequest, EmployeeResponse, EmployeeUpdateRequest } from '../api/employee';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class EmployeeService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService
   ) { }
 
   getById(id: string): Observable<EmployeeResponse> {
@@ -41,7 +43,11 @@ export class EmployeeService {
 
     return this.http.post<EmployeeResponse>(`${this.baseUrl}`, formData)
      .pipe(
-        catchError(error => this.errorService.handleError(error))
+        tap(() => this.notificationService.showSuccess("Successfully created employee!")),
+        catchError(error => {
+          this.notificationService.showError(error.message);
+          return this.errorService.handleError(error);
+        })
       );
   }
 
@@ -54,14 +60,22 @@ export class EmployeeService {
 
     return this.http.put<EmployeeResponse>(`${this.baseUrl}`, formData)
      .pipe(
-        catchError(error => this.errorService.handleError(error))
+       tap(() => this.notificationService.showInfo("Successfully updated employee!")),
+        catchError(error => {
+          this.notificationService.showError(error.message);
+          return this.errorService.handleError(error);
+        })
     );
   }
 
   delete(data: EmployeeDeleteRequest) : Observable<boolean> {
     return this.http.delete<boolean>(`${this.baseUrl}`, { body: data})
      .pipe(
-        catchError(error => this.errorService.handleError(error))
+       tap(() => this.notificationService.showWarn("Successfully deleted employee!")),
+        catchError(error => {
+          this.notificationService.showError(error.message);
+          return this.errorService.handleError(error);
+        })
     );
   }
 }

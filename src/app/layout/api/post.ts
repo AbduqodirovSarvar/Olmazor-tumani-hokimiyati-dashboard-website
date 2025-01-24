@@ -14,6 +14,7 @@ export interface PostResponse {
     descriptionKaa: string;
     category: number;
     photo?: string;
+    images?: [];
     createdBy: string;
     createdAt: string;
     updatedBy: string;
@@ -33,6 +34,7 @@ export interface CreatePostRequest {
     DescriptionKaa: string;
     Category: number; // Assuming PostCategory is defined elsewhere
     Photo?: File; // For file uploads
+    Images?: File[];
 }
 
 export interface UpdatePostRequest {
@@ -49,6 +51,8 @@ export interface UpdatePostRequest {
     descriptionKaa?: string;
     category?: number; // Assuming PostCategory is defined elsewhere
     photo?: File; // For file uploads
+    images?: File[]; // Array of image files
+    deletingImages?: string[]; // List of image URLs/IDs to delete
 }
 
 export interface DeletePostRequest {

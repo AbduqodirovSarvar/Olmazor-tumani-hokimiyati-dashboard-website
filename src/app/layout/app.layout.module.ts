@@ -23,6 +23,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { MenubarModule } from 'primeng/menubar';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TranslateModule } from '@ngx-translate/core';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { TranslateModule } from '@ngx-translate/core';
         SelectButtonModule,
         MenubarModule,
         DynamicDialogModule,
-        TranslateModule
+        TranslateModule,
+        ToastModule
     ],
     exports: [AppLayoutComponent],
     providers: [DialogService]

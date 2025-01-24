@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateUserRequest, DeleteUserRequest, UpdateUserRequest, UserResponse } from '../api/user';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { ErrorService } from './error.service';
 import { environment } from 'src/environments/environment.prod';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService,
   ) {}
 
   getById(id: string): Observable<UserResponse> {
@@ -54,6 +56,7 @@ export class UserService {
 
     return this.http.post(`${this.baseUrl}`, formData)
      .pipe(
+        tap(() => this.notificationService.showSuccess("Successfully created new user!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -77,6 +80,7 @@ export class UserService {
 
     return this.http.put(`${this.baseUrl}`, formData)
       .pipe(
+        tap(() => this.notificationService.showInfo("Successfully updated user!")),
         catchError(error => this.errorService.handleError(error))
       );
   }
@@ -84,6 +88,7 @@ export class UserService {
   delete(request: DeleteUserRequest): Observable<boolean> {
     return this.http.delete<boolean>(this.baseUrl, { body: request })
       .pipe(
+        tap(() => this.notificationService.showWarn("Successfully deleted user!")),
         catchError(error => this.errorService.handleError(error))
       );
   }

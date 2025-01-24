@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PostResponse, CreatePostRequest, UpdatePostRequest } from 'src/app/layout/api/post';
 import { BaseApiService } from 'src/app/layout/service/base.api.service';
@@ -9,6 +9,7 @@ import { EnumResponse } from 'src/app/layout/api/enum';
 import { CreatePostDialogComponent } from './create.post.dialog/create.post.dialog.component';
 import { UpdatePostDialogComponent } from './update.post.dialog/update.post.dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationService } from 'src/app/layout/service/notification.service';
 
 @Component({
   selector: 'app-posts',
@@ -151,6 +152,9 @@ export class PostsComponent implements OnInit {
   // Helper method to check if a file is a video based on its extension
   isVideoFile(fileName: string): boolean {
     const videoExtensions = ['.mp4', '.webm', '.ogg'];
+    if(!fileName){
+      return false;
+    }
     return videoExtensions.some(ext => fileName.toLowerCase().endsWith(ext));
   }
 

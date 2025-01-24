@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { CreateSectorRequest, DeleteSectorRequest, SectorResponse, UpdateSectorRequest } from '../api/sector';
 import { environment } from 'src/environments/environment.prod';
 import { ErrorService } from './error.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class SectorService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService
   ) {}
 
   getById(id: string): Observable<SectorResponse> {
@@ -53,6 +55,7 @@ export class SectorService {
 
     return this.http.post<SectorResponse>(this.baseUrl, formData)
     .pipe(
+      tap(() => this.notificationService.showSuccess("Successfully created new sector!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
@@ -77,6 +80,7 @@ export class SectorService {
 
     return this.http.put<SectorResponse>(this.baseUrl, formData)
     .pipe(
+      tap(() => this.notificationService.showInfo("Successfully updated sector!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
@@ -85,6 +89,7 @@ export class SectorService {
   delete(request: DeleteSectorRequest): Observable<boolean> {
     return this.http.delete<boolean>(this.baseUrl, { body: request })
     .pipe(
+      tap(() => this.notificationService.showWarn("Successfully deleted sector!")),
       catchError(error => this.errorService.handleError(error))
     );
   }

@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { CreateSlideRequest, DeleteSlideRequest, SlideResponse, UpdateSlideRequest } from '../api/slide';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { ErrorService } from './error.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class SlideService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService
   ) {}
 
   getById(id: string): Observable<SlideResponse> {
@@ -48,6 +50,7 @@ export class SlideService {
 
     return this.http.post<SlideResponse>(this.baseUrl, formData)
     .pipe(
+      tap(() => this.notificationService.showSuccess("Successfully created slide!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
@@ -70,6 +73,7 @@ export class SlideService {
 
     return this.http.put<SlideResponse>(this.baseUrl, formData)
     .pipe(
+      tap(() => this.notificationService.showInfo("Successfully updated slide!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
@@ -78,6 +82,7 @@ export class SlideService {
   delete(request: DeleteSlideRequest): Observable<boolean> {
     return this.http.delete<boolean>(this.baseUrl, { body: request })
     .pipe(
+      tap(() => this.notificationService.showWarn("Successfully deleted slide!")),
       catchError(error => this.errorService.handleError(error))
     );
   }

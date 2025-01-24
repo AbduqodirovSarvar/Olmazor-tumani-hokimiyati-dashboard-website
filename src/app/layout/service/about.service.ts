@@ -1,11 +1,12 @@
 // services/about.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { CreateAboutCommand, CreateAboutResponse, GetAboutRequest, GetAboutResponse, GetAllAboutResponse, UpdateAboutCommand, UpdateAboutResponse } from '../api/about';
 import { ErrorService } from './error.service';
 import { environment } from 'src/environments/environment.prod';
 import { DeleteAboutCommand } from '../api/about';
+import { NotificationService } from './notification.service';
 
 
 @Injectable({
@@ -16,7 +17,8 @@ export class AboutService {
 
   constructor(
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private notificationService: NotificationService
   ) { }
 
   // GET /api/About?Id={uuid}
@@ -32,6 +34,7 @@ export class AboutService {
   createAbout(data: CreateAboutCommand): Observable<CreateAboutResponse> {
     return this.http.post<CreateAboutResponse>(`${this.baseUrl}`, data)
     .pipe(
+      tap(() => this.notificationService.showSuccess("Successfully created a new about!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
@@ -40,6 +43,7 @@ export class AboutService {
   updateAbout(data: UpdateAboutCommand): Observable<UpdateAboutResponse> {
     return this.http.put<UpdateAboutResponse>(`${this.baseUrl}`, data)
     .pipe(
+      tap(() => this.notificationService.showInfo("Successfully updated about!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
@@ -51,6 +55,7 @@ export class AboutService {
     }
     return this.http.delete(`${this.baseUrl}`, { body: data })
     .pipe(
+      tap(() => this.notificationService.showWarn("Successfully deleted about!")),
       catchError(error => this.errorService.handleError(error))
     );
   }
