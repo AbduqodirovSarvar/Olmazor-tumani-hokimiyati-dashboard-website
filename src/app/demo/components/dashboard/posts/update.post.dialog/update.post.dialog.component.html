@@ -56,7 +56,7 @@
     </div> -->
 
     <div class="field" *ngIf="updatePostForm.get('images')?.value?.length">
-      <label>{{ "Deleting images" | translate }}</label>
+      <label>{{ "DELETING_FILES" | translate }}</label>
       <div class="update-images">
         <div *ngFor="let image of updatePostForm.get('images')?.value; let i = index" class="image-preview-wrapper">
           <ng-container *ngIf="isVideoFile(image.name); else imageTemplate">
@@ -79,7 +79,7 @@
     
 
     <div class="field">
-      <label for="Images">{{"PHOTO" | translate}}</label>
+      <label for="Images">{{"UPLOADING_FILES" | translate}}</label>
       <input type="file" (change)="onFileChange2($event)" multiple />
     </div>
   

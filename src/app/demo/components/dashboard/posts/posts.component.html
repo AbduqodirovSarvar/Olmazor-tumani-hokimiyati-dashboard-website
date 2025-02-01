@@ -1,3 +1,4 @@
+<p-confirmDialog></p-confirmDialog>
 <div class="grid">
 	<div class="col-12">
 	  <div class="card">
@@ -43,14 +44,24 @@
 				  </div>
 				  <div class="flex flex-column align-items-center text-center mb-3">
 
-					<div *ngFor="let image of post.images; let i = index" class="image-wrapper">
-						<ng-container *ngIf="isVideoFile(image.name); else imageTemplate">
-						  <video [src]="getMedia(image.name)" controls class="w-9 shadow-2 my-3 mx-0"></video>
+					<div *ngIf="post.images[0] && !post.photo">
+						<ng-container *ngIf="isVideoFile(post.images[0].name); else imageTemplate">
+						  <video [src]="getMedia(post.images[0].name)" controls class="w-9 shadow-2 my-3 mx-0"></video>
 						</ng-container>
 						<ng-template #imageTemplate>
-						  <img [src]="getMedia(image.name)" class="w-9 shadow-2 my-3 mx-0" [alt]="Image" />
+						  <img [src]="getMedia(post.images[0].name)" class="w-9 shadow-2 my-3 mx-0" [alt]="Image" />
 						</ng-template>
-					  </div>
+					</div>
+
+					<div *ngIf="!post.images[0] && post.photo">
+						<ng-container *ngIf="isVideoFile(post.photo); else imageTemplate">
+							<video [src]="getMedia(post.photo)" controls class="w-9 shadow-2 my-3 mx-0"></video>
+						</ng-container>
+						<ng-template #imageTemplate>
+							<img [src]="getMedia(post.photo)" class="w-9 shadow-2 my-3 mx-0" [alt]="Image" />
+						</ng-template>
+					</div>
+
 					<div class="text-2xl font-bold">{{ post[('NAME_PROPERTY' | translate)]}}</div>
 					<div class="mb-3">{{post['DESCRIPTION_PROPERTY' | translate] | slice:0:300}} ...</div>
 					<div class="flex justify-content-between gap-2">

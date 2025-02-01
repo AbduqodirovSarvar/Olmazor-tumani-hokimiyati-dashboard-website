@@ -96,5 +96,8 @@
   "REPEAT_PASSWORD": "Паролни такрорлаш",
   "PASSWORD_NOT_MATCH": "Пароллар мос эмас",
   "INVALID_EMAIL": "Нотўғри эл. почта",
-  "EMAIL_ALREADY_EXISTS": "Эл. почта аллақачон мавжуд"
+  "EMAIL_ALREADY_EXISTS": "Эл. почта аллақачон мавжуд",
+  "UPLOADING_FILES": "Юкланаётган файллар",
+  "DELETING_FILES": "Ўчирилаётган файллар",
+  "CONFIRM_DELETE": "Ҳақиқатан ҳам оʻчириб ташламоқчимисиз?"
 }

@@ -4,13 +4,18 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HelperService } from './helper.service';
 import { ErrorService } from './error.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpConfigInterceptorService implements HttpInterceptor {
 
-  constructor(private helperService: HelperService, private errorService: ErrorService) { }
+  constructor(
+    private helperService: HelperService, 
+    private errorService: ErrorService,
+    private translate: TranslateService
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authReq = req.clone({
@@ -19,6 +24,13 @@ export class HttpConfigInterceptorService implements HttpInterceptor {
         Authorization: `Bearer ${this.helperService.getAccessToken()}`
       }
     });
+
+    if (authReq.method === 'DELETE'){
+      const confirmationMessage = this.translate.instant('CONFIRM_DELETE'); // Ensure key exists in translations
+      if (!confirm(confirmationMessage)) {
+        return throwError(() => new Error('Delete action was canceled.'));
+      }
+    }
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {

@@ -96,5 +96,8 @@
   "REPEAT_PASSWORD": "Повторите пароль",
   "PASSWORD_NOT_MATCH": "Пароли не совпадают",
   "INVALID_EMAIL": "Некорректный адрес электронной почты",
-  "EMAIL_ALREADY_EXISTS": "Электронная почта уже существует"
+  "EMAIL_ALREADY_EXISTS": "Электронная почта уже существует",
+  "UPLOADING_FILES": "Загрузка файлов",
+  "DELETING_FILES": "Удаление файлов",
+  "CONFIRM_DELETE": "Вы уверены, что хотите удалить?"
 }

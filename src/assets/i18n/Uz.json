@@ -96,5 +96,8 @@
   "REPEAT_PASSWORD": "Parolni takrorlang",
   "PASSWORD_NOT_MATCH": "Parollar mos emas",
   "INVALID_EMAIL": "Noto‘g‘ri email",
-  "EMAIL_ALREADY_EXISTS": "Email allaqachon mavjud"
+  "EMAIL_ALREADY_EXISTS": "Email allaqachon mavjud",
+  "UPLOADING_FILES": "Yuklanayotgan fayllar",
+  "DELETING_FILES": "O'chirilayotgan fayllar",
+  "CONFIRM_DELETE": "Haqiqatan ham oʻchirib tashlamoqchimisiz?"
 }

@@ -56,8 +56,9 @@ import { CreateUserDialogComponent } from './users/create.user.dialog/create.use
 import { UpdateUserDialogComponent } from './users/update.user.dialog/update.user.dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
     imports: [
@@ -92,7 +93,8 @@ import { CheckboxModule } from 'primeng/checkbox';
         TranslateModule,
         CalendarModule,
         ButtonModule,
-        CheckboxModule
+        CheckboxModule,
+        ConfirmDialogModule
     ],
     declarations: [
         DashboardComponent,
@@ -122,8 +124,8 @@ import { CheckboxModule } from 'primeng/checkbox';
         UpdateUsefullLinkDialogComponent,
         CreateUsefullLinkDialogComponent,
         CreateUserDialogComponent,
-        UpdateUserDialogComponent,
+        UpdateUserDialogComponent
     ],
-    providers: [DialogService, MessageService]
+    providers: [DialogService, MessageService, ConfirmationService]
 })
 export class DashboardModule { }

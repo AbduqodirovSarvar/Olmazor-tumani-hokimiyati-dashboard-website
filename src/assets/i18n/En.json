@@ -96,5 +96,8 @@
   "REPEAT_PASSWORD": "Repeat Password",
   "PASSWORD_NOT_MATCH": "Passwords do not match",
   "INVALID_EMAIL": "Invalid Email",
-  "EMAIL_ALREADY_EXISTS": "Email already exists"
+  "EMAIL_ALREADY_EXISTS": "Email already exists",
+  "UPLOADING_FILES": "Uploading files",
+  "DELETING_FILES": "Deleting files",
+  "CONFIRM_DELETE": "Are you sure you want to delete?"
 }
