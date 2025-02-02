@@ -12,6 +12,7 @@ import { BaseApiService } from 'src/app/layout/service/base.api.service';
 })
 export class UpdatePostDialogComponent implements OnInit {
   updatePostForm: FormGroup;
+  existedImages: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +41,7 @@ export class UpdatePostDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.config.data.post) {
       this.setdefaultValue(this.config.data.post);
+      this.existedImages = this.updatePostForm.get('images')?.value;
     }
   }
 
@@ -61,12 +63,12 @@ export class UpdatePostDialogComponent implements OnInit {
   }
 
   onCancel() {
-    this.dialogRef.close(null); // Close the dialog without saving
+    this.dialogRef.close(null);
   }
 
   onSelectImage(image: any) {
     const deletingImages = this.updatePostForm.get('deletingImages')?.value || [];
-    const isAlreadySelected = deletingImages.includes(image.name); // Check by ID
+    const isAlreadySelected = deletingImages.includes(image.name);
   
     if (isAlreadySelected) {
       const updatedList = deletingImages.filter((imgId: any) => imgId !== image.name);
@@ -98,15 +100,15 @@ export class UpdatePostDialogComponent implements OnInit {
 
   onFileChange2(event: any) {
     if (event.target.files.length > 0) {
-      const files: File[] = Array.from(event.target.files); // Convert FileList to an array
-      this.updatePostForm.patchValue({ images: files }); // Store files in the form control
+      const files: File[] = Array.from(event.target.files);
+      this.updatePostForm.patchValue({ images: files });
     }
   }
 
   onDeleteImage(index: number) {
     const images = this.updatePostForm.get('images')?.value;
-    images.splice(index, 1); // Remove the selected image from the array
-    this.updatePostForm.patchValue({ images: [...images] }); // Update the form control with the modified array
+    images.splice(index, 1);
+    this.updatePostForm.patchValue({ images: [...images] });
   }
 
 }

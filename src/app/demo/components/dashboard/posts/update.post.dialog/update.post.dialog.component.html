@@ -55,23 +55,23 @@
       <input id="photo" type="file" (change)="onFileChange($event)" />
     </div> -->
 
-    <div class="field" *ngIf="updatePostForm.get('images')?.value?.length">
+    <div class="field" *ngIf="existedImages?.length">
       <label>{{ "DELETING_FILES" | translate }}</label>
       <div class="update-images">
-        <div *ngFor="let image of updatePostForm.get('images')?.value; let i = index" class="image-preview-wrapper">
-          <ng-container *ngIf="isVideoFile(image.name); else imageTemplate">
-            <video [src]="getMedia(image.name)" class="media"></video>
-          </ng-container>
-          <ng-template #imageTemplate>
-            <img [src]="getMedia(image.name)" class="media" [alt]="Image" />
-          </ng-template>
-          <div class="checkbox-overlay">
-            <p-checkbox
-              binary="true"
-              [label]="' '"
-              (onChange)="onSelectImage(image)"
-            ></p-checkbox>
-          </div>
+        <div *ngFor="let image of existedImages; let i = index" class="image-preview-wrapper">
+            <ng-container *ngIf="isVideoFile(image.name); else imageTemplate">
+              <video [src]="getMedia(image.name)" class="media"></video>
+            </ng-container>
+            <ng-template #imageTemplate>
+              <img [src]="getMedia(image.name)" class="media" [alt]="Image" />
+            </ng-template>
+            <div class="checkbox-overlay">
+              <p-checkbox
+                binary="true"
+                [label]="' '"
+                (onChange)="onSelectImage(image)"
+              ></p-checkbox>
+            </div>
         </div>
       </div>
     </div>
